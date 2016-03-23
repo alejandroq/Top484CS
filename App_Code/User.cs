@@ -12,7 +12,7 @@ using System.Web;
  **********************************/
 abstract class User
 {
-    
+
     protected String emailAddress;
     protected String fName;
     protected String lName;
@@ -29,16 +29,16 @@ abstract class User
     protected String homePhone;
     protected String cellNum;
     protected int permission;
-    
+
     /******************************************
      * Default Constructor
      *****************************************/
     public User()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     /******************************************
      * Explicit Constructor
@@ -57,7 +57,7 @@ abstract class User
      * @param cellNum, user's cell phone number
      *****************************************/
     public User(String emailAddress, String fName, String lName, String MI,
-    String DOB, String address, String city, String state, int zip, String pass, 
+    String DOB, String address, String city, String state, int zip, String pass,
     char gender, String homePhone, String cellNum)
     {
         setEmail(emailAddress);
@@ -70,8 +70,11 @@ abstract class User
         setState(state);
         setZip(zip);
         setPass(pass);
-        
-    
+        setGender(gender);
+        setHomePhone(homePhone);
+        setCellPhone(cellNum);
+
+
     }
 
     /*
@@ -83,92 +86,92 @@ abstract class User
      * Accessor Method
      * @return user's email address
      ******************************************/
-    public String getEmail()                { return this.emailAddress; }
-   
+    public String getEmail() { return this.emailAddress; }
+
     /*******************************************
      * Accessor Method
      * @return user's first name
      ******************************************/
-    public String getFName()                { return this.fName; }
+    public String getFName() { return this.fName; }
 
     /*******************************************
      * Accessor Method
      * @return user's Last name
      ******************************************/
-    public String getLName()                { return this.lName; }
+    public String getLName() { return this.lName; }
 
     /*******************************************
      * Accessor Method
      * @return user's MI
      ******************************************/
-    public String getMI()                   { return this.MI; }
+    public String getMI() { return this.MI; }
 
     /*******************************************
      * Accessor Method
      * @return user's DOB
      ******************************************/
-    public String getDOB()                  { return this.DOB; }
+    public String getDOB() { return this.DOB; }
 
 
     /*******************************************
      * Accessor Method
      * @return user's home address
      ******************************************/
-    public String getAddress()              { return this.address; }
+    public String getAddress() { return this.address; }
 
     /*******************************************
      * Accessor Method
      * @return user's home city
      ******************************************/
-    public String getCity()                 { return this.city; }
+    public String getCity() { return this.city; }
 
     /*******************************************
      * Accessor Method
      * @return user's home state
      ******************************************/
-    public String getCity()                 { return this.state; }
+    public String getState() { return this.state; }
 
     /*******************************************
      * Accessor Method
      * @return user's zip
      ******************************************/
-    public int getZip()                     { return this.zip; }
+    public int getZip() { return this.zip; }
 
     /*******************************************
      * Accessor Method
      * @return user's unHashed password
      ******************************************/
-    public String getPass()                 { return this.pass; }
+    public String getPass() { return this.pass; }
 
     /*******************************************
      * Accessor Method
      * @return user's hashed password
      ******************************************/
-    public String getPassHash()             { return this.passHash; }
+    public String getPassHash() { return this.passHash; }
 
     /*******************************************
      * Accessor Method
      * @return user's password salt
      ******************************************/
-    public String getPassSalt()             { return this.passSalt; }
+    public String getPassSalt() { return this.passSalt; }
 
     /*******************************************
      * Accessor Method
      * @return user's gender
      ******************************************/
-    public char getGender()                 { return this.gender; }
+    public char getGender() { return this.gender; }
 
     /*******************************************
      * Accessor Method
      * @return user's home phone number
      ******************************************/
-    public String getHomePhone()            { return this.homePhone; }
+    public String getHomePhone() { return this.homePhone; }
 
     /*******************************************
      * Accessor Method
      * @return user's home phone number
      ******************************************/
-    public String getCellPhone()            { return this.cellNum; }
+    public String getCellPhone() { return this.cellNum; }
 
 
     /*
@@ -260,51 +263,51 @@ abstract class User
      * Mutator Method
      * @param user's unHashed password
      ******************************************/
-    protected void setPass(String pass) 
-    { 
-        this.pass = pass; 
+    protected void setPass(String pass)
+    {
+        this.pass = pass;
     }
 
     /*******************************************
      * Accessor Method
      * @param user's unHashed password
      ******************************************/
-    protected void setPassHash(String pass) 
-    { 
-         
+    protected void setPassHash(String pass)
+    {
+
     }
 
     /*******************************************
      * Mutator Method
      * @param user's password salt
      ******************************************/
-   // public String getPassSalt() { return this.passSalt; }
+    // public String getPassSalt() { return this.passSalt; }
 
     /*******************************************
      * Mutator Method
      * @param user's gender
      ******************************************/
-    protected void getGender(char sex) 
-    { 
-        this.gender = sex; 
+    protected void getGender(char sex)
+    {
+        this.gender = sex;
     }
 
     /*******************************************
      * Mutator Method
      * @param containing user's home phone number
      ******************************************/
-    protected void setHomePhone(String home) 
-    { 
-        this.homePhone = home; 
+    protected void setHomePhone(String home)
+    {
+        this.homePhone = home;
     }
 
     /*******************************************
      * Mutator Method
      * @return user's home phone number
      ******************************************/
-    protected void setCellPhone(String cell) 
-    { 
-        this.cellNum = cell; 
+    protected void setCellPhone(String cell)
+    {
+        this.cellNum = cell;
     }
 
     /*******************************************
