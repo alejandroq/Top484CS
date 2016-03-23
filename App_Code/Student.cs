@@ -1,8 +1,12 @@
 ﻿using System;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
+/***********************************
+ * Class: Student
+ * Author:Alex Ledesma
+ * Version:1
+ * Student is a class that Inherits User and will be used to control
+ * student records and actions
+ **********************************/
 public class Student : User
 {
     private String homeWard;
@@ -83,7 +87,7 @@ public class Student : User
      ******************************************/
     protected void setWard(String ward)
     {
-        this.homeWard;
+        this.homeWard = ward;
     }
 
     /*******************************************
@@ -92,7 +96,7 @@ public class Student : User
      ******************************************/
     protected void setDCOneCardNum(String num)
     {
-        this.dcOneCardNum;
+        this.dcOneCardNum = num;
     }
 
 }
