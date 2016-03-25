@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserRegistration.aspx.cs" Inherits="_Default" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserRegistration.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -62,7 +62,15 @@
                         <asp:Label ID="lblCity" runat="server" Text="City: "><asp:TextBox ID="txtCity" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblState" runat="server" Text="State: "><asp:TextBox ID="txtState" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblZip" runat="server" Text="Zip: "><asp:TextBox ID="txtZip" runat="server"></asp:TextBox></asp:Label><br />
-                        <asp:Label ID="lblGender" runat="server" Text="Gender"><asp:TextBox ID="txtGender" runat="server" Text="data list?"></asp:TextBox><%--make this a "data list" ask sierra--%></asp:Label><br />
+                        <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+                            <asp:DropDownList ID="ddlGender" runat="server" >
+                                <asp:ListItem>Female</asp:ListItem>
+                                <asp:ListItem>Male</asp:ListItem>
+                                <asp:ListItem>Trans/Transgender</asp:ListItem>
+                                <asp:ListItem>Genderqueer</asp:ListItem>
+                                <asp:ListItem>Prefer not to say</asp:ListItem>
+                            </asp:DropDownList></br>
+
                         <asp:Label ID="lblWard" runat="server" Text="Ward of Residence: "><asp:TextBox ID="txtWard" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblOneCard" runat="server" Text="DC One Card #: "><asp:TextBox ID="txtOneCard" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblHome" runat="server" Text="Home Phone #: "><asp:TextBox ID="txtHome" runat="server"></asp:TextBox></asp:Label><br />
@@ -74,6 +82,9 @@
                         <asp:CheckBox ID="ckWhite" runat="server" Text="White"/><br />
                         <asp:CheckBox ID="ckOther" runat="server" Text="Other"/><asp:TextBox ID="txtOther" runat="server"></asp:TextBox><br />
                         
+                <asp:Label ID="lblParentRelationship" runat="server" Text="Relationship to student:">
+                        <asp:TextBox ID="txtParentRelationship" runat="server" placeholder="Ex) Mother"></asp:TextBox></asp:Label>
+
                         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" /><br />
                     </div>
             <div id="uiSecond">
