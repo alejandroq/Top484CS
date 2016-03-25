@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div>
         <b><u><asp:Label ID="lblHeader" runat="server" Text="WBL Student/Student Skill Evaluation"></asp:Label></u></b><br />
         <br />
-        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: "></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
+        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: "></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server" Enabled="False" ReadOnly="True"></asp:TextBox><br />
         <br />
         <asp:Table ID="Table2" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                     <asp:TableRow ID="TableRow1" runat="server" HorizontalAlign="Center">
@@ -103,6 +103,7 @@
         <br />
         <b><asp:Label ID="lblQuestion4" runat="server" Text="4. Is there anything else you would like to comment on? "></asp:Label></b><br />
         <asp:TextBox ID="txtQuestion4" runat="server" Height="75px" Width="500px" TextMode="MultiLine"></asp:TextBox><br />
+        <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit Evaluation" />
         <br />
     
     </div>
