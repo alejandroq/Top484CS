@@ -11,7 +11,7 @@
     <div>
         <b><u><asp:Label ID="lblHeader" runat="server" Text="WBL Student/Student Skill Evaluation"></asp:Label></u></b><br />
         <br />
-        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: "></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
+        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: " ReadOnly="true"></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
         <br />
         <asp:Table ID="Table2" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                     <asp:TableRow ID="TableRow1" runat="server" HorizontalAlign="Center">
