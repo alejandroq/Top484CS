@@ -27,13 +27,14 @@ public partial class _Default : System.Web.UI.Page
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             connection.Open();
             // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-            string cmdText = "insert into dbo.testTable values ('" + txtfName.Text + "','" + txtlName.Text + "','" + txtEmail.Text + "','" + passwordHashNew + "',0)";
+            string cmdText = "insert into dbo.GeneralUser (EmailAddress, FirstName, LastName, PasswordHash) values ('" + txtEmail.Text + "','" + txtfName.Text + "','" + txtlName.Text + "','" + passwordHashNew + "')";
+            // ^^convert to new table structure
             SqlCommand cmd = new SqlCommand(cmdText, connection);
             System.Diagnostics.Debug.WriteLine(cmdText);
             int no = cmd.ExecuteNonQuery();
             if (no > 0) // if more than zero values executed and returned
             {
-                sendActivationEmail(); // send activation email after user info successfully inserted into DB
+                //sendActivationEmail(); // send activation email after user info successfully inserted into DB
                 Response.Write("Profile Created!");
             }
             else

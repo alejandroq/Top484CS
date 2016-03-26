@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Teacher.StudentEvaluation.aspx.cs" Inherits="Teacher_StudentEvaluation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Teacher.StudentEvaluation.aspx.cs" Inherits="Teacher_StudentEvaluation" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <div>
         <b><u><asp:Label ID="lblHeader" runat="server" Text="WBL Student/Student Skill Evaluation"></asp:Label></u></b><br />
         <br />
-        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: " ReadOnly="true"></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
+        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: "></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
         <br />
         <asp:Table ID="Table2" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                     <asp:TableRow ID="TableRow1" runat="server" HorizontalAlign="Center">
@@ -106,70 +106,6 @@
         <br />
     
     </div>
-
-        <div>
-
-            <!-- Teacher evaluation of student skills-->
-
-            <asp:Label ID="lblDJSESkill" runat="server" Text="Skill evaluation"></asp:Label>
-
-            <asp:Label ID="lblDJSSkillEDesc" runat="server" Text="Use the picture below to rate your ability in the following areas."></asp:Label>
-
-            <asp:Label ID="lblDJSERecognition" runat="server" Text="Recognition">
-
-                    <asp:Label ID="lblDJSSRecNumb" runat="server" Text="Out of 5"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSRecNumb" runat="server" placeholder="Your answer"></asp:Textbox></asp:Label>
-
-                    <!-- add description table for recognition -->
-
-            <asp:Label ID="lblDJSSTech" runat="server" Text="Technology">
-
-                    <asp:Label ID="lblDJSSTechNumb" runat="server" Text="Out of 10"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSTechNumb" runat="server" placeholder="Your answer"></asp:Textbox></asp:Label>
-
-                    <!-- add description table for technoloy -->
-
-            <asp:Label ID="lblDJSSMixing" runat="server" Text="Mixing">
-
-                    <asp:Label ID="lblDJSSMixNumb" runat="server" Text="Out of 15"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSMixNumb" runat="server" placeholder="Your answer"></asp:Textbox></asp:Label>
-
-                    <!-- add description table for mixing -->           
-
-            <asp:Label ID="lblDJSSScratch" runat="server" Text="Scratching">
-
-                    <asp:Label ID="lblDJSSScratchNumb" runat="server" Text="Out of 15"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSScratchNumb" runat="server" placeholder="Your answer"></asp:Textbox></asp:Label>
-
-                    <!-- add description table for scratching -->  
-
-            <asp:Label ID="lblDJSSProf" runat="server" Text="Being Professional">
-
-                    <asp:Label ID="lblDJSSProfNumb" runat="server" Text="Out of 10"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSProbNumb" runat="server" placeholder="Your answer">  </asp:Textbox></asp:Label>
-
-                    <!-- add description table for proffesional -->  
-
-            <asp:Label ID="lblDJSSPres" runat="server" Text="Presentation">
-
-                    <asp:Label ID="lblDJSSPresNumb" runat="server" Text="Out of 35"></asp:Label>
-
-                    <asp:Textbox id="txtDJSSPresNumb" runat="server" placeholder="Your answer"></asp:Textbox></asp:Label>
-
-                    <!-- add description table for prestation -->          
-
- 
-
- 
-
-    </div>
-
-
     </form>
 </body>
 </html>
