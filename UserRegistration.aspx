@@ -1,11 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserRegistration.aspx.cs" Inherits="_Default" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserRegistration.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Words Beats and Life, Inc.</title>
-    <style type="text/css">
+    
+    <!--<style type="text/css">
         #userInfo {
             width: auto;
             height: auto;
@@ -44,14 +45,16 @@
             width: auto;
             line-height: 25px;
         }
-    </style>
+        
+    </style> -->
 </head>
 <body>
     <form id="form1" runat="server">
         <div id="userInfo">
-            <b><u><asp:Label ID="lblHeader" runat="server" Text="Student Registration Form"></asp:Label></u></b>
-            <br />
-            <div id="uiFirst">
+            
+            <!-- General user form information -->
+            <div id="allInfo" runat="server">
+                <h3>User Information</h3>
                         <asp:Label ID="lblfName" runat="server" Text="First Name: "><asp:TextBox ID="txtfName" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lbllName" runat="server" Text="Last Name: "><asp:TextBox ID="txtlName" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblEmail" runat="server" Text="E-mail Address: "><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></asp:Label><br />
@@ -62,9 +65,15 @@
                         <asp:Label ID="lblCity" runat="server" Text="City: "><asp:TextBox ID="txtCity" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblState" runat="server" Text="State: "><asp:TextBox ID="txtState" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblZip" runat="server" Text="Zip: "><asp:TextBox ID="txtZip" runat="server"></asp:TextBox></asp:Label><br />
-                        <asp:Label ID="lblGender" runat="server" Text="Gender"><asp:TextBox ID="txtGender" runat="server" Text="data list?"></asp:TextBox><%--make this a "data list" ask sierra--%></asp:Label><br />
-                        <asp:Label ID="lblWard" runat="server" Text="Ward of Residence: "><asp:TextBox ID="txtWard" runat="server"></asp:TextBox></asp:Label><br />
-                        <asp:Label ID="lblOneCard" runat="server" Text="DC One Card #: "><asp:TextBox ID="txtOneCard" runat="server"></asp:TextBox></asp:Label><br />
+                        <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+                            <asp:DropDownList ID="ddlGender" runat="server" >
+                                <asp:ListItem>Female</asp:ListItem>
+                                <asp:ListItem>Male</asp:ListItem>
+                                <asp:ListItem>Trans/Transgender</asp:ListItem>
+                                <asp:ListItem>Genderqueer</asp:ListItem>
+                                <asp:ListItem>Prefer not to say</asp:ListItem>
+                            </asp:DropDownList><br/>
+      
                         <asp:Label ID="lblHome" runat="server" Text="Home Phone #: "><asp:TextBox ID="txtHome" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblCell" runat="server" Text="Cell Phone #: "><asp:TextBox ID="txtCell" runat="server"></asp:TextBox></asp:Label><br />
                         <asp:CheckBox ID="ckAmIndian" runat="server" Text="American India or Alaskan Native" /><br />
@@ -73,11 +82,21 @@
                         <asp:CheckBox ID="ckLatino" runat="server" Text="Latino/Latina"/><br />
                         <asp:CheckBox ID="ckWhite" runat="server" Text="White"/><br />
                         <asp:CheckBox ID="ckOther" runat="server" Text="Other"/><asp:TextBox ID="txtOther" runat="server"></asp:TextBox><br />
-                        
-                        <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" /><br />
-                    </div>
-            <div id="uiSecond">
-                        <b><u><asp:Label ID="lblEmergencyInfo" runat="server" Text="Parent/Guardian or Emergency Contact Information"></asp:Label></u></b><br />
+                       
+                <asp:Button ID="btnSignUpAllInfo" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" /><br /> 
+                 </div>
+
+
+                
+            <!-- Student additional information -->
+             <div id="sAdditionalInformation" runat="server">
+                <h3>Additional Information</h3>
+                <asp:Label ID="lblWard" runat="server" Text="Ward of Residence: "><asp:TextBox ID="txtWard" runat="server"></asp:TextBox></asp:Label><br />
+                        <asp:Label ID="lblOneCard" runat="server" Text="DC One Card #: "><asp:TextBox ID="txtOneCard" runat="server"></asp:TextBox></asp:Label><br />
+            </div>
+                    
+            <div id="sEmergencyInfo" runat="server">
+                        <h3>Emergency Contact Information</h3>
                         <asp:Label ID="lblEmergencyFname" runat="server" Text="911 Contact First Name"></asp:Label>
                         <asp:TextBox ID="txtEmergencyFname" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblbEmergencyLname" runat="server" Text="Last Name"></asp:Label>
@@ -88,8 +107,10 @@
                         <asp:TextBox ID="txtEcontactCell" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblEcontactEmail" runat="server" Text="Emergency Contact E-mail: "></asp:Label>
                         <asp:TextBox ID="txtEcontactEmail" runat="server"></asp:TextBox><br />
-                        <b><u><asp:Label ID="lblHealth" runat="server" Text="Health Information"></asp:Label></u></b>
-                        <br />
+                    </div>
+                
+            <div id="sHealthInfo" runat="server">
+                        <h3>Health Information</h3>
                         <asp:Label ID="lblPhysician" runat="server" Text="Primary Physician and/or Medical Treatment Facility: "></asp:Label>
                         <asp:TextBox ID="txtPhysician" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblInsuranceCompany" runat="server" Text="Insurance Company: "></asp:Label>
@@ -101,23 +122,17 @@
                         <br /><asp:RadioButton ID="rdoDiet3" runat="server" Text="N/A (I eat everything)" GroupName="DietGroup"/>
                         <br /><asp:RadioButton ID="rdoDiet4" runat="server" Text="Nut Allergy" GroupName="DietGroup"/>
                         <br /><asp:RadioButton ID="rdoDiet5" runat="server" Text="Other" GroupName="DietGroup" /></asp:Label><asp:TextBox ID="txtDietOther" runat="server"></asp:TextBox><br />
-                        <asp:Label ID="lblAllergies" runat="server" Text="List Allergies (if none, write none): "><asp:TextBox ID="txtAllergies" runat="server"></asp:TextBox></asp:Label>
-            </div>
-            <div id="uiThird">
-                    <b><u><asp:Label ID="lblParentRegistration" runat="server" Text="Parent Registration Form"></asp:Label></u></b><br />
-                    <asp:Label ID="lblChildConfirm" runat="server" Text="Please confirm the following information for your child."></asp:Label><br />
-                    <asp:Label ID="lblChildsFName" runat="server" Text="First Name:">
-                    <asp:TextBox ID="txtChildLName" runat="server"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsLName" runat="server" Text="Last Name:">
-                    <asp:TextBox ID="txtChildFName" runat="server"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsEmail" runat="server" Text="E-Mail:">
-                    <asp:TextBox ID="txtChildEmail" runat="server"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsBirthday" runat="server" Text="Birthdate:">
-                    <asp:TextBox ID="txtChildBirthday" runat="server"></asp:TextBox></asp:Label><br />    
-                    
-            </div>
-            <div id="uiFourth">
-                    <b><u><asp:Label ID="lblEducationForm" runat="server" Text="Education Form"></asp:Label></u></b><br />
+                        <asp:Label ID="lblAllergies" runat="server" Text="List Allergies (if none, write none): "><asp:TextBox ID="txtAllergies" runat="server"></asp:TextBox></asp:Label><br />
+           <asp:Button ID="btneducationInfo" runat="server" Text="Continue" OnClick="btneducationInfo_Click" />
+                 </div>
+
+
+
+            
+
+            <div id="sEducationInfo" runat="server">
+
+                    <h3>Ecuation Information</h3>
                     <asp:Label ID="lblEStatus" runat="server" Text="Student Status"></asp:Label>
                     <asp:RadioButton ID="rdoEStatusNo" runat="server" Text="Not in School" GroupName="educationStatus"/>
                     <asp:RadioButton ID="rdoEStatusSchool" runat="server" Text="Currently attending school" GroupName="educationStatus"/>
@@ -166,9 +181,11 @@
                         <asp:ListItem Value="I don't know"></asp:ListItem>
                     </asp:DropDownList></asp:Label>
             </div>
-            <div id="uiFifth">
-                    <b><u><asp:Label ID="lblEmploymentHistory" runat="server" Text="Employment History"></asp:Label></u></b><br />
-                    <asp:Label ID="lblCurrentJob" runat="server" Text="Do you currently have a job?"></asp:Label><br />
+
+
+            <div id="sEmploymentHistory" runat="server">
+            <h3>Employment History</h3>                    
+                <asp:Label ID="lblCurrentJob" runat="server" Text="Do you currently have a job?"></asp:Label><br />
                     <asp:RadioButton ID="rdoJobYes" runat="server" Text="Yes" GroupName="currentJob"/>
                     <asp:RadioButton ID="rdoJobNo" runat="server" Text="No" GroupName="currentJob"/>
                     <asp:Label ID="lblWork" runat="server" Text="If yes, where do you work? What do you do?">
@@ -215,7 +232,30 @@
                     <asp:CheckBox ID="ckIProperty" runat="server" Text="Intellectual Property"/><br />
                     <asp:CheckBox ID="ckPortfolio" runat="server" Text="Portfolio Building"/><br />
                     <asp:CheckBox ID="ckNone" runat="server" Text="None"/><br />
+            <asp:Button ID="btnConfirmEmmployEducation" runat="server" text="Confirm Registration" OnClick="btnConfirmEmmployEducation_Click" />
             </div>
+
+           <!-- Parent additional information -->
+            <div id="parentRegistration" runat="server">
+                <h3>Please confirm your student</h3>
+                    <asp:Label ID="lblChildConfirm" runat="server" Text="Please confirm the following information for your child."></asp:Label><br />
+                    <asp:Label ID="lblChildsFName" runat="server" Text="First Name:">
+                    <asp:TextBox ID="txtChildLName" runat="server"></asp:TextBox></asp:Label><br />
+                    <asp:Label ID="lblChildsLName" runat="server" Text="Last Name:">
+                    <asp:TextBox ID="txtChildFName" runat="server"></asp:TextBox></asp:Label><br />
+                    <asp:Label ID="lblChildsEmail" runat="server" Text="E-Mail:">
+                    <asp:TextBox ID="txtChildEmail" runat="server"></asp:TextBox></asp:Label><br />
+                    <asp:Label ID="lblChildsBirthday" runat="server" Text="Birthdate:">
+                    <asp:TextBox ID="txtChildBirthday" runat="server"></asp:TextBox></asp:Label><br /> 
+                   <div id="parentAdditions" runat="server">
+                <asp:Label ID="lblParentRelationship" runat="server" Text="Relationship to student:">
+                        <asp:TextBox ID="txtParentRelationship" runat="server"></asp:TextBox></asp:Label><br />
+                       <asp:Button ID="btnparentStudentConfirmation" runat="server" Text="Confirm Student" OnClick="parentStudentConfirmation_Click" />
+                </div>
+                    
+            </div>
+
+
         </div>
         
         <br />
