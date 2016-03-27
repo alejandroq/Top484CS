@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,13 +11,13 @@ using System.Web;
  * User is an abstract class that all other "User" classes
  * will inherit.
  **********************************/
-abstract class User
+public abstract class User
 {
 
     protected String emailAddress;
     protected String fName;
     protected String lName;
-    protected String MI;
+    protected char gender;
     protected String DOB;
     protected String address;
     protected String city;
@@ -25,10 +26,15 @@ abstract class User
     protected String pass;
     protected String passHash;
     protected String passSalt;
-    protected char gender;
+    protected String userType;
+    protected String shirtSize;
     protected String homePhone;
     protected String cellNum;
     protected int permission;
+    protected DateTime joinDate;
+    protected DateTime lastLogin;
+    protected String race;
+    protected bool activated;
 
     /******************************************
      * Default Constructor
@@ -53,17 +59,20 @@ abstract class User
      * @param DOB, String user's date of birth
      * @param pass, String user's unhashed password
      * @param gender, char identifying users gender
+     * @param userType, String account type of user
+     * @param size, String shirt size of user
+     * @param race, String containing race user identifies as
      * @param homePhone, user's home phone number
      * @param cellNum, user's cell phone number
      *****************************************/
-    public User(String emailAddress, String fName, String lName, String MI,
+    public User(String emailAddress, String fName, String lName, String userType,
     String DOB, String address, String city, String state, int zip, String pass,
-    char gender, String homePhone, String cellNum)
+    char gender, String homePhone, String cellNum, String size, String race)
     {
         setEmail(emailAddress);
         setFName(fName);
         setLName(lName);
-        setMI(MI);
+        setUserType(userType);
         setDOB(DOB);
         setAddress(address);
         setCity(city);
@@ -73,7 +82,12 @@ abstract class User
         setGender(gender);
         setHomePhone(homePhone);
         setCellPhone(cellNum);
-
+        setUserType(userType);
+        setShirtSize(size);
+        setJoinDate(DateTime.Now);
+        setLastLogin(DateTime.Now);
+        setRace(race);
+        setActivated(false);
 
     }
 
@@ -102,9 +116,9 @@ abstract class User
 
     /*******************************************
      * Accessor Method
-     * @return user's MI
+     * @return user's account type
      ******************************************/
-    public String getMI() { return this.MI; }
+    public String getUserType() { return this.userType; }
 
     /*******************************************
      * Accessor Method
@@ -173,6 +187,37 @@ abstract class User
      ******************************************/
     public String getCellPhone() { return this.cellNum; }
 
+    /*******************************************
+     * Accessor Method
+     * @return user's shirtSize
+     ******************************************/
+    public String getShirtSize() { return this.shirtSize; }
+
+    /*******************************************
+     * Accessor Method
+     * @return user's join date
+     ******************************************/
+    public DateTime getJoinDate() { return this.joinDate; }
+
+    /*******************************************
+     * Accessor Method
+     * @return user's Last Login
+     ******************************************/
+    public DateTime getLastLogin() { return this.lastLogin; }
+
+    /*******************************************
+     * Accessor Method
+     * @return user's race
+     ******************************************/
+    public String getRace() { return this.race; }
+
+    /*******************************************
+     * Accessor Method
+     * @return user's activation
+     ******************************************/
+    public bool getActivated() { return this.activated; }
+
+
 
     /*
      * MUTATOR METHODS
@@ -207,11 +252,11 @@ abstract class User
 
     /*******************************************
      * Mutator Method
-     * @param String containing user's middle initial
+     * @param String containing user's account type
      ******************************************/
-    protected void setMI(String mi)
+    protected void setUserType(String userType)
     {
-        this.MI = mi;
+        this.userType = userType;
     }
 
     /*******************************************
@@ -287,14 +332,14 @@ abstract class User
      * Mutator Method
      * @param user's gender
      ******************************************/
-    protected void getGender(char sex)
+    protected void setGender(char sex)
     {
         this.gender = sex;
     }
 
     /*******************************************
      * Mutator Method
-     * @param containing user's home phone number
+     * @param String containing user's home phone number
      ******************************************/
     protected void setHomePhone(String home)
     {
@@ -303,7 +348,7 @@ abstract class User
 
     /*******************************************
      * Mutator Method
-     * @return user's home phone number
+     * @param String containing user's cell phone number
      ******************************************/
     protected void setCellPhone(String cell)
     {
@@ -319,7 +364,49 @@ abstract class User
         this.permission = perm;
     }
 
+    /*******************************************
+     * Mutator Method
+     * @return user's shirt size
+     ******************************************/
+    protected void setShirtSize(String size)
+    {
+        this.shirtSize = size;
+    }
 
+    /*******************************************
+     * Mutator Method
+     * @param Date user's account creation
+     ******************************************/
+    protected void setJoinDate(DateTime join)
+    {
+        this.joinDate = join;
+    }
 
+    /*******************************************
+     * Mutator Method
+     * @param Date user's last login
+     ******************************************/
+    protected void setLastLogin(DateTime last)
+    {
+        this.lastLogin = last;
+    }
+
+    /*******************************************
+     * Mutator Method
+     * @param String user's race
+     ******************************************/
+    protected void setRace(String race)
+    {
+        this.race = race;
+    }
+
+    /*******************************************
+     * Mutator Method
+     * @param bool user's account activation
+     ******************************************/
+    protected void setActivated(bool active)
+    {
+        this.activated = active;
+    }
 
 }
