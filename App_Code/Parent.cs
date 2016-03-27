@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 /***********************************
  * Class: Parent
  * Author:Alex Ledesma
@@ -13,14 +13,14 @@ using System.Web;
 public class Parent : User
 {
 	private ArrayList students;
+    private String relationship;
+    private int letterCount;
     /******************************************
      * Explicit Constructor
-     * Sets applicant permission to lowest possible
-     * until user is approved
      * @param emailAddress user's email address doubles as login
      * @param fName, String user's first name
      * @param lName, String user's last name
-     * @param MI, String user's middle initial 
+     * @param userType, String user's account type 
      * @param address, String user's home address
      * @param city, String user's home city
      * @param state, String user's home state
@@ -30,37 +30,45 @@ public class Parent : User
      * @param gender, char identifying users gender
      * @param homePhone, user's home phone number
      * @param cellNum, user's cell phone number
+     * @param size, user's shirt size
+     * @param race, user's race
+     * @param relationship, users relationship to student
+     * @param student, users student
      *****************************************/
-    public Parent(String emailAddress, String fName, String lName, String MI,
+    public Parent(String emailAddress, String fName, String lName, String userType,
     String DOB, String address, String city, String state, int zip, String pass,
-    char gender, String homePhone, String cellNum, String ward, String dcOne, Student student) : base(emailAddress, fName, lName, MI,
-    DOB, address, city, state, zip, pass, gender, homePhone, cellNum)
+    char gender, String homePhone, String cellNum, String size, String race, String relationship, Student student)
+        : base(emailAddress, fName, lName, userType, DOB, address, city, state, zip, pass, gender, homePhone, cellNum, size, race)
 	{
         base.setPermission(3);
-        setWard(ward);
-        setDCOneCardNum(dcOne);
+        setRelationship(relationship);
+        setLetterCount(0);
         setStudent(student);
+        setActivated(true);
 	}
 
-    public Parent(Applicant app, String ward, String dcOne, Student student)
+    public Parent(Applicant app, String relationship, Student student)
     {
         setEmail(app.getEmail());
         setFName(app.getFName());
         setLName(app.getLName());
-        setMI(app.getMI());
+        setUserType(app.getUserType());
         setDOB(app.getDOB());
         setAddress(app.getAddress());
         setCity(app.getCity());
         setState(app.getState());
         setZip(app.getZip());
-        setPass(app.getPass);
-        base.setPermission(4);
-        setWard(ward);
-        setDCOneCardNum(dcOne);
+        setPass(app.getPass());
+        base.setPermission(3);
+        setRelationship(relationship);
+        setLetterCount(0);
         setGender(app.getGender());
         setHomePhone(app.getHomePhone());
         setCellPhone(app.getCellPhone());
         setStudent(student);
+        setRace(app.getRace());
+        setShirtSize(app.getShirtSize());
+        setActivated(true);
     }
 
     /*
@@ -70,15 +78,15 @@ public class Parent : User
     
     /*******************************************
     * Accessor Method
-    * @return user's Home ward
+    * @return user's relationship to student
     ******************************************/
-    public String getWard() { return this.homeWard; }
+    public String getRelationship() { return this.relationship; }
 
     /*******************************************
      * Accessor Method
-     * @return user's DC one card number
+     * @return user's letter count
      ******************************************/
-    public String getDCOneCardNum() { return this.dcOneCardNum; }
+    public int getLetterCount() { return this.letterCount; }
 
     /******************************************
      * Accessor Method
@@ -107,20 +115,20 @@ public class Parent : User
 
     /*******************************************
      * Mutator Method
-     * @param String containing user's Home ward
+     * @param String containing user's relationship to student
      ******************************************/
-    protected void setWard(String ward)
+    protected void setRelationship(String relationship)
     {
-        this.homeWard = ward;
+        this.relationship = relationship;
     }
 
     /*******************************************
      * Mutator Method
-     * @param String containing user's DC one card number
+     * @param int containing users letter count
      ******************************************/
-    protected void setDCOneCardNum(String num)
+    protected void setLetterCount(int count)
     {
-        this.dcOneCardNum = num;
+        this.letterCount = count;
     }
 
     /*******************************************
@@ -130,7 +138,7 @@ public class Parent : User
     protected void setStudent(Student student)
     {
         this.students = new ArrayList();
-        this.students.add(student);
+        this.students.Add(student);
         
     }
 
@@ -140,6 +148,16 @@ public class Parent : User
      ******************************************/
     protected void addStudent(Student student)
     {
-        this.students.add(student);
+        this.students.Add(student);
     }
+
+    /*******************************************
+     * Mutator Method
+     * @param increments users letter count
+     ******************************************/
+    protected void incrementLetter()
+    {
+        this.letterCount++;
+    }
+
 }
