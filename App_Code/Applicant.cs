@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,12 +11,10 @@ public class Applicant: User
 {
     /******************************************
      * Explicit Constructor
-     * Sets applicant permission to lowest possible
-     * until user is approved
      * @param emailAddress user's email address doubles as login
      * @param fName, String user's first name
      * @param lName, String user's last name
-     * @param MI, String user's middle initial 
+     * @param userType, String user's account type 
      * @param address, String user's home address
      * @param city, String user's home city
      * @param state, String user's home state
@@ -25,11 +24,15 @@ public class Applicant: User
      * @param gender, char identifying users gender
      * @param homePhone, user's home phone number
      * @param cellNum, user's cell phone number
+     * @param size, user's shirt size
+     * @param race, user's race
+     * @param relationship, users relationship to student
+     * @param student, users student
      *****************************************/
-    public Applicant(String emailAddress, String fName, String lName, String MI,
+    public Applicant(String emailAddress, String fName, String lName, String userType,
     String DOB, String address, String city, String state, int zip, String pass,
-    char gender, String homePhone, String cellNum) : base(emailAddress, fName, lName, MI,
-    DOB, address, city, state, zip, pass, gender, homePhone, cellNum)
+    char gender, String homePhone, String cellNum, String size, String race)
+        : base(emailAddress, fName, lName, userType, DOB, address, city, state, zip, pass, gender, homePhone, cellNum, size, race)
 	{
         base.setPermission(1);
 	}
