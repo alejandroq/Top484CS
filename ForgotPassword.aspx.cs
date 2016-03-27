@@ -48,7 +48,7 @@ public partial class ForgotPassword : System.Web.UI.Page
         message.From = new MailAddress("ryan.michael.leee@gmail.com"); // where activation email is being sent FROM
         message.To.Add(userEmail); // where activation email is sent to user-supplied email address.
         // TODO: ^^ validate this textbox is in E-mail format
-        message.Subject = "Account Activation"; // Subject of activation email
+        message.Subject = "WBL Password Reset"; // Subject of activation email
         message.Body = "Hi " + firstName + ", Click this link to confirm your e-mail address and change password: </br></br> <a href = '" + resetLink + "'> Reset your password!";
         message.IsBodyHtml = true; // message contained in html body
         client.EnableSsl = true; // secure connection

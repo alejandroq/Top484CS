@@ -22,7 +22,6 @@ public partial class ChangePassword : System.Web.UI.Page
             string password = txtNewPass.Text;
             string passwordHashNew = SimpleHash.ComputeHash(password, "MD5", null);
             string changePWQuery = "update dbo.GeneralUser set PasswordHash = '" + passwordHashNew + "' where EmailAddress = '" + userEmail + "'";
-            System.Diagnostics.Debug.WriteLine(changePWQuery);
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             connection.Open();
             SqlCommand cmd = new SqlCommand(changePWQuery, connection);

@@ -23,7 +23,7 @@ public partial class Log_In : System.Web.UI.Page
 
         e.Authenticated = false;
 
-        string QueryUserDetails = "Select PasswordHash from dbo.GeneralUser where EmailAddress = '" + user +"'"; // This query returns the password hash and the boolean for whether or not the profile is activated
+        string QueryUserDetails = "Select PasswordHash, ActivatedBool, UserPermission from dbo.GeneralUser where EmailAddress = '" + user +"'"; // This query returns the password hash and the boolean for whether or not the profile is activated
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
         connection.Open();
         SqlCommand cmd = new SqlCommand(QueryUserDetails, connection); // execute select statement
@@ -31,6 +31,8 @@ public partial class Log_In : System.Web.UI.Page
         DataTable dt = new DataTable(); // create data table for sql query
         adp.Fill(dt); // populate datatable with query results
         int no = dt.Rows.Count; // number of rows in data table
+        string activated = dt.Rows[0][1].ToString();
+        string permission = dt.Rows[0][2].ToString();
 
         if (no > 0) // if the query finds the user-entered Email (username)
         {
@@ -40,19 +42,38 @@ public partial class Log_In : System.Web.UI.Page
             System.Diagnostics.Debug.WriteLine(verify);
             e.Authenticated = verify;
             Session["loggedIn"] = e.Authenticated.ToString();
+            // If the log-in credentials are verified
             if (verify)
             {
-                // see COMMENTED OUT note below
                 // Verify that the user has activated their profile
-                //if (dt.Rows[0][1].ToString() == "True") // if the account's activated column is equal to true
-                //{
-                    System.Diagnostics.Debug.WriteLine("Account activated, user logged in");
-                    Response.Redirect("profile.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
-                //}
-                //else                COMMENTED OUT this block to check DB. Activated is not yet a column, need to figure out how to delay activation email being sent until Admin approves account
-                //{
-                //    Response.Write("Error: Account is not activated");
-                //}
+                if (activated == "True") // if the account's activated column is equal to true
+                {
+                    // Redirect user to their profile based on their permission
+                    if (permission == "5")
+                    {
+                        Response.Redirect("Admin.ManageAccounts.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
+                    }
+                    if (permission == "4")
+                    {
+                        // redirect to staff/instructor/intern profile
+                    }
+                    if (permission == "3")
+                    {
+                        // redirect to student profile
+                    }
+                    if (permission == "2")
+                    {
+                        // redirect to parent profile
+                    }
+                    if (permission == "1")
+                    {
+                        // redirect to cipher profile
+                    }
+                }
+                else                
+                {
+                    Response.Write("Error: Account is not activated");
+                }
             }
         }
         else
