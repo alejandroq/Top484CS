@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,136 +6,32 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Net.Mail; // for e-mail activation
-using System.Data;
-
 
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-        sEducationInfo.Style.Add("display", "none");
-        sEmergencyInfo.Style.Add("display", "none");
-        sEmploymentHistory.Style.Add("display", "none");
-        sAdditionalInformation.Style.Add("display", "none");
-        sHealthInfo.Style.Add("display", "none");
-        parentAdditions.Style.Add("display", "none");
-        parentRegistration.Style.Add("display", "none");
-        
-        
-    }
+        if (Request.QueryString.Count > 0) // if there is a query string, meaning if there is a variable in the email= link (useractivation)
+        {
+            if (Request.QueryString.Keys[0] == "email") // if the first value of the query string is email
+            {
+                string email = Request.QueryString["email"].ToString(); // email ID from query string
+                string QueryActivate = "Update dbo.GeneralUser set ActivatedBool = 'True' where EmailAddress = '" + email + "'"; // changing activated column in DB from false to true (or 0 to 1 for bit-type)
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(QueryActivate, connection);
+                int no = cmd.ExecuteNonQuery();
+                if (no > 0) // if more than zero values executed and returned
+                {
 
+                    Response.Write("Account activated successfully!");
+                }
+                else
+                {
+                    Response.Write("Error: Unable to Activate Account");
+                }
+            }
+        }
+    }
     
-
-
-    #region Sign Up New User
-    protected void btnSignUp_Click(object sender, EventArgs e)
-    {
-        // Creates password and sends activation email
-       /* string pw1 = txtPassword.Text;
-        string pw2 = txtPassword2.Text;
-        if (pw1 == pw2)
-        {
-            string passwordHashNew = SimpleHash.ComputeHash(pw1, "MD5", null);
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-            connection.Open();
-            // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-            string cmdText = "insert into dbo.testTable values ('" + txtfName.Text + "','" + txtlName.Text + "','" + txtEmail.Text + "','" + passwordHashNew + "',0)";
-            SqlCommand cmd = new SqlCommand(cmdText, connection);
-            System.Diagnostics.Debug.WriteLine(cmdText);
-            int no = cmd.ExecuteNonQuery();
-            if (no > 0) // if more than zero values executed and returned
-            {
-                sendActivationEmail(); // send activation email after user info successfully inserted into DB
-                Response.Write("Profile Created!");
-            }
-            else
-            {
-                Response.Write("Error: Profile Not Created");
-            }
-        }
-        else
-        {
-            Response.Write("Error: Password mismatch");
-        }
-        */
-
-
-        // General user database input statements
-
-        string userType = Session["userType"].ToString();
-        if (userType.Equals("parent"))
-        {
-            parentAdditions.Style.Add("display", "inline");
-            parentRegistration.Style.Add("display", "inline");
-            allInfo.Style.Add("display", "none");
-
-
-
-        }
-        else if (userType.Equals("student"))
-        {
-            allInfo.Style.Add("display", "none");
-            sEmergencyInfo.Style.Add("display", "inline");
-            sAdditionalInformation.Style.Add("display", "inline");
-            sHealthInfo.Style.Add("display", "inline");
-        }
-        else
-        {
-            
-            // send cipher data to the database
-        }
-
-
-    }
-    #endregion
-
-    #region Send Activation Email to newly registered users
-    // Method for sending activation email to newly created user
-    public void sendActivationEmail()
-    {
-        // Setting up an e-mail message, establishing the credentials for the email address it is coming from and the email address it is going to
-        MailMessage message = new MailMessage();
-        SmtpClient client = new SmtpClient();
-        client.Host = "smtp.gmail.com";
-        client.Port = 587;
-
-        string userActivation = "http://localhost:62112/UserActivation.aspx?email=" + txtEmail.Text; // TODO: change this to WBL admin email
-
-        message.From = new MailAddress("ryan.michael.leee@gmail.com"); // where activation email is being sent FROM
-        message.To.Add(txtEmail.Text); // where activation email is sent to user-supplied email address.
-        // TODO: ^^ validate this textbox is in E-mail format
-        message.Subject = "Account Activation"; // Subject of activation email
-        message.Body = "Hi " + txtfName.Text + ", Your account activation link is here: </br></br> <a href = '" + userActivation + "'> Activate your account!";
-        message.IsBodyHtml = true; // message contained in html body
-        client.EnableSsl = true; // secure connection
-        client.UseDefaultCredentials = true; // have to set up credentials as true
-        client.Credentials = new System.Net.NetworkCredential("ryan.michael.leee@gmail.com", "ryancatie2"); // user and PW for some client, replace this with user-supplied email/pw
-        client.Send(message);
-    }
-    #endregion
-
-    protected void parentStudentConfirmation_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void btneducationInfo_Click(object sender, EventArgs e)
-    {
-        sEducationInfo.Style.Add("display", "inline");
-        sEmploymentHistory.Style.Add("display", "inline");
-    }
-    protected void btnConfirmEmmployEducation_Click(object sender, EventArgs e)
-    {
-
-    }
 }
-
-
-
-
-
-
-
-
-
