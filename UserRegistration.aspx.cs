@@ -15,13 +15,9 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
        
-        sEducationInfo.Style.Add("display", "none");
-        sEmergencyInfo.Style.Add("display", "none");
-        sEmploymentHistory.Style.Add("display", "none");
-        sAdditionalInformation.Style.Add("display", "none");
-        sHealthInfo.Style.Add("display", "none");
+
         parentAdditions.Style.Add("display", "none");
-        parentRegistration.Style.Add("display", "none");
+        parentBlock.Style.Add("display", "none");
         
         
     }
@@ -68,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
         if (userType.Equals("parent"))
         {
             parentAdditions.Style.Add("display", "inline");
-            parentRegistration.Style.Add("display", "inline");
+            parentBlock.Style.Add("display", "inline");
             allInfo.Style.Add("display", "none");
 
 
@@ -120,15 +116,7 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
-    protected void btneducationInfo_Click(object sender, EventArgs e)
-    {
-        sEducationInfo.Style.Add("display", "inline");
-        sEmploymentHistory.Style.Add("display", "inline");
-    }
-    protected void btnConfirmEmmployEducation_Click(object sender, EventArgs e)
-    {
 
-    }
 }
 
 
