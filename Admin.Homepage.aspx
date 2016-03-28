@@ -31,7 +31,11 @@
 					<li>Quick Add</li>
 				</ul>
 			</li>
-			<li><a href="Admin.AddContent.aspx">Manage Content</a> </li>
+			<li>Manage Content
+                <ul>
+                    <li><a href="Admin.AddContent.aspx">Add Content</a> </li>
+                    </ul>
+                </li>
 			<li>Manage Events
 				<ul>
 					<li><a href="Admin.AddEvent.aspx">Add Event</a> </li>
@@ -44,6 +48,9 @@
 			</li>
 			<li>View Dashboard</li>
 		</ul>
+
+    <!--Main body for administrator homepage -->
+    <h3>Administrator Homepage</h3>
 
 
 </asp:Content>
