@@ -564,30 +564,37 @@ header {
   background-color: #cccccc;
   overflow: hidden;
 }
+header nav {
+  display: inline;
+}
 header #branding_logo {
-  margin: 2em 2em .5em 2em;
+  margin: 1em;
+  display: inline;
 }
-header #notification_icon {
-  width: 2em;
-  height: 2em;
-  padding: 1em;
-  float: right;
-  background-size: cover;
-  background-image: url("../img/notification.svg");
-}
-header #notification_icon:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-}
-header h4 {
+header li {
   margin: 1em;
   display: inline;
   line-height: 4em;
-  padding: 1.5em 1em 1.5em 1em;
+  padding: 2.7em 1em 2.7em 1em;
 }
-header h4:hover {
+header li:hover {
   cursor: pointer;
   background-color: #ffffff;
+}
+header #search {
+  margin-left: 5em;
+  display: inline;
+  position: relative;
+  text-indent: 1.5em;
+}
+header #search input {
+  text-indent: inherit;
+}
+header #search .fa-search {
+  position: absolute;
+  top: -0.1em;
+  left: -0.7em;
+  font-size: 1.2em;
 }
 section {
   overflow: scroll;

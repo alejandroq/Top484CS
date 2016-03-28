@@ -6,15 +6,15 @@
 
 //mixins
 .transition(@transition) {
-	-webkit-transition: @transition;
-	-moz-transition: @transition;
-	-o-transition: @transition;
-	transition: @transition;
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
 }
 
 .opacity(@opacity) {
-	opacity: @opacity / 100;
-	filter: ~"alpha(opacity=@{opacity})";
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
 }
 
 /* ==========================================================================
@@ -435,52 +435,59 @@ hr {
    ========================================================================== */
 
 header {
-	background-color: @backgroundColor;
-	overflow: hidden;
-
-	#branding_logo{
- 		margin:2em 2em .5em 2em;
-	}
-	#notification_icon {
-		width:2em;
-		height:2em;
-		padding:1em;
-		float:right;
-		background-size:cover;
-		background-image: url("../img/notification.svg");
-		&:hover{
-			cursor: pointer;
-			background-color: @hoverColor;
-		}
-	}
-	h4 {
-		margin:1em;
-		display: inline;
-		line-height:4em;
-  		padding:1.5em 1em 1.5em 1em;
-  		&:hover{
-  			cursor: pointer;
-			background-color: @hoverColor;
-		}
-	}
+  background-color: @backgroundColor;
+  overflow: hidden;
+  nav {
+    display: inline;
+  }
+  #branding_logo{
+    margin: 1em;
+    display: inline;
+  }
+  li {
+    margin:1em;
+    display: inline;
+    line-height:4em;
+    padding: 2.7em 1em 2.7em 1em;
+      &:hover{
+        cursor: pointer;
+        background-color: @hoverColor;
+    }
+  }
+  #search {
+    margin-left:5em;
+    display: inline;
+    position:relative;
+    text-indent: 1.5em;
+    input {
+      text-indent: inherit;
+    }
+    .fa-search {
+      position: absolute;
+      top: -.1em;
+      left: -.7em;
+      font-size: 1.2em;
+    }
+  }
 }
 section {
-	overflow: scroll;
+  overflow: scroll;
 }
+
 
 
 /* ==========================================================================
    jQuery UI Helper classes
    ========================================================================== */
 .pre-menu {
-	margin-bottom: 0em;
+  margin-bottom: 0em;
 }
 .ui-menu {
-	width: 11.625em; 
+  width: 11.625em; 
 }
 .control {
-	font-size: 0em;
-	background-color: #93c47d;
+  font-size: 0em;
+  background-color: #93c47d;
 }
 
 
