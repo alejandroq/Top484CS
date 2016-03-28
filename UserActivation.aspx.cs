@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,5 +33,22 @@ public partial class _Default : System.Web.UI.Page
             }
         }
     }
-    
+
+
+    protected void btneducationInfo_Click(object sender, EventArgs e)
+    {
+        sEducationInfo.Style.Add("display", "inline");
+        sEmploymentHistory.Style.Add("display", "inline");
+    }
+    protected void btnConfirmEmmployEducation_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
+    protected void additionalStudent_Click(object sender, EventArgs e)
+    {
+
+    }
+
 }
