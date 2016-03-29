@@ -1,20 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserRegistration.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.AddUser.aspx.cs" Inherits="Admin_AddUser" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>Words Beats and Life, Inc.</title>
-    <link rel="stylesheet" href="css/forms.css" />  
-
+<head runat="server">
+    <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="userInfo">
+    <div id="userInfo">
             
             <!-- General user form information -->
             <div id="allInfo" runat="server">
-                <h3>User Information</h3>
+                <h3>Enter New User Information</h3>
                         <asp:Label ID="lblfName" runat="server" Text="First Name: " CssClass="labels"><asp:TextBox ID="txtfName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lbllName" runat="server" Text="Last Name: " CssClass="labels"><asp:TextBox ID="txtlName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblEmail" runat="server" Text="E-mail Address: " CssClass="labels"><asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
@@ -36,15 +34,23 @@
       
                         <asp:Label ID="lblHome" runat="server" Text="Home Phone #: " CssClass="labels"><asp:TextBox ID="txtHome" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblCell" runat="server" Text="Cell Phone #: " CssClass="labels"><asp:TextBox ID="txtCell" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
-                <asp:Label ID="lblRace" runat="server" Text="Race: " CssClass="labels"></asp:Label>
-                        <asp:CheckBox ID="ckAmIndian" runat="server" Text="American India or Alaskan Native" cssClass="radioButtons"/><br />
-                        <asp:CheckBox ID="ckAsian" runat="server" Text="Asian or Pacific Islander" cssClass="radioButtons"/><br />
-                        <asp:CheckBox ID="ckBlack" runat="server" Text="Black or African American" cssClass="radioButtons"/><br />
-                        <asp:CheckBox ID="ckLatino" runat="server" Text="Latino/Latina" cssClass="radioButtons"/><br />
-                        <asp:CheckBox ID="ckWhite" runat="server" Text="White" cssClass="radioButtons"/><br />
-                        <asp:CheckBox ID="ckOther" runat="server" Text="Other" cssClass="radioButtons"/><asp:TextBox ID="txtOther" runat="server" CssClass="rdoTextBox"></asp:TextBox><br />
-                       
-
+                <asp:Label ID="lblRace" runat="server" Text="Race: " CssClass="labels"></asp:Label><br />
+                        <asp:RadioButton ID="rdoAmIndian" runat="server" Text="American India or Alaskan Native" GroupName="rdoNationality" cssClass="radioButtons"/><br />
+                        <asp:RadioButton ID="rdoAsian" runat="server" Text="Asian or Pacific Islander" GroupName="rdoNationality" cssClass="radioButtons"/><br />
+                        <asp:RadioButton ID="rdoBlack" runat="server" Text="Black or African American" GroupName="rdoNationality" cssClass="radioButtons"/><br />
+                        <asp:RadioButton ID="rdoLatino" runat="server" Text="Latino/Latina" GroupName="rdoNationality" cssClass="radioButtons"/><br />
+                        <asp:RadioButton ID="rdoWhite" runat="server" Text="White" GroupName="rdoNationality" cssClass="radioButtons"/><br />
+                        <asp:RadioButton ID="rdoOther" runat="server" Text="Other" GroupName="rdoNationality" cssClass="radioButtons"/><asp:TextBox ID="txtOther" runat="server" CssClass="rdoTextBox"></asp:TextBox><br />
+                <br />
+                <br />
+                <asp:Label ID="lblUserType" runat="server" Text="Select Member Type: ">
+                    <asp:DropDownList ID="ddlUserType" runat="server" CssClass="dropdowns">
+                                <asp:ListItem>Administrator</asp:ListItem>
+                                <asp:ListItem>Instrustor/Intern</asp:ListItem>
+                                <asp:ListItem>Cipher</asp:ListItem>
+                                <asp:ListItem>Parent</asp:ListItem>
+                                <asp:ListItem>Student</asp:ListItem></asp:DropDownList></asp:Label><br />
+                <br />
                 <asp:Button ID="btnSignUpAllInfo" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" CssClass="buttons" /><br /> 
                  </div>
 
@@ -52,47 +58,9 @@
                 
             
 
-           <!-- Parent additional information -->
-             <div id="parentBlock" runat="server">
-                   <h3>Student Confirmation Page</h3>
-                 <span>Please confirm the following information for your children.</span><br />
-                 <h4> Student 1 Information: </h4>
-
-                    <asp:Label ID="lblChildsFName" runat="server" Text="First Name:" CssClass="labels">
-                        <asp:TextBox ID="txtChildLName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsLName" runat="server" Text="Last Name:" CssClass="labels">
-                        <asp:TextBox ID="txtChildFName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsEmail" runat="server" Text="E-Mail:" CssClass="labels">
-                        <asp:TextBox ID="txtChildEmail" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
-                    <asp:Label ID="lblChildsBirthday" runat="server" Text="Birthdate:" CssClass="labels">
-                        <asp:TextBox ID="txtChildBirthday" runat="server"  CssClass="textbox"></asp:TextBox></asp:Label><br /> 
-                 
-                <div id="parentAdditions" runat="server">
-                <asp:Label ID="lblParentRelationship" runat="server" Text="Relationship to student:" CssClass="labels">
-                        <asp:TextBox ID="txtParentRelationship" runat="server"  CssClass="textbox"></asp:TextBox></asp:Label><br />
-                       
-                       </div>
-                    
-                  <div id="pAdditionalChildren" runat="server">
-                      <span>Would you like to add another child?</span>
-
-
-                      <!-- code to add another child -->
-
-                    </div>
-                    
-                    
-                    <asp:Button ID="btnparentStudentConfirmation" runat="server" Text="Confirm Student" cssclass="buttons" OnClick="parentStudentConfirmation_Click" />
-             
-            </div>
-            
-           
+          
 
         </div>
-        
-        <br />
-            
     </form>
-  
 </body>
 </html>

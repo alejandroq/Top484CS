@@ -22,7 +22,7 @@ public partial class Admin_EditUser : System.Web.UI.Page
     {
         // Session variable containing the Email address of the selected user clicked on from ManageAccounts page is passed in
         string userID = Session["userID"].ToString();
-
+        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select FirstName, LastName, EmailAddress from dbo.GeneralUser where EmailAddress='" + userID + "'";
@@ -31,8 +31,10 @@ public partial class Admin_EditUser : System.Web.UI.Page
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         DataTable dt = new DataTable(); // create data table for sql query
         adp.Fill(dt);
-        txtfName.Text = dt.Rows[0][0].ToString();
-        txtlName.Text = dt.Rows[0][1].ToString();
+        string fullName = dt.Rows[0][0].ToString();
+        //NEED TO BREAK THIS STRING INTO FIRST AND LAST NAME
+        //txtfName.Text = dt.Rows[0][0].ToString();
+        //txtlName.Text = dt.Rows[0][1].ToString();
         txtEmail.Text = dt.Rows[0][2].ToString();
         txtEmail.ReadOnly = true; // Set to un-editable since this will violate FK, Admin shouldnt be able to change this anyways?
         // add the rest of the fields here in the same methodology

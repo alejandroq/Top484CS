@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     <hr />
-        
+    <asp:Button ID="btnAddEvent" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
     <asp:Calendar ID="Calendar1" runat="server" Height="1000px" 
         ondayrender="Calendar1_DayRender" Width="1500px" DayHeaderStyle-Font-Bold="true" Caption="Words Beats and Life Master Calendar" ShowGridLines="true" select></asp:Calendar>
 

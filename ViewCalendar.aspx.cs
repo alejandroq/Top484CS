@@ -26,7 +26,7 @@ public partial class ViewCalendar : System.Web.UI.Page
             adp.Fill(dt);
             ViewState["dt"] = dt; 
         }
-        System.Diagnostics.Debug.WriteLine("clicked");
+        //System.Diagnostics.Debug.WriteLine("clicked");
         
 
     }
@@ -51,9 +51,12 @@ public partial class ViewCalendar : System.Web.UI.Page
 
             for(int i = 0; i<dt.Rows.Count; i++)
             {
+                
                 // If an EventDate from our datatable is equal to each day's date as its being rendered
                 if (Convert.ToDateTime(dt.Rows[i][2]).ToString("dd-MM-yyyy") == e.Day.Date.ToString("dd-MM-yyyy"))
                 {
+                    // DateTime variable to recognize each day that has an event
+                    DateTime thisDay = e.Day.Date;
                     // break line to place text under datecell number
                     Literal ltrl = new Literal();
                     ltrl.Text = "<BR />";
@@ -74,15 +77,19 @@ public partial class ViewCalendar : System.Web.UI.Page
                     e.Cell.Controls.Add(b);
 
                     Literal ltrl2 = new Literal();
-                    ltrl2.Text = "<BR/><a style='font-size:8' href='Admin.AddEvent.aspx'>View Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
+                    ltrl2.Text = "<BR/><a style='font-size:8' href='ViewEvent.aspx?EventDateTime=" + thisDay + "'>View Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
                     // TODO: code the logic for editing the event from the page this links to
                     e.Cell.Controls.Add(ltrl2);
                 }
               
             }
-            Literal addEvent = new Literal();
-            addEvent.Text = "<BR/><a style='font-size:4' href='Admin.AddEvent.aspx'>Add Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
-            e.Cell.Controls.Add(addEvent);
+            //Literal addEvent = new Literal();
+            //addEvent.Text = "<BR/><a style='font-size:4' href='Admin.AddEvent.aspx'>Add Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
+            //e.Cell.Controls.Add(addEvent);
         }
+    }
+    protected void btnAddEvent_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Admin.AddEvent.aspx");
     }
 }

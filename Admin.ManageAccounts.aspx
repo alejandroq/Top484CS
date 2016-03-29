@@ -12,6 +12,8 @@
         <h3>Manage Accounts Homepage</h3>
         <br />
         <asp:Button ID="btnAddUser" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
+        <asp:Button ID="btnAddEvent" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
+        <asp:Button ID="btnViewCalendar" runat="server" Text="View Master Calendar" OnClick="btnViewCalendar_Click" />
         <br />
         <br />
     </div>

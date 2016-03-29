@@ -25,8 +25,8 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-        string cmdText = "select FirstName, LastName, dbo.GeneralUser.EmailAddress, Approved from dbo.GeneralUser INNER JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress";
-        // ^^convert to new table structure
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, Approved, dbo.GeneralUser.EmailAddress from dbo.GeneralUser FULL JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress";
+        // ^^convert to new table structure, we will need to edit this insert statement to show ALL general users
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -58,7 +58,13 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 approvalStatus.Text = "Approval Status";
                 row.Cells.Add(approvalStatus);
             }
-            else
+            if (dt.Columns[j].ColumnName == "EmailAddress")
+            {
+                TableHeaderCell clickToEmail = new TableHeaderCell();
+                clickToEmail.Text = "Click to send e-mail";
+                row.Cells.Add(clickToEmail);
+            }
+            if (dt.Columns[j].ColumnName == "Name")
             {
                 TableHeaderCell headerCell = new TableHeaderCell();
                 headerCell.Text = dt.Columns[j].ColumnName;
@@ -71,20 +77,30 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         row.Cells.Add(editHeaderCell);
         table.Rows.Add(row);
 
-        //Add the Column values
+        //Add each row in the DataTable
         for (int i = 0; i < dt.Rows.Count; i++)
         {
             row = new TableRow();
+            // add the column for each row
             for (int j = 0; j < dt.Columns.Count; j++)
             {
+                System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
+                if (dt.Columns[j].ColumnName == "Name")
+                {
+                    TableCell textCell = new TableCell();
+                    System.Diagnostics.Debug.WriteLine(dt.Rows[i][j].ToString());
+                    textCell.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(textCell);
+
+                }
                 if (dt.Columns[j].ColumnName == "Approved")
                 {
                     if (dt.Rows[i][j].ToString() == "False")
                     {
                         LinkButton link = new LinkButton();
                         link.Text = "Needs Approval";
-                        link.Click += link_Click; // assign event action, link_click method below
-                        link.CommandArgument = dt.Rows[i][j - 1].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
+                        link.Click += approval_Click; // assign event action, approval_click method below
+                        link.CommandArgument = dt.Rows[i][j+1].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
                         
                         TableCell applicant = new TableCell();
                         applicant.Text = dt.Rows[i][j].ToString();
@@ -109,21 +125,27 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                         row.Cells.Add(approved);
                     }
                 }
-                else
+                if (dt.Columns[j].ColumnName == "EmailAddress")
                 {
                     TableCell cell = new TableCell();
-                    cell.Text = dt.Rows[i][j].ToString();
+                    LinkButton link = new LinkButton();
+                    link.Text = dt.Rows[i][j].ToString();
+                    link.Click += email_Click; // assign event action, link_click method below
+                    link.CommandArgument = dt.Rows[i][j].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
+                    cell.Controls.Add(link);
                     row.Cells.Add(cell);
                 }
+                
             }
             TableCell editCell = new TableCell();
             LinkButton editLink = new LinkButton();
             editLink.Text = "Edit User";
             editLink.CommandArgument = dt.Rows[i][2].ToString();
-            //System.Diagnostics.Debug.WriteLine(dt.Rows[i][2].ToString());
+            //System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
             editLink.Click += editLink_Click;
             editCell.Controls.Add(editLink);
             row.Cells.Add(editCell);
+             
 
             // Add the TableRow to the Table
             table.Rows.Add(row);
@@ -133,10 +155,23 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     }
     #endregion
 
+    #region Event Handler for sending Email to specific user
+    private void email_Click(object sender, EventArgs e)
+    {
+
+        System.Diagnostics.Debug.WriteLine("send email clicked");
+        LinkButton btn = (LinkButton)(sender);
+        string userID = btn.CommandArgument;
+        Session["userID"] = userID;
+        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        Response.Redirect("SendUserEmail.aspx", false);
+    }
+    #endregion
+
     #region Event Handler for "Edit User" button
     protected void editLink_Click(object sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("clicked");
+        System.Diagnostics.Debug.WriteLine("edit user clicked");
         LinkButton btn = (LinkButton)(sender);
         string userID = btn.CommandArgument;
         Session["userID"] = userID;
@@ -145,7 +180,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #endregion
 
     #region Event Handler for "Needs Approval" button
-    protected void link_Click(object sender, EventArgs e)
+    protected void approval_Click(object sender, EventArgs e)
     {
         System.Diagnostics.Debug.WriteLine("clicked");
         LinkButton btn = (LinkButton)(sender);
@@ -163,4 +198,17 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     }
     #endregion
 
+    #region Event Handler for "Add New Event" button
+    protected void btnAddEvent_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Admin.AddEvent.aspx");
+    }
+    #endregion
+
+    #region Event Handler for "View Calendar" button
+    protected void btnViewCalendar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ViewCalendar.aspx");
+    }
+    #endregion
 }

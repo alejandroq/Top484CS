@@ -19,7 +19,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
     public void populateApplication()
     {
         string applicantID = Session["applicantID"].ToString();
-
+        System.Diagnostics.Debug.WriteLine(applicantID);
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select FirstName, LastName, EmailAddress from dbo.GeneralUser where EmailAddress='" + applicantID + "'";
@@ -50,6 +50,8 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         cmdText = "update dbo.Applicant set DateApproved = '" + approvalDate + "'";
         SqlCommand cmd2 = new SqlCommand(cmdText, connection);
         cmd2.ExecuteNonQuery();
+        // need to code a SQL statement to get the profile type of the approved user
+        // base the kind of email sent on this
         sendActivationEmail(Session["applicantID"].ToString());
         Response.Redirect("Admin.ManageAccounts.aspx");
     }
@@ -78,7 +80,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
 
         string userActivation = "http://localhost:62112/UserActivation.aspx?email=" + email; // TODO: change this to WBL admin email
 
-        message.From = new MailAddress("ryan.michael.leee@gmail.com"); // where activation email is being sent FROM
+        message.From = new MailAddress("top484.wordsbeatslifeproject@gmail.com"); // where activation email is being sent FROM
         message.To.Add(email); // where activation email is sent to user-supplied email address.
         // TODO: ^^ validate this textbox is in E-mail format
         message.Subject = "Account Activation"; // Subject of activation email
@@ -86,7 +88,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         message.IsBodyHtml = true; // message contained in html body
         client.EnableSsl = true; // secure connection
         client.UseDefaultCredentials = true; // have to set up credentials as true
-        client.Credentials = new System.Net.NetworkCredential("ryan.michael.leee@gmail.com", "ryancatie2"); // user and PW for some client, replace this with user-supplied email/pw
+        client.Credentials = new System.Net.NetworkCredential("top484.wordsbeatslifeproject@gmail.com", "wordsbeatslife"); // user and PW for some client, replace this with user-supplied email/pw
         client.Send(message);
     }
 
