@@ -11,27 +11,171 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_ManageAccounts : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-       GenerateTable(); // no isPostBack here since table needs to regenerate to pass session variables 
+       GenerateTable();
+       if (ddlMemberType.SelectedValue.ToString() != "All")
+       {
+           lblSortBy.Visible = false;
+           ddlSortBy.Visible = false;
+       }
+       else
+       {
+           lblSortBy.Visible = true;
+           ddlSortBy.Visible = true;
+       }
+       System.Diagnostics.Debug.WriteLine("page loaded");
     }
 
-
-    #region Generate SQL Server Database Table
+    #region Generate DataTable based on DropDown selection
     private DataTable CreateDataTable()
     {
 
         DataTable dt = new DataTable();
+        if (ddlMemberType.SelectedValue.ToString() == "All")
+        {
+            dt = CreateAllDataTable();
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Applicants")
+        {
+            dt = CreateApplicantDataTable();
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Students")
+        {
+            dt = CreateStudentDataTable();
+            // Could potentially add last login, total bucks, or some other fields to query to make this more student specific
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Parents")
+        {
+            dt = CreateParentDataTable();
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Instructors / Interns")
+        {
+            dt = CreateStaffDataTable();
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Ciphers")
+        {
+            dt = CreateCipherDataTable();
+        }
+        if (ddlMemberType.SelectedValue.ToString() == "Administrators")
+        {
+            dt = CreateAdminDataTable();
+        }
+        
+        return dt;
+    }
+
+    private DataTable CreateAdminDataTable()
+    {
+        DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, Approved, dbo.GeneralUser.EmailAddress from dbo.GeneralUser FULL JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress";
-        // ^^convert to new table structure, we will need to edit this insert statement to show ALL general users
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Administrator'";
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         adp.Fill(dt);
+        return dt;
+    }
 
+    private DataTable CreateCipherDataTable()
+    {
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Cipher'";
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        return dt;
+    }
+
+    private DataTable CreateStaffDataTable()
+    {
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Staff'";
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        return dt;
+    }
+
+    private DataTable CreateParentDataTable()
+    {
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Parent'";
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        return dt;
+    }
+
+    private DataTable CreateStudentDataTable()
+    {
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Student'";
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        return dt;
+    }
+    #endregion
+
+    #region Create data table for all users
+    private DataTable CreateAllDataTable()
+    {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser " + sortBy;
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        return dt;
+    }
+    #endregion
+
+    #region Create data table for applicant selection
+    private DataTable CreateApplicantDataTable()
+    {
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, Approved, dbo.GeneralUser.EmailAddress from dbo.GeneralUser Inner JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress";
+        // ^^convert to new table structure, we will need to edit this insert statement to show ALL general users
+        // also edit sql statement to order by approved/not approved
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
         return dt;
     }
     #endregion
@@ -70,11 +214,36 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 headerCell.Text = dt.Columns[j].ColumnName;
                 row.Cells.Add(headerCell);
             }
+            if (dt.Columns[j].ColumnName == "UserType")
+            {
+                TableHeaderCell memberType = new TableHeaderCell();
+                memberType.Text = "Member Type";
+                row.Cells.Add(memberType);
+            }
+            if (dt.Columns[j].ColumnName == "CellPhone")
+            {
+                TableHeaderCell cellPhone = new TableHeaderCell();
+                cellPhone.Text = "Cell Phone # ";
+                row.Cells.Add(cellPhone);
+            }
+
         }
-        // This last table header is added after the loop since it does not come from database
-        TableHeaderCell editHeaderCell = new TableHeaderCell();
-        editHeaderCell.Text = "Click to edit specific user";
-        row.Cells.Add(editHeaderCell);
+        
+        // Only add columns for Edit User / View Profile if user is not an applicant
+        // Since these two columnds don't come from DB
+        if (ddlMemberType.SelectedValue.ToString() != "Applicants")
+        {
+            TableHeaderCell editHeaderCell = new TableHeaderCell();
+            editHeaderCell.Text = "Click to Edit User";
+            row.Cells.Add(editHeaderCell);
+
+            TableHeaderCell profileHeaderCell = new TableHeaderCell();
+            profileHeaderCell.Text = "Click to View Profile";
+            row.Cells.Add(profileHeaderCell);
+            
+        }
+
+        // Add the Column Title row to the table
         table.Rows.Add(row);
 
         //Add each row in the DataTable
@@ -88,9 +257,16 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 if (dt.Columns[j].ColumnName == "Name")
                 {
                     TableCell textCell = new TableCell();
-                    System.Diagnostics.Debug.WriteLine(dt.Rows[i][j].ToString());
+                    //System.Diagnostics.Debug.WriteLine(dt.Rows[i][j].ToString());
                     textCell.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(textCell);
+
+                }
+                if (dt.Columns[j].ColumnName == "UserType")
+                {
+                    TableCell memberCell = new TableCell();
+                    memberCell.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(memberCell);
 
                 }
                 if (dt.Columns[j].ColumnName == "Approved")
@@ -114,12 +290,13 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                         // Second data table to indicate date and time approved once Admin clicks through approval
                         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
                         connection.Open();
-                        string cmdText = "select EmailAddress, DateApproved from dbo.Applicant";
+                        string cmdText = "select EmailAddress, DateApproved from dbo.Applicant"; //need to figure out how to show all general users with matching applicant ID's where applicable
+                        // How can we replaced "Approved on 'approvalDate'" with black space if theres no matching value in applicant table?
                         SqlCommand cmd = new SqlCommand(cmdText, connection);
                         cmd.ExecuteNonQuery();
                         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
                         adp.Fill(dt2);
-                        string approvalDate = dt2.Rows[0][1].ToString(); // grab the date approved from the query
+                        string approvalDate = dt2.Rows[0][1].ToString(); // this needs to change so not all approved row values show up, only those who were actually approved
                         TableCell approved = new TableCell();
                         approved.Text = "Approved on " + approvalDate; 
                         row.Cells.Add(approved);
@@ -135,24 +312,46 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                     cell.Controls.Add(link);
                     row.Cells.Add(cell);
                 }
+                if (dt.Columns[j].ColumnName == "CellPhone")
+                {
+                    TableCell cell = new TableCell();
+                    // PUT A LINK BUTTON HERE
+                    // For when we figure out how to send text messages, Admin can send a text to any user's cellphone
+                    cell.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(cell);
+                }
                 
             }
-            TableCell editCell = new TableCell();
-            LinkButton editLink = new LinkButton();
-            editLink.Text = "Edit User";
-            editLink.CommandArgument = dt.Rows[i][2].ToString();
-            //System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
-            editLink.Click += editLink_Click;
-            editCell.Controls.Add(editLink);
-            row.Cells.Add(editCell);
-             
 
+            if (ddlMemberType.SelectedValue.ToString() != "Applicants")
+            {
+                // Populate 1st non-DB column for linking cell to edit user page
+                TableCell editCell = new TableCell();
+                LinkButton editLink = new LinkButton();
+                editLink.Text = "Edit User";
+                editLink.CommandArgument = dt.Rows[i][2].ToString();
+                //System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
+                editLink.Click += editLink_Click;
+                editCell.Controls.Add(editLink);
+                row.Cells.Add(editCell);
+
+                // Populate 2nd non-DB column for linking cell to view profile page
+                TableCell profileCell = new TableCell();
+                LinkButton profileLink = new LinkButton();
+                profileLink.Text = "View Profile";
+                profileLink.CommandArgument = dt.Rows[i][2].ToString();
+                profileLink.Click += profileLink_Click;
+                profileCell.Controls.Add(profileLink);
+                row.Cells.Add(profileCell);
+            }
             // Add the TableRow to the Table
             table.Rows.Add(row);
         }
         // Add the the Table in the Form
         form1.Controls.Add(table);
     }
+
+    
     #endregion
 
     #region Event Handler for sending Email to specific user
@@ -176,6 +375,13 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         string userID = btn.CommandArgument;
         Session["userID"] = userID;
         Response.Redirect("Admin.EditUser.aspx", false);
+    }
+    #endregion
+
+    #region Event Handler for "View Profile" button
+    private void profileLink_Click(object sender, EventArgs e)
+    {
+        //throw new NotImplementedException();
     }
     #endregion
 
@@ -211,4 +417,10 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         Response.Redirect("ViewCalendar.aspx");
     }
     #endregion
+
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        
+    }
 }
