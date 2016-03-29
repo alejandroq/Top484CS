@@ -1,11 +1,12 @@
 //variables 
+@bodyColor:#F0F0FF;
 @tblHeader:#8ac8ff;
 @tblRowAlts:aliceblue;
-@backgroundColor:#B94657; //#cccccc
-@darkerBackgroundColor:#B94657 + #111; //#999999
-@darkestBackgroundColor:#060204; //#666666
-@hoverColor:#D28196; //#ffffff
-@mobileIcon:1.5em;
+@backgroundColor:#cccccc; //#cccccc #B94657
+@darkerBackgroundColor:#999999; //#999999 #B94657 + #111
+@darkestBackgroundColor:#666666; //#666666 #060204
+@hoverColor:#ffffff; //#ffffff #D28196
+@mobileIcon:1.7em;
 
 //mixins
 .transition(@transition) {
@@ -437,7 +438,9 @@ hr {
 /* ==========================================================================
    Author's custom style
    ========================================================================== */
-
+body {
+  background-color: @bodyColor;
+}
 header {
   background-color: @backgroundColor;
   overflow: hidden;
@@ -450,7 +453,7 @@ header {
     padding: 1em;
   }
   nav {
-    @media (min-width:730px) {
+    @media (min-width:794px) {
       display: inline !important; 
     }
     h5 {
@@ -461,7 +464,7 @@ header {
       margin:1em 0em;
       line-height:4em;
       padding: (2.7em/2) 1em (2.7em/2) 1em;
-    @media (max-width:730px){
+    @media (max-width:794px){
       display: block;
       margin-top: 0em;
       margin-bottom: 0em;
@@ -469,7 +472,7 @@ header {
       line-height: 2em;
     }
   }
-    @media (max-width:730px){
+    @media (max-width:794px){
       padding: 1em 0em;
       background-color: @darkerBackgroundColor;
       display: none;
@@ -480,10 +483,10 @@ header {
   margin-top:1.8em/3;
   margin-bottom: 0em;
   float:right;
-  @media (max-width:826px){
+  @media (max-width:884px){
     width: 17em;
   }
-  @media (max-width:730px){
+  @media (max-width:794px){
     width: 30em;
     float: none;
     margin:0em auto;
@@ -497,13 +500,13 @@ header {
 #branding {
   display: inline;
   width: 118px;
-  @media (max-width:730px){
+  @media (max-width:794px){
     display: block;
-    margin: .5em auto;
+    margin: .3em auto;
   }
 }
 #branding-logo{
-    margin: .5em 1em;
+    margin: .3em 1em;
     display: inline;
   }
   #search {
@@ -512,7 +515,7 @@ header {
     text-indent: 1.5em;
     font-size: 1em;
     padding: 1.2em .5em;
-    @media (max-width:730px){
+    @media (max-width:794px){
       margin-top:.2em; 
       margin-bottom: 0em;
     }
@@ -528,23 +531,23 @@ header {
   }
   .mobile-only {
     display: none;
-    @media (max-width:730px){
+    @media (max-width:794px){
       display: inline;
     }
   }
   .mobile-only-li {
     display: none;
-    @media (max-width:730px){
+    @media (max-width:794px){
       display: block;
     } 
   }
   .mobile-last-li {
-    @media (max-width:730px){
+    @media (max-width:794px){
       margin-bottom: 1em;
     }
   }
   .icon {
-    @media (max-width:730px){
+    @media (max-width:794px){
       font-size: @mobileIcon;
       vertical-align: middle;
     }
@@ -559,10 +562,10 @@ li:hover {
 }
 .usupur {
   display: inline;
-  @media (max-width:826px){
+  @media (max-width:884px){
     display: none;
   }
-  @media (max-width:730px){
+  @media (max-width:794px){
     display: inline;
   }
   @media (max-width:445px){
@@ -570,7 +573,7 @@ li:hover {
   }
 }
 .no-mobile {
-  @media (max-width:730px){
+  @media (max-width:794px){
     display: none;
   }
 }
@@ -585,13 +588,29 @@ li:hover {
   width: 11.625em; 
   margin-left: 1em;
   margin-bottom: 1em;
-  @media (max-width:730px){
+  @media (max-width:794px){
     width: 100%;
     margin-left: 0em;
     .transition (all 2s);
   }
-  @media (min-width:730px){
+  @media (min-width:794px){
     .transition (all .25s);
+  }
+}
+.ui-menu-large {
+  width: 22.5em;
+  @media (max-width:794px){
+    width: 100%;
+    margin-left: 0em;
+    .transition (all 2s);
+  }
+  @media (min-width:794px){
+    .transition (all .25s);
+  }
+}
+.ui-widget-header{
+  &:hover {
+    background-color: inherit !important;
   }
 }
 .ui-state-active {
@@ -616,10 +635,16 @@ li:hover {
     text-align: center;
   }
 }
-// .control {
-//   font-size: 0em;
-//   background-color: #93c47d;
-// }
+.ui-branch {
+  margin-left: 1em !important;
+  font-size: .8em;
+  p {
+    display: inline;
+  }
+}
+#ui-data-menu {
+  display: none;
+}
 
 /* ==========================================================================
    Helper classes
