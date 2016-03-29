@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
-    <form id="form2" runat="server">
+     <form id="form1" runat="server">
     <div>
         <h3>Manage Accounts Homepage</h3>
         <br />
@@ -14,6 +14,6 @@
     </div>
     </form>
 
+
 </asp:Content>
-﻿
 
