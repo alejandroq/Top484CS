@@ -27,8 +27,11 @@
 	</head>
 	<body>
 		<header>
+			<!-- BEGIN LOGO-BRANDING -->
 			<div id="branding"><img id="branding-logo" src="img/logo.png" alt="Words Beats & Life Inc. Logo" /></div>
+			<!-- END LOGO-BRANDING -->
 
+			<!-- BEGIN ICONIC NAVIGATION CONTROLS -->
 		    <ul class="navigation-controls">
 				<li id="stackMenu" class="mobile-only">
 					<i class="fa fa-bars icon"></i>
@@ -43,17 +46,58 @@
 		        	<input type="text" placeholder="Search">
 		        </li>
 		    </ul>
+		    <!-- END ICONIC NAVIGATION CONTROLS -->
 
+		    <!-- BEGIN NAVIGATION BAR -->
 		    <nav>
 		    	<ul class="mobile-only"><h5>Navigation</h5></ul>
 		        <li>Wall</li>
 		       	<li>Events</li>
 		        <li>Forum</li>
-		        <li>Buck Shop</li>
+		        <li class="mobile-last-li">Buck Shop</li>
+		        <!-- BEGIN MOBILE ONLY ITEMS (Menu Items) -->
+		        <ul class="mobile-only"><h5>Menu</h5></ul>
+		        <li class="mobile-only-li">Manage Accounts</li>
+		        <li class="mobile-only-li">Manage Content</li>
+		        <li class="mobile-only-li">Manage Inventory</li>
+		        <li class="mobile-only-li">View Dashboard</li>
+		        <!-- END MOBILE ONLY ITEMS (Menu Items) -->
 		    </nav>
+		    <!-- END NAVIGATION BAR -->
+		</header> 
+		<!-- END HEADER -->
 
-		</header>
+		<!-- BEGIN UNIQUE MENU -->
+			<p class="pre-menu no-mobile">Menu</p>
+			<ul class="menu no-mobile">
+				<li>Manage Accounts
+					<ul>
+						<li>Quick Add</li>
+					</ul>
+				</li>
+				<li>Manage Content</li>
+				<li>Manage Events
+					<ul>
+						<li>Quick Add</li>
+					</ul>
+				</li>
+				<li>Manage Inventory
+					<ul>
+						<li>Quick Add</li>
+					</ul>
+				</li>
+				<li>View Dashboard</li>
+			</ul>
+			<!-- END UNIQUE MENU -->
 
+			<!-- BEGIN UPCOMING EVENTS (Icon List) -->
+			<p class="pre-menu">Upcoming Events</p>
+			<ul class="menu ui-icon-list">
+				<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
+				<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
+				<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
+			</ul>
+			<!-- END UPCOMING EVENTS -->
 
 	   	<div>
         	<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
