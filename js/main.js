@@ -1,4 +1,4 @@
-$("#menu").menu();
+$(".menu").menu();
 
 $('#stackMenu').on('click', function() {
 	if ($('nav').is(':visible')){
