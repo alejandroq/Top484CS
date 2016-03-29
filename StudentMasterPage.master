@@ -17,24 +17,11 @@
 
         <link rel="stylesheet" href="css/normalize.css"/>
         <link rel="stylesheet" href="css/jquery-ui.min.css"/>
-        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/main.less"/>
         <link rel="stylesheet" href="css/forms.css" />
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-            <style type="text/css">
-            #Content {
-                position: relative; 
-                left: 250px;
-                top: -175px;
-                width: 60%;
-            }
-            #menuContent {
-                margin-top: 25px;
-                margin-left: 10px;
-            }
-
-        </style>
-
+            
 
     	</asp:Content>
 
@@ -55,11 +42,15 @@
 		</ul>
            </div>
 
-      <asp:panel runat="server" id="mainContent" >
-          <div id="Content">
+ 
+
+   </asp:panel>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+         <asp:panel runat="server" id="mainContent" >
+          <div class="Content">
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
               </div>
       </asp:panel>
-
-   </asp:panel>
 </asp:Content>
