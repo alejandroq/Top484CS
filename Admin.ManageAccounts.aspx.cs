@@ -11,21 +11,21 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_ManageAccounts : System.Web.UI.Page
 {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
-       GenerateTable();
-       if (ddlMemberType.SelectedValue.ToString() != "All")
-       {
-           lblSortBy.Visible = false;
-           ddlSortBy.Visible = false;
-       }
-       else
-       {
-           lblSortBy.Visible = true;
-           ddlSortBy.Visible = true;
-       }
-       System.Diagnostics.Debug.WriteLine("page loaded");
+        GenerateTable();
+        if (ddlMemberType.SelectedValue.ToString() != "All")
+        {
+            lblSortBy.Visible = false;
+            ddlSortBy.Visible = false;
+        }
+        else
+        {
+            lblSortBy.Visible = true;
+            ddlSortBy.Visible = true;
+        }
+        System.Diagnostics.Debug.WriteLine("page loaded");
     }
 
     #region Generate DataTable based on DropDown selection
@@ -62,7 +62,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         {
             dt = CreateAdminDataTable();
         }
-        
+
         return dt;
     }
 
@@ -190,8 +190,8 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         table.CellSpacing = 20;
         table.CellPadding = 10;
         table.GridLines = GridLines.Vertical;
-        
-        
+
+
         //Add the Headers
         row = new TableRow();
         for (int j = 0; j < dt.Columns.Count; j++)
@@ -228,7 +228,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
             }
 
         }
-        
+
         // Only add columns for Edit User / View Profile if user is not an applicant
         // Since these two columnds don't come from DB
         if (ddlMemberType.SelectedValue.ToString() != "Applicants")
@@ -240,7 +240,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
             TableHeaderCell profileHeaderCell = new TableHeaderCell();
             profileHeaderCell.Text = "Click to View Profile";
             row.Cells.Add(profileHeaderCell);
-            
+
         }
 
         // Add the Column Title row to the table
@@ -276,12 +276,12 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                         LinkButton link = new LinkButton();
                         link.Text = "Needs Approval";
                         link.Click += approval_Click; // assign event action, approval_click method below
-                        link.CommandArgument = dt.Rows[i][j+1].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
-                        
+                        link.CommandArgument = dt.Rows[i][j + 1].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
+
                         TableCell applicant = new TableCell();
                         applicant.Text = dt.Rows[i][j].ToString();
                         applicant.Controls.Add(link);
-                        
+
                         row.Cells.Add(applicant);
                     }
                     else
@@ -298,7 +298,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                         adp.Fill(dt2);
                         string approvalDate = dt2.Rows[0][1].ToString(); // this needs to change so not all approved row values show up, only those who were actually approved
                         TableCell approved = new TableCell();
-                        approved.Text = "Approved on " + approvalDate; 
+                        approved.Text = "Approved on " + approvalDate;
                         row.Cells.Add(approved);
                     }
                 }
@@ -320,7 +320,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                     cell.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(cell);
                 }
-                
+
             }
 
             if (ddlMemberType.SelectedValue.ToString() != "Applicants")
@@ -351,7 +351,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         form1.Controls.Add(table);
     }
 
-    
+
     #endregion
 
     #region Event Handler for sending Email to specific user
@@ -421,6 +421,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        
+
     }
 }

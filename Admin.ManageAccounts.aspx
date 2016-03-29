@@ -6,9 +6,25 @@
     <div>
         <h3>Manage Accounts Homepage</h3>
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
-        <asp:Button ID="Button2" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
-        <asp:Button ID="Button3" runat="server" Text="View Master Calendar" OnClick="btnViewCalendar_Click" />
+        <asp:Button ID="btnAddUser" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
+        <asp:Button ID="btnAddEvent" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
+        <asp:Button ID="btnViewCalendar" runat="server" Text="View Master Calendar" OnClick="btnViewCalendar_Click" /><br />
+        <asp:Label ID="lblMemberType" runat="server" Text="Select Member Type:  "></asp:Label>
+        <asp:DropDownList ID="ddlMemberType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:ListItem>All</asp:ListItem>
+            <asp:ListItem>Applicants</asp:ListItem>
+            <asp:ListItem>Students</asp:ListItem>
+            <asp:ListItem>Parents</asp:ListItem>
+            <asp:ListItem>Instructors / Interns</asp:ListItem>
+            <asp:ListItem>Ciphers</asp:ListItem>
+            <asp:ListItem>Administrators</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="lblSortBy" runat="server" Text="Sort By:  "></asp:Label>
+        <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
+            <asp:ListItem>Last Name</asp:ListItem>
+            <asp:ListItem>First Name</asp:ListItem>
+            <asp:ListItem>Member Type</asp:ListItem>
+        </asp:DropDownList>
         <br />
         <br />
     </div>
