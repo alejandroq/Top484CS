@@ -1,12 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.AddUser.aspx.cs" Inherits="Admin_AddUser" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMasterPage.master" AutoEventWireup="true" CodeFile="Admin.AddUser.aspx.cs" Inherits="Admin_AddUser" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
     <form id="form1" runat="server">
     <div id="userInfo">
             
@@ -62,5 +57,7 @@
 
         </div>
     </form>
-</body>
-</html>
+
+</asp:Content>
+
+
