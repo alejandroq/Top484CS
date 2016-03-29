@@ -33,7 +33,7 @@
 		<ul id="menu">
 			<li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
 				<ul>
-					<li>Quick Add</li>
+					<li><a href="Admin.AddUser.aspx">Quick Add</a></li>
 				</ul>
 			</li>
 			<li>Manage Content
