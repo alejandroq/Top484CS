@@ -1,11 +1,11 @@
 //variables 
 @bodyColor:#F0F0FF;
-@tblHeader:#8ac8ff;
+@tblHeader:#cccccc; //#8ac8ff
 @tblRowAlts:aliceblue;
 @backgroundColor:#cccccc; //#cccccc #B94657
-@darkerBackgroundColor:#999999; //#999999 #B94657 + #111
+@darkerBackgroundColor:#999999 + #444; //#999999 #B94657 + #111
 @darkestBackgroundColor:#666666; //#666666 #060204
-@hoverColor:#ffffff; //#ffffff #D28196
+@hoverColor:#cccccc - #222; //#ffffff #D28196
 @mobileIcon:1.7em;
 
 //mixins
@@ -66,7 +66,7 @@ fieldset,hr{border:0;padding:0}html{color:#222;font-size:1em;line-height:1.4}::-
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -443,7 +443,8 @@ body {
 }
 header {
   background-color: @backgroundColor;
-  overflow: hidden;
+  margin-bottom: 2em;
+  padding: 1em;
   img {
     width: 118px / 2;
     height: 69px / 2;
@@ -453,7 +454,7 @@ header {
     padding: 1em;
   }
   nav {
-    @media (min-width:794px) {
+    @media (min-width:824px) {
       display: inline !important; 
     }
     h5 {
@@ -464,7 +465,7 @@ header {
       margin:1em 0em;
       line-height:4em;
       padding: (2.7em/2) 1em (2.7em/2) 1em;
-    @media (max-width:794px){
+    @media (max-width:824px){
       display: block;
       margin-top: 0em;
       margin-bottom: 0em;
@@ -472,21 +473,22 @@ header {
       line-height: 2em;
     }
   }
-    @media (max-width:794px){
-      padding: 1em 0em;
+    @media (max-width:824px){
+      padding: 2em;
       background-color: @darkerBackgroundColor;
       display: none;
     }
   }
 .navigation-controls {
   width: 23em;
-  margin-top:1.8em/3;
+  vertical-align: center;
+  margin-top:.65em;
   margin-bottom: 0em;
   float:right;
-  @media (max-width:884px){
+  @media (max-width:915px){
     width: 17em;
   }
-  @media (max-width:794px){
+  @media (max-width:824px){
     width: 30em;
     float: none;
     margin:0em auto;
@@ -500,7 +502,7 @@ header {
 #branding {
   display: inline;
   width: 118px;
-  @media (max-width:794px){
+  @media (max-width:824px){
     display: block;
     margin: .3em auto;
   }
@@ -515,7 +517,7 @@ header {
     text-indent: 1.5em;
     font-size: 1em;
     padding: 1.2em .5em;
-    @media (max-width:794px){
+    @media (max-width:824px){
       margin-top:.2em; 
       margin-bottom: 0em;
     }
@@ -531,29 +533,29 @@ header {
   }
   .mobile-only {
     display: none;
-    @media (max-width:794px){
+    @media (max-width:824px){
       display: inline;
     }
   }
   .mobile-only-li {
     display: none;
-    @media (max-width:794px){
+    @media (max-width:824px){
       display: block;
     } 
   }
   .mobile-last-li {
-    @media (max-width:794px){
+    @media (max-width:824px){
       margin-bottom: 1em;
     }
   }
   .icon {
-    @media (max-width:794px){
+    @media (max-width:824px){
       font-size: @mobileIcon;
       vertical-align: middle;
     }
   }
 }
-section {
+.scrollable {
   overflow: scroll;
 }
 li:hover {
@@ -562,10 +564,10 @@ li:hover {
 }
 .usupur {
   display: inline;
-  @media (max-width:884px){
+  @media (max-width:915px){
     display: none;
   }
-  @media (max-width:794px){
+  @media (max-width:824px){
     display: inline;
   }
   @media (max-width:445px){
@@ -573,38 +575,62 @@ li:hover {
   }
 }
 .no-mobile {
-  @media (max-width:794px){
+  @media (max-width:824px){
     display: none;
   }
 }
+aside{
+  float: left;
+  margin-right: 2em;
+  margin-bottom: 1.5em;
+  @media (max-width:824px){
+    width: 100%;
+  }
+}
+article {
+  margin-bottom: 1.5em;
+}
+footer {
+  padding: 2em;
+  background-color: @backgroundColor;
+  h6 {
+    border-bottom-style: solid;
+    border-bottom-width: .1em;
+  }
+  ul {
+    text-indent: 1em;
+    list-style: none;
+  }
+}
+
 
 /* ==========================================================================
    jQuery UI Helper classes
    ========================================================================== */
 .pre-menu {
-  margin: 1em 1em 0em 1em;
+  margin: 0em 1em 0em 1em;
 }
 .ui-menu {
   width: 11.625em; 
   margin-left: 1em;
   margin-bottom: 1em;
-  @media (max-width:794px){
+  @media (max-width:824px){
     width: 100%;
     margin-left: 0em;
     .transition (all 2s);
   }
-  @media (min-width:794px){
+  @media (min-width:824px){
     .transition (all .25s);
   }
 }
-.ui-menu-large {
-  width: 22.5em;
-  @media (max-width:794px){
+.ui-menu-large { 
+  min-width: 22.5em;
+  @media (max-width:824px){
     width: 100%;
     margin-left: 0em;
     .transition (all 2s);
   }
-  @media (min-width:794px){
+  @media (min-width:824px){
     .transition (all .25s);
   }
 }
@@ -643,11 +669,32 @@ li:hover {
   }
 }
 #ui-data-menu {
+  margin-top: -2em;
   display: none;
 }
+
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
 .hidden,.invisible{visibility:hidden}.hidden{display:none!important}.visuallyhidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.clearfix:after,.clearfix:before{content:" ";display:table}.clearfix:after{clear:both}
+
+
+/* ==========================================================================
+   Sierra's classes
+   ========================================================================== */
+
+/*Sierra's STUFF*/
+/*Child master page styling */
+            .Content {
+                float: left;
+                width: 55%;
+                margin-left: 250px;
+                margin-top: -350px;
+            }
+
+            .menuContent {
+                margin-top: 25px;
+                margin-left: 10px;
+            }

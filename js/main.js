@@ -15,5 +15,5 @@ $('#notificationMenu').on('click', function() {
 	} else {
 		$('#notificationMenu').css('background-color', '#ffffff'); //#ffffff
 	}
-	$('#ui-data-menu').toggle('blind',150);
+	$('#ui-data-menu').toggle('blind',200);
 });
