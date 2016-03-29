@@ -36,8 +36,8 @@
 		<ul class="menu">
 			<li>View Student Content</li>
 			<li>View StudentEvaluations</li>
-			<li>Share Your Students Experience</li>
-			<li>Email Instructor</li>
+			<li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
+			<li><a href="Parent.EmailInstructor.aspx">Email Instructor</a> </li>
 			<li>View Calendar</li>
 		</ul>
 
