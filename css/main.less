@@ -2,7 +2,10 @@
 @tblHeader:#8ac8ff;
 @tblRowAlts:aliceblue;
 @backgroundColor:#cccccc;
+@darkerBackgroundColor:#999999;
+@darkestBackgroundColor:#666666;
 @hoverColor:#ffffff;
+@mobileIcon:1.5em;
 
 //mixins
 .transition(@transition) {
@@ -405,7 +408,8 @@ form {
   max-width: 100%;
   box-sizing: border-box; }
 .u-pull-right {
-  float: right; }
+  float: right; 
+}
 .u-pull-left {
   float: left; }
 
@@ -437,43 +441,119 @@ hr {
 header {
   background-color: @backgroundColor;
   overflow: hidden;
-  nav {
+  li {
     display: inline;
+    padding: 1em;
   }
-  #branding_logo{
+  nav {
+    @media (min-width:730px) {
+      display: inline !important; 
+    }
+    h5 {
+      margin-bottom: .3em;
+      text-indent: 5px;
+    }
+    li {
+      margin:1em 0em;
+      line-height:4em;
+      padding: 2.7em 1em 2.7em 1em;
+    @media (max-width:730px){
+      display: block;
+      margin-top: 0em;
+      margin-bottom: 0em;
+      padding: .1em 1em;
+      line-height: 2em;
+    }
+  }
+    @media (max-width:730px){
+      padding: 1em 0em;
+      background-color: @darkerBackgroundColor;
+      display: none;
+    }
+  }
+.navigation-controls {
+  width: 23em;
+  margin-top:1.8em;
+  margin-bottom: 0em;
+  float:right;
+  @media (max-width:826px){
+    width: 17em;
+  }
+  @media (max-width:730px){
+    width: 30em;
+    float: none;
+    margin:0em auto;
+  }
+  @media (max-width:445px){
+    width: 20em;
+    float: none;
+    margin:0em auto;
+  }
+}
+#branding {
+  display: inline;
+  width: 118px;
+  @media (max-width:730px){
+    display: block;
+    margin: .5em auto;
+  }
+}
+#branding-logo{
     margin: 1em;
     display: inline;
   }
-  li {
-    margin:1em;
-    display: inline;
-    line-height:4em;
-    padding: 2.7em 1em 2.7em 1em;
-      &:hover{
-        cursor: pointer;
-        background-color: @hoverColor;
-    }
-  }
   #search {
-    margin-left:5em;
     display: inline;
     position:relative;
     text-indent: 1.5em;
+    font-size: 1em;
+    padding: 1.2em .5em;
+    @media (max-width:730px){
+      margin-top:.2em; 
+      margin-bottom: 0em;
+    }
     input {
-      text-indent: inherit;
+      text-indent: 2em;
     }
     .fa-search {
       position: absolute;
-      top: -.1em;
-      left: -.7em;
+      top:1em;
+      left:0em;
       font-size: 1.2em;
+    }
+  }
+  .mobile-only {
+    display: none;
+    @media (max-width:730px){
+      display: inline;
+    }
+  }
+  .icon {
+    @media (max-width:730px){
+      font-size: @mobileIcon;
+      vertical-align: middle;
     }
   }
 }
 section {
   overflow: scroll;
 }
-
+li:hover {
+  cursor: pointer;
+  background-color: @hoverColor !important;
+}
+.usupur {
+  display: inline;
+  @media (max-width:826px){
+    display: none;
+  }
+  @media (max-width:730px){
+    display: inline;
+  }
+  @media (max-width:445px){
+    display: none;
+  }
+}
 
 
 /* ==========================================================================
@@ -489,7 +569,6 @@ section {
   font-size: 0em;
   background-color: #93c47d;
 }
-
 
 /* ==========================================================================
    Helper classes
