@@ -1,8 +1,8 @@
-<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParentMasterPage.master.cs" Inherits="ParentMasterPage" %>
+<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CipherMasterPage.master.cs" Inherits="CipherMasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-     <meta charset="utf-8"/>
+    <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
         <title></title>
         <meta name="description" content=""/>
@@ -22,43 +22,41 @@
 
 
 
+
+
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content id="Content2" ContentPlaceholderID="ContentPlaceHolder1" runat="server">
 
     <asp:panel runat="server" id="panelMain" >
    
        <!-- Menu -->
        <div id="menuContent">
-
- 
-
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
-			<li>View Student Content</li>
-			<li>View StudentEvaluations</li>
-			<li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
-			<li><a href="Parent.EmailInstructor.aspx">Email Instructor</a> </li>
-			<li>View Calendar</li>
-		</ul>
-
-        <p class="pre-menu">Students</p>
-		<ul class="menu">
-			<li>Student 1</li>
-			<li>Student 2</li>
+			<li>View Student Portfolios
+			</li>
+			<li>Make a Donation  </li>
+			<li>Manage My Account</li>
 		</ul>
            </div>
 
-     
+
+  
 
    </asp:panel>
 
+
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-     <asp:panel runat="server" id="mainContent" >
-          <div class="Content">
+
+<asp:Content id="Content3" ContentPlaceholderID="ContentPlaceHolder2" runat="server">
+<asp:panel runat="server" id="mainContent" >
+        
+        <div class="Content">
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
-              </div>
-      </asp:panel>
-</asp:Content>
 
+         </div> 
+      </asp:panel>
+
+  
+    </asp:Content>

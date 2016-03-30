@@ -1,13 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.ApproveAccount.aspx.cs" Inherits="Admin_ApproveAccount" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMasterPage.master" AutoEventWireup="true" CodeFile="Admin.ApproveAccount.aspx.cs" Inherits="Admin_ApproveAccount" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+        <form id="form1" runat="server">
     <div>
        <b><u><asp:Label ID="lblApplicantInfo" runat="server" Text="Applicant Information"></asp:Label></u></b><br />
         <asp:Label ID="lblfName" runat="server" Text="First Name: "><asp:TextBox ID="txtfName" runat="server"></asp:TextBox></asp:Label><br />
@@ -17,5 +12,6 @@
         <asp:Button ID="btnDeny" runat="server" Text="Deny" OnClick="btnDeny_Click" />                
     </div>
     </form>
-</body>
-</html>
+
+</asp:Content>
+
