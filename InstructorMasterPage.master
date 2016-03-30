@@ -1,4 +1,4 @@
-<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="InstructorMasterPage.master.cs" Inherits="InstructorMasterPage" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="InstructorMasterPage.master.cs" Inherits="InstructorMasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -34,11 +34,11 @@
        <div id="menuContent">
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
-			<li>Take Attendance</li>
-            <li>Submit Lesson Plan</li>
-			<li>Student Evaluations</li>
-			<li>View Calendar</li>
-			<li>View Evaluations</li>
+			<li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a> </li>
+			<li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
+            <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
+			<li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+			<li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 		</ul>
            </div>
 
