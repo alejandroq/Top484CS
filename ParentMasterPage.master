@@ -1,4 +1,4 @@
-<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParentMasterPage.master.cs" Inherits="ParentMasterPage" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParentMasterPage.master.cs" Inherits="ParentMasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -34,18 +34,15 @@
 
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
-			<li>View Student Content</li>
-			<li>View StudentEvaluations</li>
+             <li><a href="Parent.HomePage.aspx">Homepage</a></li>
+			<li><a href="Parent.ViewStudentContent.aspx">View Student Content</a> </li>
+			<li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a> </li>
 			<li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
 			<li><a href="Parent.EmailInstructor.aspx">Email Instructor</a> </li>
-			<li>View Calendar</li>
+			<li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 		</ul>
 
-        <p class="pre-menu">Students</p>
-		<ul class="menu">
-			<li>Student 1</li>
-			<li>Student 2</li>
-		</ul>
+
            </div>
 
      
