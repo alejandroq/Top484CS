@@ -15,6 +15,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         GenerateTable();
+
         if (ddlMemberType.SelectedValue.ToString() != "All")
         {
             lblSortBy.Visible = false;
@@ -31,7 +32,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Generate DataTable based on DropDown selection
     private DataTable CreateDataTable()
     {
-
         DataTable dt = new DataTable();
         if (ddlMemberType.SelectedValue.ToString() == "All")
         {
@@ -152,7 +152,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
         string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
@@ -267,7 +266,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                     TableCell memberCell = new TableCell();
                     memberCell.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(memberCell);
-
                 }
                 if (dt.Columns[j].ColumnName == "Approved")
                 {
