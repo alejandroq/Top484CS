@@ -1,19 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.AddContent.aspx.cs" Inherits="Admin_AddContent" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMasterPage.master" AutoEventWireup="true" CodeFile="Admin.AddContent.aspx.cs" Inherits="Admin_AddContent" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+        <form id="form1" runat="server">
     <div>
         <h3>Add New Content</h3>
-        <asp:Label ID="lblTitle" runat="server" Text="Title: "><asp:TextBox ID="txtTitle" runat="server"></asp:TextBox></asp:Label><br />
-        <asp:Label ID="lblCreator" runat="server" Text="Student: "><asp:DropDownList ID="ddlStudent" runat="server" DataSourceID="StudentList" DataTextField="EmailAddress" DataValueField="EmailAddress"></asp:DropDownList></asp:Label><br />
-        <asp:SqlDataSource ID="StudentList" runat="server" ConnectionString="<%$ ConnectionStrings:WBLDBConnectionString %>" SelectCommand="SELECT [EmailAddress] FROM [Student] ORDER BY [EmailAddress]"></asp:SqlDataSource>
-        <asp:Label ID="lblElement" runat="server" Text="Element: "><asp:DropDownList ID="ddlElement" runat="server">
+        <asp:Label ID="lblTitle" runat="server" Text="Title: " CssClass="labels"><asp:TextBox ID="txtTitle" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
+        <asp:Label ID="lblCreator" runat="server" Text="Student: " CssClass="labels"><asp:DropDownList ID="ddlStudent" runat="server" cssclass="dropdowns"></asp:DropDownList></asp:Label><br />
+        <asp:SqlDataSource ID="StudentList" runat="server"  SelectCommand="SELECT [EmailAddress] FROM [Student] ORDER BY [EmailAddress]"></asp:SqlDataSource>
+        <asp:Label ID="lblElement" runat="server" Text="Element: " CssClass="labels"><asp:DropDownList ID="ddlElement" runat="server" CssClass="dropdowns">
             <asp:ListItem>MC</asp:ListItem>
             <asp:ListItem>DJ</asp:ListItem>
             <asp:ListItem>B-boy</asp:ListItem>
@@ -21,12 +16,14 @@
             <asp:ListItem>Knowledge of Self</asp:ListItem>
         </asp:DropDownList></asp:Label><br />
         <asp:FileUpload ID="flAdminAddContent" runat="server" /><br />
-        <asp:CheckBox ID="ckCommunityWall" runat="server" Text="Add this file to Community Wall" /><br />
-        <asp:Label ID="lblDescription" runat="server" Text="Description: "></asp:Label><br /><asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+        <asp:CheckBox ID="ckCommunityWall" runat="server" Text="Add this file to Community Wall" cssclass="radioButtons"/><br />
+        <asp:Label ID="lblDescription" runat="server" Text="Description: " CssClass="labels"></asp:Label><br /><asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" CssClass="textbox"></asp:TextBox>
         <br />
-        <asp:Button ID="btnUpload" runat="server" Text="Upload File" OnClick="btnUpload_Click" />
+        <asp:Button ID="btnUpload" runat="server" Text="Upload File" OnClick="btnUpload_Click" CssClass="buttons" />
         
     </div>
     </form>
-</body>
-</html>
+
+
+</asp:Content>
+
