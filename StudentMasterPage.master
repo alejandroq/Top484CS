@@ -1,4 +1,4 @@
-<%@ Master Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="StudentMasterPage.master.cs" Inherits="StudentMasterPage"%> 
+﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="StudentMasterPage.master.cs" Inherits="StudentMasterPage"%> 
 
 
 <asp:Content id="head" runat="server" ContentPlaceHolderID="head">
@@ -33,11 +33,10 @@
        <div id="menuContent">
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
-			<li>View Portfolio</li>
-			<li>View Calendar </li>
-			<li>Edit Profile</li>
+			<li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+			<li><a href="ViewCalendar.aspx">View Calendar</a>  </li>
 			<li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-			<li>View Your Evaluations</li>
+			<li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
             <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
 		</ul>
            </div>
