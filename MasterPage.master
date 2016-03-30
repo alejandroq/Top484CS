@@ -22,7 +22,15 @@
 	    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
 	    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-	    <asp:ContentPlaceHolder id="head" runat="server">
+	    
+        <style type="text/css">
+            #eventsContent {
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+        </style>
+        
+        <asp:ContentPlaceHolder id="head" runat="server">
     	</asp:ContentPlaceHolder>
 	</head>
 	<body>
@@ -37,13 +45,13 @@
 					<i class="fa fa-bars icon"></i>
 					<span class="usupur">Menu</span>
 				</li>
-		        <li>
+		        <li id="notificationMenu">
 		        	<i class="fa fa-bell icon"></i>
 		        	<span class="usupur">Notifications</span>
 		        </li>
 		        <li id="search">
 		        	<span class="fa fa-search"></span>
-		        	<input type="text" placeholder="Search">
+		        	<input type="text" placeholder="Search"/>
 		        </li>
 		    </ul>
 		    <!-- END ICONIC NAVIGATION CONTROLS -->
@@ -55,41 +63,34 @@
 		       	<li>Events</li>
 		        <li>Forum</li>
 		        <li class="mobile-last-li">Buck Shop</li>
-		        <!-- BEGIN MOBILE ONLY ITEMS (Menu Items) -->
-		        <ul class="mobile-only"><h5>Menu</h5></ul>
-		        <li class="mobile-only-li">Manage Accounts</li>
-		        <li class="mobile-only-li">Manage Content</li>
-		        <li class="mobile-only-li">Manage Inventory</li>
-		        <li class="mobile-only-li">View Dashboard</li>
-		        <!-- END MOBILE ONLY ITEMS (Menu Items) -->
+                <li class="mobile-last-li">My Account</li>
+		        
 		    </nav>
 		    <!-- END NAVIGATION BAR -->
 		</header> 
 		<!-- END HEADER -->
 
-		<!-- BEGIN UNIQUE MENU -->
-			<p class="pre-menu no-mobile">Menu</p>
-			<ul class="menu no-mobile">
-				<li>Manage Accounts
-					<ul>
-						<li>Quick Add</li>
-					</ul>
-				</li>
-				<li>Manage Content</li>
-				<li>Manage Events
-					<ul>
-						<li>Quick Add</li>
-					</ul>
-				</li>
-				<li>Manage Inventory
-					<ul>
-						<li>Quick Add</li>
-					</ul>
-				</li>
-				<li>View Dashboard</li>
-			</ul>
-			<!-- END UNIQUE MENU -->
+        <!-- BEGIN NOTIFICATION & SEARCH MENU (Icon List)-->
+            <ul id="ui-data-menu" class="menu ui-icon-list ui-menu-large" style="float:right;">
+            <li><i class="fa fa-users"></i>Users</li>
+            <li class="ui-branch"><p>New: </p>Laura Dawbs</li>
+            <li><i class="fa fa-calendar"></i>Events</li>
+            <li class="ui-branch"><p>Upcoming: </p>Event 1</li>
+            <li><i class="fa fa-file-text-o"></i>Content</li>
+            <li class="ui-branch"><p>New: </p>Laura's Evaluation</li>
+            <li><i class="fa fa-comments"></i>Forum</li>
+            <li class="ui-branch"><p>Flagged: </p>Post Title</li>
+            </ul>
+            <!-- END NOTIFICATION MENU (Icon List) -->
 
+        <!-- Menu  Content PlaceHolder -->
+        <div>
+        	<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        	</asp:ContentPlaceHolder>
+    	</div>
+        
+        <aside id="eventsContent">
 			<!-- BEGIN UPCOMING EVENTS (Icon List) -->
 			<p class="pre-menu">Upcoming Events</p>
 			<ul class="menu ui-icon-list">
@@ -98,9 +99,11 @@
 				<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
 			</ul>
 			<!-- END UPCOMING EVENTS -->
+        </aside>
 
-	   	<div>
-        	<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        <!-- Body Content Place Holder-->
+        <div>
+        	<asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
         
         	</asp:ContentPlaceHolder>
     	</div>
