@@ -1,4 +1,4 @@
-<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CipherMasterPage.master.cs" Inherits="CipherMasterPage" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CipherMasterPage.master.cs" Inherits="CipherMasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -33,10 +33,9 @@
        <div id="menuContent">
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
-			<li>View Student Portfolios
-			</li>
-			<li>Make a Donation  </li>
-			<li>Manage My Account</li>
+			<li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
+			<li>Make a Donation</li><!-- add a link to the donation page at some point Version II-->
+            <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 		</ul>
            </div>
 
