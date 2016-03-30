@@ -1,4 +1,4 @@
-<%@ Master Language="C#" MasterPageFile="MasterPage.master"%> 
+﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master"%> 
 
 
 <asp:Content id="head" runat="server" ContentPlaceHolderID="head">
@@ -32,27 +32,29 @@
        <div class="menuContent">
 		<p class="pre-menu">Menu</p>
 		<ul class="menu">
+            
 			<li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
 				<ul>
-					<li><a href="Admin.AddUser.aspx">Quick Add</a></li>
+					<li><a href="Admin.AddUser.aspx">Add New User</a></li>
 				</ul>
 			</li>
-			<li>Manage Content
+			<li><a href="Admin.ManageContent.aspx">Manage Content</a> 
                 <ul>
                     <li><a href="Admin.AddContent.aspx">Add Content</a> </li>
                     </ul>
                 </li>
-			<li>Manage Events
+			<li><a href="Admin.ManageEvents.aspx">Manage Events</a> 
 				<ul>
 					<li><a href="Admin.AddEvent.aspx">Add Event</a> </li>
 				</ul>
 			</li>
-			<li>Manage Inventory
+			<li>Manage Inventory 
 				<ul>
-					<li>Quick Add</li>
+					<li>Add Item</li>
 				</ul>
 			</li>
-			<li>View Dashboard</li>
+			<li><a href="ViewCalendar.aspx">View Calendar</a></li>
+            <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
 		</ul>
            </div>
 
