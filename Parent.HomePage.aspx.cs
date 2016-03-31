@@ -17,7 +17,7 @@ public partial class Parent_HomePage : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["parentID"] = "Dan@WBL.org";
+        Session["userID"] = "Dan@WBL.org";
         studs = GetStudents();
         PopRadioBtns(studs);
     }
@@ -80,10 +80,12 @@ public partial class Parent_HomePage : System.Web.UI.Page
         if (index == 0)
         {
             Session["studentID"] = studs[0];
+            Session["studentName"] = (String)studs[index + 1] + " " + (String)studs[index + 2];
         }
         else
         {
             Session["studentID"] = studs[index * 3];
+            Session["studentName"] = (String)studs[(index * 3)  + 1] + " " + (String)studs[(index * 3) + 2];
         }
     }
 }
