@@ -26,7 +26,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
             lblSortBy.Visible = true;
             ddlSortBy.Visible = true;
         }
-        System.Diagnostics.Debug.WriteLine("page loaded");
     }
 
     #region Generate DataTable based on DropDown selection
@@ -183,6 +182,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     private void GenerateTable()
     {
         DataTable dt = CreateDataTable();
+        ViewState["excelDataTable"] = (DataTable)dt;
         Table table = new Table();
         GridView grid = new GridView();
         TableRow row = null;
@@ -229,7 +229,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         }
 
         // Only add columns for Edit User / View Profile if user is not an applicant
-        // Since these two columnds don't come from DB
+        // Since these two columns don't come from DB
         if (ddlMemberType.SelectedValue.ToString() != "Applicants")
         {
             TableHeaderCell editHeaderCell = new TableHeaderCell();
@@ -245,7 +245,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         // Add the Column Title row to the table
         table.Rows.Add(row);
 
-        //Add each row in the DataTable
+        //Add each row in the DataTable to the ASP table
         for (int i = 0; i < dt.Rows.Count; i++)
         {
             row = new TableRow();
@@ -259,7 +259,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                     //System.Diagnostics.Debug.WriteLine(dt.Rows[i][j].ToString());
                     textCell.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(textCell);
-
                 }
                 if (dt.Columns[j].ColumnName == "UserType")
                 {
@@ -273,7 +272,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                     {
                         LinkButton link = new LinkButton();
                         link.Text = "Needs Approval";
-                        link.Click += approval_Click; // assign event action, approval_click method below
+                        link.Click += approval_Click;
                         link.CommandArgument = dt.Rows[i][j + 1].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
 
                         TableCell applicant = new TableCell();
@@ -416,9 +415,41 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     }
     #endregion
 
+    #region Event Handler for "Export to Excel" button
 
-    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+
+
+
+    public void SendToExcel(DataTable dtdata)
     {
-
+        string attach = "attachment;filename=journal.xls";
+        Response.ClearContent();
+        Response.AddHeader("content-disposition", attach);
+        Response.ContentType = "application/ms-excel";
+        if (dtdata != null)
+        {
+            foreach (DataColumn dc in dtdata.Columns)
+            {
+                Response.Write(dc.ColumnName + "\t");
+                //sep = ";";
+            }
+            Response.Write(System.Environment.NewLine);
+            foreach (DataRow dr in dtdata.Rows)
+            {
+                for (int i = 0; i < dtdata.Columns.Count; i++)
+                {
+                    Response.Write(dr[i].ToString() + "\t");
+                }
+                Response.Write("\n");
+            }
+            Response.End();
+        }
     }
+
+    
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        SendToExcel((DataTable)ViewState["excelDataTable"]);
+    }
+    #endregion
 }
