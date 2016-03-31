@@ -1,26 +1,5 @@
 ﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master"%> 
 
-
-<!-- <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-
-     <meta charset="utf-8"/>
-        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-
-        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
-
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/jquery-ui.min.css"/>
-        <link rel="stylesheet" href="css/main.less"/>
-        <link rel="stylesheet" href="css/forms.css" />
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-</asp:Content> -->
-
 <!-- ADMIN SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
