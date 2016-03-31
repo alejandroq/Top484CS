@@ -1,27 +1,53 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CipherMasterPage.master.cs" Inherits="CipherMasterPage" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="foobar" Runat="Server">
 <!-- CIPHER SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
-<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
-
+	<!-- HEADER -->
     <asp:Panel runat="server" id="panelMain" >
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a>View Calendar</a></li>
 
     </asp:Panel>
+    <!-- END HEADER -->
 
 </asp:Content>
-<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
+<asp:Content ID="Content2" ContentPlaceHolderID="foo" Runat="Server">
+	<!-- BODY MENU -->
+    <asp:Panel runat="server" id="panel1" >
+
+      <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
+      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a>View Calendar</a></li>
+
+    </asp:Panel>
+    <!-- END BODY MENU -->
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="bar" Runat="Server">
+	<!-- FOOTER MENU -->
+    <asp:Panel runat="server" id="panel2" >
+
+      <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
+      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a>View Calendar</a></li>
+
+    </asp:Panel>
+    <!-- END FOOTER MENU -->
+<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+</asp:Content>
+
+<asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
-<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
     <asp:panel runat="server" id="mainContent" >
 
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
 
     </asp:panel>
-</asp:Content>
 <!-- END BODY CONTENT -->
+</asp:Content>

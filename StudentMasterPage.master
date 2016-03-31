@@ -1,57 +1,60 @@
 ﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="StudentMasterPage.master.cs" Inherits="StudentMasterPage"%> 
 
+<asp:Content ContentPlaceHolderID="foobar" Runat="Server">
+
 <!-- STUDENT SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
   <!-- HEADER -->
-  <asp:Content ContentPlaceHolderID="foobar" Runat="Server">
+
+    <asp:Panel runat="server" id="temp">
+
+      <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+      <li><a>View Calendar</a></li>
+      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+
+    </asp:Panel>
+    <!-- END HEADER -->
+
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="foo" Runat="Server">
+  <!-- BODY MENU -->
       <asp:Panel runat="server" id="temp">
 
-        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-        <li><a href="">View Calendar</a></li>
-        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+      <li>View Portfolio</li>
+      <li><a>View Calendar</a></li>
+      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
 
-      </asp:Panel>
-  </asp:Content>
-  <!-- END HEADER -->
-
-  <!-- BODY MENU -->
-  <asp:Content ContentPlaceHolderID="foo" Runat="Server">
-        <asp:Panel runat="server" id="temp">
-
-        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-        <li><a href="">View Calendar</a></li>
-        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
-
-      </asp:Panel>
-  </asp:Content>
+    </asp:Panel>  
   <!-- END BODY MENU -->
+</asp:Content>
 
+<asp:Content ContentPlaceHolderID="bar" Runat="Server">
   <!-- FOOTER MENU -->
-  <asp:Content ContentPlaceHolderID="bar" Runat="Server">
-      <asp:Panel runat="server" ID="temp">
+    <asp:Panel runat="server" ID="temp">
 
-        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-        <li><a href="">View Calendar</a></li>
-        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+      <li>View Portfolio</li>
+      <li><a>View Calendar</a></li>
+      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
 
-      </asp:Panel>
-  </asp:Content>
-  <!-- END FOOTER MENU -->
+    </asp:Panel>
+    <!-- END FOOTER MENU -->
 <!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+</asp:Content>
 
+<asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
-<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
     <asp:panel runat="server" id="mainContent" >
 
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
 
     </asp:panel>
-</asp:Content>
 <!-- END BODY CONTENT -->
+</asp:Content>

@@ -1,10 +1,10 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParentMasterPage.master.cs" Inherits="ParentMasterPage" %>
 
+<asp:Content ContentPlaceHolderID="foobar" Runat="Server">
 <!-- PARENT SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
-<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
-
+  <!-- HEADER -->
     <asp:Panel runat="server" id="panelMain" >
 
       <li><a href="Parent.HomePage.aspx">Homepage</a></li>
@@ -15,17 +15,48 @@
       <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
+    <!-- END HEADER -->
 
 </asp:Content>
-<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
+<asp:Content ContentPlaceHolderID="foo" Runat="Server">
+  <!-- BODY MENU -->
+    <asp:Panel runat="server" id="panelMain" >
+
+      <li><a href="Parent.HomePage.aspx">Homepage</a></li>
+      <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
+      <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
+      <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
+      <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+
+    </asp:Panel>
+    <!-- END BODY MENU -->
+
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="bar" Runat="Server">
+  <!-- FOOTER MENU -->
+    <asp:Panel runat="server" id="panelMain" >
+
+      <li><a href="Parent.HomePage.aspx">Homepage</a></li>
+      <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
+      <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
+      <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
+      <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+
+    </asp:Panel>
+    <!-- END FOOTER MENU -->
+<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+</asp:Content>
+
+<asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
-<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
     <asp:panel runat="server" id="mainContent" >
 
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
 
     </asp:panel>
-</asp:Content>
 <!-- END BODY CONTENT -->
-
+</asp:Content>
