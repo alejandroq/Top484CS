@@ -1,62 +1,29 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="InstructorMasterPage.master.cs" Inherits="InstructorMasterPage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<!-- INSTRUCTOR SUB-MASTERPAGE -->
 
-             <meta charset="utf-8"/>
-        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-        <!-- Place favicon.ico in the root directory -->
+    <asp:Panel runat="server" id="panelMain" >
 
-        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
-        <!-- Raleyway Font -->
+        <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
+        <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
+        <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
+        <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/jquery-ui.min.css"/>
-        <link rel="stylesheet" href="css/main.less"/>
-        <link rel="stylesheet" href="css/forms.css" />
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-
-
+    </asp:Panel>
 
 </asp:Content>
+<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
+<!-- BODY CONTENT -->
+<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
+    <asp:panel runat="server" id="mainContent" >
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
-        <asp:panel runat="server" id="panelMain" >
-   
-       <!-- Menu -->
-       <div id="menuContent">
-		<p class="pre-menu">Menu</p>
-		<ul class="menu">
-			<li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a> </li>
-			<li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
-            <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
-			<li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-			<li><a href="ViewCalendar.aspx">View Calendar</a> </li>
-		</ul>
-           </div>
-
-
-   </asp:panel>
-
-</asp:Content>
-
-
-
-<asp:Content id="Content3" ContentPlaceholderID="ContentPlaceHolder2" runat="server">
-<asp:panel runat="server" id="Panel1" >
-        
-        <div class="Content">
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
 
-         </div> 
-      </asp:panel>
-
-  
-    </asp:Content>
+    </asp:panel>
+</asp:Content>
+<!-- END BODY CONTENT -->

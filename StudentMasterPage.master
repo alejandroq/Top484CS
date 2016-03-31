@@ -1,55 +1,29 @@
 ﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="StudentMasterPage.master.cs" Inherits="StudentMasterPage"%> 
 
+<!-- STUDENT SUB-MASTERPAGE -->
 
-<asp:Content id="head" runat="server" ContentPlaceHolderID="head">
+<!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
 
-         <meta charset="utf-8"/>
-        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <asp:Panel runat="server" id="panelMain" >
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-        <!-- Place favicon.ico in the root directory -->
+      <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
 
-        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
-        <!-- Raleyway Font -->
+    </asp:Panel>
 
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/jquery-ui.min.css"/>
-        <link rel="stylesheet" href="css/main.less"/>
-        <link rel="stylesheet" href="css/forms.css" />
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-            
-
-    	</asp:Content>
-
-<asp:Content id="Content1" ContentPlaceholderID="ContentPlaceHolder1" runat="server">
-   
-    <asp:panel runat="server" id="panelMain" >
-   
-       <!-- Menu -->
-       <div id="menuContent">
-		<p class="pre-menu">Menu</p>
-		<ul class="menu">
-			<li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-			<li><a href="ViewCalendar.aspx">View Calendar</a>  </li>
-			<li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-			<li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-            <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
-		</ul>
-           </div>
-
- 
-
-   </asp:panel>
 </asp:Content>
+<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-         <asp:panel runat="server" id="mainContent" >
-          <div class="Content">
+<!-- BODY CONTENT -->
+<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
+    <asp:panel runat="server" id="mainContent" >
+
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
-              </div>
-      </asp:panel>
+
+    </asp:panel>
 </asp:Content>
+<!-- END BODY CONTENT -->

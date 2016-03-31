@@ -30,6 +30,6 @@ $('#wall').galereya({
     slideShowSpeed: 10000,
 
     // speed of appearance of cells
-    cellFadeInSpeed: 100,
+    cellFadeInSpeed: 100
 
 });

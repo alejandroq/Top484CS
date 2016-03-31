@@ -1,76 +1,67 @@
 ﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master"%> 
 
 
-<asp:Content id="head" runat="server" ContentPlaceHolderID="head">
+<!-- <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-         <meta charset="utf-8"/>
+     <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
         <title></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-        <!-- Place favicon.ico in the root directory -->
 
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
-        <!-- Raleyway Font -->
 
         <link rel="stylesheet" href="css/normalize.css"/>
         <link rel="stylesheet" href="css/jquery-ui.min.css"/>
-
         <link rel="stylesheet" href="css/main.less"/>
         <link rel="stylesheet" href="css/forms.css" />
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-    	</asp:Content>
+</asp:Content> -->
 
-<asp:Content id="Content1" ContentPlaceholderID="ContentPlaceHolder1" runat="server">
-   
-    <asp:panel runat="server" id="panelMain" >
-   
-       <!-- Menu -->
-       <div class="menuContent">
-		<p class="pre-menu">Menu</p>
-		<ul class="menu">
-            
-			<li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
-				<ul>
-					<li><a href="Admin.AddUser.aspx">Add New User</a></li>
-				</ul>
-			</li>
-			<li><a href="Admin.ManageContent.aspx">Manage Content</a> 
-                <ul>
-                    <li><a href="Admin.AddContent.aspx">Add Content</a> </li>
-                    </ul>
-                </li>
-			<li><a href="Admin.ManageEvents.aspx">Manage Events</a> 
-				<ul>
-					<li><a href="Admin.AddEvent.aspx">Add Event</a> </li>
-				</ul>
-			</li>
-			<li>Manage Inventory 
-				<ul>
-					<li>Add Item</li>
-				</ul>
-			</li>
-			<li><a href="ViewCalendar.aspx">View Calendar</a></li>
-            <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
-		</ul>
-           </div>
+<!-- ADMIN SUB-MASTERPAGE -->
 
-        </asp:panel>
-      
+<!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
+<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
+
+    <asp:Panel runat="server" id="panelMain" >
+
+        <li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
+            <ul>
+                <li><a href="Admin.AddUser.aspx">Add New User</a></li>
+            </ul>
+        </li>
+        <li><a href="Admin.ManageContent.aspx">Manage Content</a> 
+            <ul>
+                <li><a href="Admin.AddContent.aspx">Add Content</a></li>
+                </ul>
+            </li>
+        <li><a href="Admin.ManageEvents.aspx">Manage Events</a> 
+            <ul>
+                <li><a href="Admin.AddEvent.aspx">Add Event</a></li>
+            </ul>
+        </li>
+        <li>Manage Inventory 
+            <ul>
+                <li>Add Item</li>
+            </ul>
+        </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+        <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
+
+    </asp:Panel>
+
 </asp:Content>
+<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
+<!-- BODY CONTENT -->
+<asp:Content ID="temp2" ContentPlaceHolderID="body" runat="server">
+    <asp:panel runat="server" id="mainContent" >
 
-<asp:Content id="Content2" ContentPlaceholderID="ContentPlaceHolder2" runat="server">
-<asp:panel runat="server" id="mainContent" >
-        
-        <div class="Content">
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
 
-         </div> 
-      </asp:panel>
-
-  
-    </asp:Content>
+    </asp:panel>
+</asp:Content>
+<!-- END BODY CONTENT -->
