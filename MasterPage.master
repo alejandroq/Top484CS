@@ -77,7 +77,7 @@
                 <div class="mobile-only">
                 	<h5>Menu</h5>
                 	<ul>
-	                <asp:ContentPlaceHolder id="unique-menu" runat="server">
+	                <asp:ContentPlaceHolder id="foobar" runat="server">
 
 	                </asp:ContentPlaceHolder>
 	                </ul>
@@ -110,7 +110,7 @@
 	        		<!-- MENU CONTENT PLACEHOLDER -->
 	        		<p class="pre-menu no-mobile">Menu</p>
 	        		<ul class="menu no-mobile">
-				    	<asp:ContentPlaceHolder id="unique-menu" runat="server">
+				    	<asp:ContentPlaceHolder id="foo" runat="server">
 				    
 				    	</asp:ContentPlaceHolder>
 			    	</ul>
@@ -160,7 +160,7 @@
 	    				<h6>Menu</h6>
 	    				<!-- UNIQUE MENU FOOTER -->
 	    				<ul>
-		                <asp:ContentPlaceHolder id="unique-menu" runat="server">
+		                <asp:ContentPlaceHolder id="bar" runat="server">
 
 		                </asp:ContentPlaceHolder>	
 		                <!-- END UNIQUE MENU FOOTER -->

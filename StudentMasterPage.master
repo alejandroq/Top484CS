@@ -3,19 +3,47 @@
 <!-- STUDENT SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
-<asp:Content ID="temp" ContentPlaceHolderID="unique-menu" Runat="Server">
+  <!-- HEADER -->
+  <asp:Content ContentPlaceHolderID="foobar" Runat="Server">
+      <asp:Panel runat="server" id="temp">
 
-    <asp:Panel runat="server" id="panelMain" >
+        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+        <li><a href="">View Calendar</a></li>
+        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
 
-      <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
-      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+      </asp:Panel>
+  </asp:Content>
+  <!-- END HEADER -->
 
-    </asp:Panel>
+  <!-- BODY MENU -->
+  <asp:Content ContentPlaceHolderID="foo" Runat="Server">
+        <asp:Panel runat="server" id="temp">
 
-</asp:Content>
+        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+        <li><a href="">View Calendar</a></li>
+        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+
+      </asp:Panel>
+  </asp:Content>
+  <!-- END BODY MENU -->
+
+  <!-- FOOTER MENU -->
+  <asp:Content ContentPlaceHolderID="bar" Runat="Server">
+      <asp:Panel runat="server" ID="temp">
+
+        <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
+        <li><a href="">View Calendar</a></li>
+        <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+        <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+        <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+
+      </asp:Panel>
+  </asp:Content>
+  <!-- END FOOTER MENU -->
 <!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
 
 <!-- BODY CONTENT -->
