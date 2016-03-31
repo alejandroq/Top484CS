@@ -52,22 +52,27 @@ public partial class Log_In : System.Web.UI.Page
                     if (permission == "5")
                     {
                         Response.Redirect("Admin.ManageAccounts.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
+                        Session["UserID"] = user;
                     }
                     if (permission == "4")
                     {
-                        // redirect to staff/instructor/intern profile
+                        // redirect to staff/instructor/intern profile/// Community Wall
+                        Session["UserID"] = user;
                     }
                     if (permission == "3")
                     {
                         // redirect to student profile
+                        Session["UserID"] = user;
                     }
                     if (permission == "2")
                     {
-                        // redirect to parent profile
+                        Response.Redirect("Parent.HomePage.aspx"); 
+                        Session["UserID"] = user;
                     }
                     if (permission == "1")
                     {
                         // redirect to cipher profile
+                        Session["UserID"] = user;
                     }
                 }
                 else                
