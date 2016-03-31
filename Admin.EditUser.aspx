@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.EditUser.aspx.cs" Inherits="Admin_EditUser" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMasterPage.master" AutoEventWireup="true" CodeFile="Admin.EditUser.aspx.cs" Inherits="Admin_EditUser" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
     <title></title>
 </head>
 <body>
@@ -19,3 +19,6 @@
     </form>
 </body>
 </html>
+
+</asp:Content>
+

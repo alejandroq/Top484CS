@@ -252,7 +252,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
             // add the column for each row
             for (int j = 0; j < dt.Columns.Count; j++)
             {
-                System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
+                //System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
                 if (dt.Columns[j].ColumnName == "Name")
                 {
                     TableCell textCell = new TableCell();
@@ -326,8 +326,8 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 TableCell editCell = new TableCell();
                 LinkButton editLink = new LinkButton();
                 editLink.Text = "Edit User";
-                editLink.CommandArgument = dt.Rows[i][2].ToString();
-                //System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
+                editLink.CommandArgument = dt.Rows[i][3].ToString();
+                System.Diagnostics.Debug.WriteLine(dt.Rows[i][3].ToString());
                 editLink.Click += editLink_Click;
                 editCell.Controls.Add(editLink);
                 row.Cells.Add(editCell);
@@ -336,7 +336,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 TableCell profileCell = new TableCell();
                 LinkButton profileLink = new LinkButton();
                 profileLink.Text = "View Profile";
-                profileLink.CommandArgument = dt.Rows[i][2].ToString();
+                profileLink.CommandArgument = dt.Rows[i][3].ToString();
                 profileLink.Click += profileLink_Click;
                 profileCell.Controls.Add(profileLink);
                 row.Cells.Add(profileCell);
@@ -360,7 +360,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         string userID = btn.CommandArgument;
         Session["userID"] = userID;
         System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
-        Response.Redirect("SendUserEmail.aspx", false);
+        Response.Redirect("SendEmail.aspx", false);
     }
     #endregion
 
@@ -378,7 +378,11 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Event Handler for "View Profile" button
     private void profileLink_Click(object sender, EventArgs e)
     {
-        //throw new NotImplementedException();
+        System.Diagnostics.Debug.WriteLine("edit user clicked");
+        LinkButton btn = (LinkButton)(sender);
+        string userID = btn.CommandArgument;
+        Session["userID"] = userID;
+        // redirect Admin to specific user's profile 
     }
     #endregion
 
@@ -391,13 +395,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         System.Diagnostics.Debug.WriteLine(applicantID);
         Session["applicantID"] = applicantID;
         Response.Redirect("Admin.ApproveAccount.aspx", false);
-    }
-    #endregion
-
-    #region Event Handler for "Add User" button
-    protected void btnAddUser_Click(object sender, EventArgs e)
-    {
-
     }
     #endregion
 
@@ -422,7 +419,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     public void SendToExcel(DataTable dtdata)
     {
-        string attach = "attachment;filename=journal.xls";
+        string attach = "attachment;filename=WBLDataTable.xls";
         Response.ClearContent();
         Response.AddHeader("content-disposition", attach);
         Response.ContentType = "application/ms-excel";
@@ -452,4 +449,9 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         SendToExcel((DataTable)ViewState["excelDataTable"]);
     }
     #endregion
+
+    protected void btnAddUser_Click(object sender, EventArgs e)
+    {
+
+    }
 }
