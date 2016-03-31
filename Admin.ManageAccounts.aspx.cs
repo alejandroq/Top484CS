@@ -408,7 +408,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Event Handler for "View Calendar" button
     protected void btnViewCalendar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ViewCalendar.aspx");
+        Response.Redirect("Admin.ManageEvents.aspx");
     }
     #endregion
 

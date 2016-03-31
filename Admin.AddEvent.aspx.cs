@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_AddEvent : System.Web.UI.Page
 {
+    // TO DO: Add in event image and see if last email address column in event table is necessary
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -28,16 +29,21 @@ public partial class Admin_AddEvent : System.Web.UI.Page
     {
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "INSERT INTO dbo.WBLEvent (EventName, EventType, EventDescription, EventDateTime) VALUES (@EventName, @EventType, @EventDescription, @EventDateTime)"; // @EventLocation, @PrimaryContact, @PCEmail, @PCPhone, @EventImage, @SponsorEMail, @EmailAddress)";
+        string cmdText = "INSERT INTO dbo.WBLEvent (EventName, EventType, EventDescription, EventDateTime, EventLocation, PrimaryContact, PCEmail, PCPhone) VALUES (@EventName, @EventType, @EventDescription, @EventDateTime, @EventLocation, @PrimaryContact, @PCEmail, @PCPhone)"; // @EventLocation, @PrimaryContact, @PCEmail, @PCPhone, @EventImage, @SponsorEMail, @EmailAddress)";
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.Parameters.AddWithValue("@EventName", txtEventName.Text);
         cmd.Parameters.AddWithValue("@EventType", ddlElement.SelectedValue);
         cmd.Parameters.AddWithValue("@EventDescription", txtDescription.Text);
         cmd.Parameters.AddWithValue("@EventDateTime", txtDate.Text);
-        // TODO: uncomment the parameters above and add their values to this above list
+        cmd.Parameters.AddWithValue("@EventLocation", txtLocation.Text);
+        cmd.Parameters.AddWithValue("@PrimaryContact", txtPCName.Text);
+        cmd.Parameters.AddWithValue("@PCEmail", txtPCEmail.Text);
+        cmd.Parameters.AddWithValue("@PCPhone", txtPCPhone.Text);
+
+        // need event image
         // Need to figure out how to store event photo
         cmd.ExecuteNonQuery();
-        Response.Redirect("ViewCalendar.aspx");
+        Response.Redirect("Admin.ManageEvents.aspx");
 
                         
     }
