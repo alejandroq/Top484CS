@@ -17,3 +17,19 @@ $('#notificationMenu').on('click', function() {
 	}
 	$('#ui-data-menu').toggle('blind',200);
 });
+
+$('#wall').galereya({
+
+	 // spacing between cells of the masonry grid
+    spacing: 3,
+
+    // waving visual effect
+    wave: false,
+
+    // speed of the slide show
+    slideShowSpeed: 10000,
+
+    // speed of appearance of cells
+    cellFadeInSpeed: 100,
+
+});
