@@ -7,6 +7,8 @@
 
         <h3>Send a Letter of Encouragement to Words Beats & Life Inc.</h3>
 
+        <asp:Label runat="server" Text="Your Childs Name"/><asp:DropDownList ID="ddlStudent" runat="server"/>
+
         <asp:Label ID="lblLeterUpload" runat="server" Text="Upload a File: " CssClass="labels"><asp:FileUpload ID="flLetter" runat="server" /></asp:Label><br />
     
         <asp:Label ID="lblLetterSubject" runat="server" Text="Subject: " CssClass="labels"><asp:TextBox ID="txtLetterSubject" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
