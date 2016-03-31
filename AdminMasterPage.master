@@ -26,7 +26,7 @@
                 <li>Add Item</li>
             </ul>
         </li>
-        <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+        <li><a>View Calendar</a></li>
         <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
     </asp:Panel>
     <!-- END HEADER -->

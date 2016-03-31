@@ -7,12 +7,11 @@
   <!-- HEADER -->
     <asp:Panel ID="Panel1" runat="server">
 
-      <li><a href="Parent.HomePage.aspx">Homepage</a></li>
       <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a>View Calendar</a></li>
 
     </asp:Panel>
     <!-- END HEADER -->
@@ -23,12 +22,11 @@
   <!-- BODY MENU -->
     <asp:Panel ID="Panel2" runat="server">
 
-      <li><a href="Parent.HomePage.aspx">Homepage</a></li>
       <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a>View Calendar</a></li>
 
     </asp:Panel>
     <!-- END BODY MENU -->
@@ -39,12 +37,11 @@
   <!-- FOOTER MENU -->
     <asp:Panel ID="Panel3" runat="server">
 
-      <li><a href="Parent.HomePage.aspx">Homepage</a></li>
       <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a>View Calendar</a></li>
 
     </asp:Panel>
     <!-- END FOOTER MENU -->
