@@ -77,7 +77,7 @@ public partial class Parent_HomePage : System.Web.UI.Page
     protected void rblStudent_SelectedIndexChanged(object sender, EventArgs e)
     {
         int index = rblStudent.SelectedIndex;
-        if (index = 0)
+        if (index == 0)
         {
             Session["studentID"] = studs[0];
         }

@@ -1,11 +1,11 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="InstructorMasterPage.master.cs" Inherits="InstructorMasterPage" %>
 
-<asp:Content ContentPlaceHolderID="foobar" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="foobar" Runat="Server">
 <!-- INSTRUCTOR SUB-MASTERPAGE -->
 
 <!-- UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
     <!-- HEADER -->
-    <asp:Panel runat="server" id="panelMain" >
+    <asp:Panel ID="Panel1" runat="server">
 
         <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
@@ -17,9 +17,9 @@
     <!-- END HEADER -->
 
 </asp:Content>
-<asp:Content ContentPlaceHolderID="foo" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="foo" Runat="Server">
     <!-- BODY MENU -->
-    <asp:Panel runat="server" id="panelMain" >
+    <asp:Panel ID="Panel2" runat="server">
 
         <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
@@ -32,9 +32,9 @@
 
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="bar" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="bar" Runat="Server">
     <!-- FOOTER MENU -->
-    <asp:Panel runat="server" id="panelMain" >
+    <asp:Panel ID="Panel3" runat="server">
 
         <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
