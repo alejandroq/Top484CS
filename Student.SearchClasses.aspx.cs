@@ -14,6 +14,8 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     //TODO: get lesson plans and link them to lessonplan cell, see comment below
     //TODO: add in links for lesson plans
     //TODO: add "last log in" and Bucks counter somehow once we figure out how to do those
+    
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         GenerateTable();
@@ -141,9 +143,15 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             }
             // Any non-DB column VALUES here
             TableCell enroll = new TableCell();
-            CheckBox ckEnroll = new CheckBox();
+            LinkButton shoppingCart = new LinkButton();
+            shoppingCart.Text = "Add to Shopping Cart";
+            System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
+            System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
+            shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString();
+            System.Diagnostics.Debug.WriteLine(shoppingCart.CommandArgument);
+            shoppingCart.Click += shoppingCart_Click;
             
-            enroll.Controls.Add(ckEnroll);
+            enroll.Controls.Add(shoppingCart);
             row.Cells.Add(enroll);
 
             table.Rows.Add(row);
@@ -151,6 +159,29 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         
         }
     
+    }
+
+    void shoppingCart_Click(object sender, EventArgs e)
+    {
+        string courseID;
+        string courseName;
+        LinkButton btn = (LinkButton)(sender);
+        string arg = btn.CommandArgument;
+        string[] split = new string[2];
+        split = arg.Split(',');
+        courseID = split[0];
+        courseName = split[1];
+        
+
+        //System.Diagnostics.Debug.WriteLine(courseID);
+        //System.Diagnostics.Debug.WriteLine(courseName);
+        Session["courseCount"] = ((int?)Session["courseCount"] ?? 0) + 1;
+        System.Diagnostics.Debug.WriteLine(Session["courseCount"].ToString());
+        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('testStud@WBL.org','" + courseID + "', null);";
+        System.Diagnostics.Debug.WriteLine(ViewState["enrollQuery"].ToString());
+        lbShoppingCart.Items.Add(courseName);
+        lbShoppingCart.Rows = lbShoppingCart.Items.Count;
+        
     }
 
 
@@ -248,7 +279,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'Art' " + sortBy;
+        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'Art' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -279,7 +310,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'BBOY' " + sortBy;
+        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'BBOY' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -310,7 +341,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'MC' " + sortBy;
+        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'MC' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -341,7 +372,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'DJ' " + sortBy;
+        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'DJ' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -372,7 +403,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course " + sortBy;
+        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -387,11 +418,11 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
 
     protected void btnEnroll_Click(object sender, EventArgs e)
     {
-        Table table = (Table)Page.FindControl("table");
-        System.Diagnostics.Debug.WriteLine(table);
-        System.Diagnostics.Debug.WriteLine("clicked");
-
- 
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = ViewState["enrollQuery"].ToString();
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
     }
 
     protected void btnViewCalendar_Click(object sender, EventArgs e)

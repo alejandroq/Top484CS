@@ -25,6 +25,8 @@
             <asp:ListItem>Date (Soonest)</asp:ListItem>
             <asp:ListItem>Location</asp:ListItem>
         </asp:DropDownList>
+        <asp:Label ID="lblShoppingCart" runat="server" Text="Shopping Cart"></asp:Label>
+        <b><u><asp:ListBox ID="lbShoppingCart" runat="server"><asp:ListItem></asp:ListItem></asp:ListBox></u></b>
         <br />
         <br />
     </div>
