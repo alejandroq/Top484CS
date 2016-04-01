@@ -1,230 +1,215 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Text;
+using System.Drawing;
 using System.Data;
-using System.Configuration;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Web.Security;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
 
 
 public partial class Instructor_TakeAttendance : System.Web.UI.Page
 {
-    DataTable dt = null;
-    System.Web.UI.WebControls.CheckBox ckBox = null;
+
+    private ArrayList studs;
+    String courseName = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        GenerateTable();
+        if (!IsPostBack)
+        {
+            ddlClasses.DataBind();
+            ddlClasses.Items.Insert(0, "Please select");
+        }
+        if (!ddlClasses.SelectedItem.Value.ToString().Equals("Please select"))
+            studs = GetStudents();
     }
 
-    #region Generate DataTable based on DropDown selection
-    private DataTable CreateDataTable()
+    protected ArrayList GetStudents()
     {
-        dt = new DataTable();
-        String courseName = null;
-
+        ArrayList result = new ArrayList();
         courseName = ddlClasses.SelectedValue.ToString();
 
-        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-        connection.Open();
-        // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-        string cmdText = "Select Attendance.EmailAddress, CourseName from Attendance, Course, Student where Course.CourseID=Attendance.CourseID and Attendance.EmailAddress=Student.EmailAddress and CourseName = '" + courseName + "';";
-        SqlCommand cmd = new SqlCommand(cmdText, connection);
-        cmd.ExecuteNonQuery();
-        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
-        adp.Fill(dt);
-        return dt;
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Select Attendance.EmailAddress, Attendance.CourseID, CourseName, AttendanceDate from Attendance, Course, Student where Course.CourseID=Attendance.CourseID and Attendance.EmailAddress=Student.EmailAddress and PresentBool = 0 and CourseName = '" + courseName + "';";
+
+            SqlDataReader read = query.ExecuteReader();
+
+            while (read.Read())
+            {
+                result.Add(read.GetString(0));
+                //System.Diagnostics.Debug.WriteLine(read.GetString(0));
+                result.Add(read.GetInt32(1));
+                //System.Diagnostics.Debug.WriteLine((read.GetInt32(1).ToString()));
+                result.Add(read.GetString(2));
+                //System.Diagnostics.Debug.WriteLine(read.GetString(2));
+                result.Add(read.GetDateTime(3));
+                //System.Diagnostics.Debug.WriteLine((read.GetDateTime(3).ToShortDateString()));
+
+            }
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+
+        return result;
     }
 
-    #endregion
-
-
-    #region Generate ASP Table dynamically from Database Table
-    private void GenerateTable()
+    protected void PopChkBox(ArrayList info)
     {
-        DataTable dt = CreateDataTable();
-        Table table = new Table();
-        GridView grid = new GridView();
-        TableRow row = null;
-        table.CellSpacing = 20;
-        table.CellPadding = 10;
-        table.GridLines = GridLines.Vertical;
-
-
-        //Add the Headers
-        row = new TableRow();
-
-        TableHeaderCell status = new TableHeaderCell();
-        status.Text = "Attended?";
-        row.Cells.Add(status);
-
-        for (int j = 0; j < dt.Columns.Count; j++)
+        //chkStudent.
+        int size = (info.Count);
+        //RadioButtonList rblStudent = new RadioButtonList();
+        for (int i = 0; i < size; i += 4)
         {
-
-            if (dt.Columns[j].ColumnName == "EmailAddress")
-            {
-                TableHeaderCell approvalStatus = new TableHeaderCell();
-                approvalStatus.Text = "Email Address";
-                row.Cells.Add(approvalStatus);
-            }
-            if (dt.Columns[j].ColumnName == "CourseName")
-            {
-                TableHeaderCell clickToEmail = new TableHeaderCell();
-                clickToEmail.Text = "Course Name";
-                row.Cells.Add(clickToEmail);
-            }
+            chkStudent.Items.Add(new ListItem((String)info[i]));
+            
         }
-
-        // Add the Column Title row to the table
-        table.Rows.Add(row);
-
-        //Add each row in the DataTable
-        for (int i = 0; i < dt.Rows.Count; i++)
-        {
-            row = new TableRow();
-
-            // Populate 1st non-DB column for linking cell to edit user page
-            TableCell checkCell = new TableCell();
-            ckBox = new System.Web.UI.WebControls.CheckBox();
-            checkCell.Controls.Add(ckBox);
-            row.Cells.Add(checkCell);
-
-            // add the column for each row
-            for (int j = 0; j < dt.Columns.Count; j++)
-            {
-
-                System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
-                if (dt.Columns[j].ColumnName == "EmailAddress")
-                {
-                    TableCell textCell = new TableCell();
-                    //System.Diagnostics.Debug.WriteLine(dt.Rows[i][j].ToString());
-                    textCell.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(textCell);
-
-                }
-                if (dt.Columns[j].ColumnName == "CourseName")
-                {
-                    TableCell textCell2 = new TableCell();
-                    textCell2.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(textCell2);
-                }
-            }
-
-            // Add the TableRow to the Table
-            table.Rows.Add(row);
-        }
-        // Add the the Table in the Form
-        form1.Controls.Add(table);
     }
 
-    #endregion
-
-
-    protected void ListDropDown_Change(object sender, EventArgs e)
+    protected void chkStudent_SelectedIndexChanged(object sender, EventArgs e)
     {
         
-        //try
+        int index = chkStudent.SelectedIndex*4;
+        System.Diagnostics.Debug.WriteLine(index);
+        //insert accident into db
+        //int size = (studs.Count);
+        //for (int i = 0; i < size; i += 4)
         //{
+                try
+                {
+                    //Creates a new sql connection and links the application to the DB
+                    SqlConnection sc = new SqlConnection();
+                    sc.ConnectionString = @"Server =LOCALHOST;Database=WBLDB;Trusted_COnnection=Yes;";
 
-        //    String courseName = ddlClasses.SelectedValue.ToString();
+                    //Opens the sql connection
+                    sc.Open();
 
-        //    //Creates a new sql connection and links the application to the DB
-        //    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-            
-        //    //Opens the sql connection
-        //    connection.Open();
-
-        //    //Creates a new sql command
-        //    SqlCommand query = new SqlCommand();
-        //    query.Connection = connection;
-        //    query.CommandText = "Select Attendance.EmailAddress, CourseName from Attendance, Course, Student where Course.CourseID=Attendance.CourseID and Attendance.EmailAddress=Student.EmailAddress and CourseName = '" + courseName + "';";
-        //    SqlDataReader reader = query.ExecuteReader();
-
-        //    //show output
-        //    AttendanceGridView.DataSource = reader;
-        //    AttendanceGridView.DataBind();
-
-        //    reader.Close();
-        //    connection.Close();
-
-
-            //foreach (GridViewRow row in AttendanceGridView.Rows)
-            //{
-            //    if (row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        System.Web.UI.WebControls.CheckBox chkRow = (row.Cells[0].FindControl("chkCtrl") as System.Web.UI.WebControls.CheckBox);
-            //        if (chkRow.Checked)
-            //        {
-            //            string email = row.Cells[1].Text;
-            //            string course = row.Cells[2].Text;
-            //        }
-            //    }
-            //}
+                    //user stored procedures to avoid SQL injection
+                    SqlCommand update = new SqlCommand();
+                    update.Connection = sc;
+                    update.CommandType = CommandType.StoredProcedure;
+                    update.CommandText = "AttendanceProcedure";
+                    
+                    
+                    Console.WriteLine(studs[1].ToString());
+                    Console.WriteLine(studs[0].ToString());
+                    Console.WriteLine(studs[3].ToString());
+                    //Console.WriteLine(studs[4].ToString());
 
 
+                    SqlParameter courseID = new SqlParameter();
+                    courseID.ParameterName = "@CourseID";
+                    courseID.Value = studs[index + 1];
+                    update.Parameters.Add(courseID);
 
-        //}
-        //catch (SqlException sq)
-        ////shows an error message if there is a problem connecting to the DB.
-        //{
-        //    MessageBox.Show(sq.Message);
-        //}
+                    SqlParameter email = new SqlParameter();
+                    email.ParameterName = "@EmailAddress";
+                    email.Value = studs[index];
+                    update.Parameters.Add(email);
 
+                    SqlParameter date = new SqlParameter();
+                    date.ParameterName = "@AttendanceDate";
+                    date.Value = studs[index + 3].ToString();
+                    update.Parameters.Add(date);
 
+                    SqlParameter present = new SqlParameter();
+                    present.ParameterName = "@PresentBool";
+                    present.Value = "1";
+                    update.Parameters.Add(present);
+
+                    update.ExecuteNonQuery();
+                    sc.Close();
+
+                    //chkStudent.Items.Clear();
+
+                }
+                catch (SqlException s)
+                //shows an error message if there is a problem connecting to the DB.
+                {
+                    MessageBox.Show(s.Message);
+                }
     }
 
     protected void btnSubmitAttendance_Click(object sender, EventArgs e)
     {
-        //foreach (GridViewRow row in dt.Rows)
-        //{
-        //    if (dt.Columns[0].Equals(true))
-        //    {
-        //        System.Diagnostics.Debug.WriteLine("TEST");
-        //        System.Diagnostics.Debug.WriteLine("New Attendee");
-        //        //System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
-        //    }
-        //}
-        //{
-
-        //    DataGridViewCheckBoxCell checkCell =
-        //       (DataGridViewCheckBoxCell)dataGridView1.
-        //        Rows[e.RowIndex].Cells["Column1"];
-        //    if ((bool)checkCell.Value == true)
-        //    {
-        //        int i = dataGridView1.CurrentRow.Index;
-        //        string col = dataGridView1.Rows[e.RowIndex].Cells["column2"].Value.ToString();
-        //    }
-
-        //}
-
-
-        //Add each row in the DataTable
-        for (int i = 0; i < dt.Rows.Count; i++)
+        //insert accident into db
+        int size = (studs.Count);
+        for (int i = 0; i < size; i += 4)
         {
+            if (chkStudent.Items[i].Equals(true))
+            {
+                try
+                {
+                    //Creates a new sql connection and links the application to the DB
+                    SqlConnection sc = new SqlConnection();
+                    sc.ConnectionString = @"Server =LOCALHOST;Database=WBLDB;Trusted_COnnection=Yes;";
 
-             //add the column for each row
-            //for (int j = 0; j < dt.Columns.Count; j++)
-            //{
-                //if (dt.Columns[j].ColumnName == "Attended?")
-                //{
-                   // DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)dt.Rows[i].Cells["Attended?"];
+                    //Opens the sql connection
+                    sc.Open();
 
-                    if (ckBox.Checked == true)
-                    {
-                        System.Diagnostics.Debug.WriteLine("TEST");
-                        System.Diagnostics.Debug.WriteLine("New Attendee");
-                        System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
-                        System.Diagnostics.Debug.WriteLine("NEXT");
-                        
-                    }
+                    //user stored procedures to avoid SQL injection
+                    SqlCommand update = new SqlCommand();
+                    update.Connection = sc;
+                    update.CommandType = CommandType.StoredProcedure;
+                    update.CommandText = "AttendanceProcedure";
 
-             //}
-            //}
+                    SqlParameter courseID = new SqlParameter();
+                    courseID.ParameterName = "@CourseID";
+                    courseID.Value = studs[i + 1];
+                    update.Parameters.Add(courseID);
 
+                    SqlParameter email = new SqlParameter();
+                    email.ParameterName = "@EmailAddress";
+                    email.Value = studs[i];
+                    update.Parameters.Add(email);
 
+                    SqlParameter date = new SqlParameter();
+                    date.ParameterName = "@AttendanceDate";
+                    date.Value = studs[i + 3];
+                    update.Parameters.Add(date);
+
+                    SqlParameter present = new SqlParameter();
+                    present.ParameterName = "@PresentBool";
+                    present.Value = "1";
+                    update.Parameters.Add(present);
+
+                    update.ExecuteNonQuery();
+                    sc.Close();
+
+                }
+                catch (SqlException s)
+                //shows an error message if there is a problem connecting to the DB.
+                {
+                    MessageBox.Show(s.Message);
+                }
+            }
         }
+    }
+    protected void ddlClasses_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        chkStudent.Items.Clear();
+        studs = GetStudents();
+        PopChkBox(studs);
     }
 }

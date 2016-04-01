@@ -7,11 +7,16 @@
             <div>
                 <h3>Class Attendance</h3>
                 <asp:Label ID="lblAClass" runat="server" Text="Class: " CssClass="labels"></asp:Label>
-                <asp:DropDownList ID="ddlClasses" runat="server" cssClass="dropdowns" DataSourceID="SqlDataSource1" DataTextField="CourseName" DataValueField="CourseName" AutoPostBack="True" OnSelectedIndexChanged="ListDropDown_Change">
-                    <asp:ListItem id="list1" runat="server">
-                    Populate items from the database
-                </asp:ListItem>
+                <asp:DropDownList ID="ddlClasses" runat="server" cssClass="dropdowns" DataSourceID="SqlDataSource1" DataTextField="CourseName" DataValueField="CourseName" AutoPostBack="True" OnSelectedIndexChanged="ddlClasses_SelectedIndexChanged">
+                <asp:ListItem>--Select a Class--</asp:ListItem>
                 </asp:DropDownList>
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <asp:CheckBoxList ID="chkStudent" runat="server" AutoPostBack="true" OnSelectedIndexChanged="chkStudent_SelectedIndexChanged"></asp:CheckBoxList>
+
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conString %>" SelectCommand="SELECT [CourseName] FROM [Course] ORDER BY [CourseName]"></asp:SqlDataSource>
                 <br />
                 <br />
