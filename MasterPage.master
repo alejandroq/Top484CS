@@ -1,4 +1,4 @@
-﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -7,31 +7,39 @@
 	    <title>Words Beats &amp; Life Inc. | Teaching Convening Presenting Hip-Hop Since 2002</title>
 	    <meta charset="utf-8"/>
 	    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-	    <meta name="description" content=""/>
+	    <meta name="description" content="Connecting Hip-Hop since 2000."/>
 	    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-	    <!-- Place favicon.ico in the root directory -->
+	    <!-- FAVICON -->
+	    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+	    <!-- END FAVICON -->
 
+	    <!-- RALEWAY FONT -->
 	    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
-	    <!-- Raleyway Font -->
+	    <!-- END RALEWAY FONT -->
 
-	    <link rel="stylesheet" type="text/css" href="css/normalize.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+	   	<!-- STYLESHEETS -->
+	    <link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
+	    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+	    <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	    <link rel="stylesheet/less" type="text/css" href="css/main.less" />
-	    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	    <!--[if lt IE 9]>
+	    <link rel="stylesheet" href="css/jquery.galereya.ie.css">
+	    <![endif]-->
+	    <!-- END STYLESHEETS -->
+
+	    <!-- JAVASCRIPT -->
 	    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-	    
-        <style type="text/css">
-            #eventsContent {
-                margin-top: 10px;
-                margin-left: 10px;
-            }
-        </style>
+	    <!-- END JAVASCRIPT -->
         
+		<!-- UNIQUE HEADERS (is this necessary?) -->
         <asp:ContentPlaceHolder id="head" runat="server">
     	</asp:ContentPlaceHolder>
+    	<!-- END UNIQUE HEADERS -->
+
 	</head>
 	<body>
 		<header>
@@ -64,58 +72,116 @@
 		        <li>Forum</li>
 		        <li class="mobile-last-li">Buck Shop</li>
                 <li class="mobile-last-li">My Account</li>
-		        
+                
+                <!-- MOBILE ONLY ITEMS (UNIQUE MENU) WILL APPEAR HERE -->
+                <div class="mobile-only">
+                	<h5>Menu</h5>
+                	<ul>
+	                <asp:ContentPlaceHolder id="foobar" runat="server">
+
+	                </asp:ContentPlaceHolder>
+	                </ul>
+	            </div>
+                <!-- END MOBILE ONLY ITEMS -->
 		    </nav>
 		    <!-- END NAVIGATION BAR -->
 		</header> 
 		<!-- END HEADER -->
 
         <!-- BEGIN NOTIFICATION & SEARCH MENU (Icon List)-->
-            <ul id="ui-data-menu" class="menu ui-icon-list ui-menu-large" style="float:right;">
-            <li><i class="fa fa-users"></i>Users</li>
-            <li class="ui-branch"><p>New: </p>Laura Dawbs</li>
-            <li><i class="fa fa-calendar"></i>Events</li>
-            <li class="ui-branch"><p>Upcoming: </p>Event 1</li>
-            <li><i class="fa fa-file-text-o"></i>Content</li>
-            <li class="ui-branch"><p>New: </p>Laura's Evaluation</li>
-            <li><i class="fa fa-comments"></i>Forum</li>
-            <li class="ui-branch"><p>Flagged: </p>Post Title</li>
-            </ul>
-            <!-- END NOTIFICATION MENU (Icon List) -->
+		<ul id="ui-data-menu" class="menu ui-icon-list ui-menu-large">
+			<li><i class="fa fa-users"></i>Users</li>
+			<li class="ui-branch"><p>New: </p>Laura Dawbs</li>
+			<li><i class="fa fa-calendar"></i>Events</li>
+			<li class="ui-branch"><p>Upcoming: </p>Event 1</li>
+			<li><i class="fa fa-file-text-o"></i>Content</li>
+			<li class="ui-branch"><p>New: </p>Laura's Evaluation</li>
+			<li><i class="fa fa-comments"></i>Forum</li>
+			<li class="ui-branch"><p>Flagged: </p>Post Title</li>
+		</ul>
+        <!-- END NOTIFICATION MENU (Icon List) -->
 
-        <!-- Menu  Content PlaceHolder -->
-        <div>
-        	<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        	</asp:ContentPlaceHolder>
-    	</div>
-        
-        <aside id="eventsContent">
-			<!-- BEGIN UPCOMING EVENTS (Icon List) -->
-			<p class="pre-menu">Upcoming Events</p>
-			<ul class="menu ui-icon-list">
-				<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
-				<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
-				<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
-			</ul>
-			<!-- END UPCOMING EVENTS -->
-        </aside>
+        <!-- BEGIN SKELETON GRID (max-width 1080px) -->
+        <!-- MAIN CONTENT -->
+        <article class="container">
+        	<div class="row">
+        		<aside class="two columns">
+        		
+	        		<!-- MENU CONTENT PLACEHOLDER -->
+	        		<p class="pre-menu no-mobile">Menu</p>
+	        		<ul class="menu no-mobile">
+				    	<asp:ContentPlaceHolder id="foo" runat="server">
+				    
+				    	</asp:ContentPlaceHolder>
+			    	</ul>
+			    	<!-- END MENU CONTENT PLACEHOLDER -->
+		       
+					<!-- BEGIN UPCOMING EVENTS (Icon List) -->
+					<p class="pre-menu">Upcoming Events</p>
+					<ul class="menu ui-icon-list">
+						<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
+						<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
+						<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
+					</ul>
+					<!-- END UPCOMING EVENTS -->
+				</aside>
 
-        <!-- Body Content Place Holder-->
-        <div>
-        	<asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
-        
-        	</asp:ContentPlaceHolder>
-    	</div>
+		        <!-- BODY CONTENT PLACEHOLDER-->
+		        <div class="nine columns">
+		        	<asp:ContentPlaceHolder id="body" runat="server">
+		        
+		        	</asp:ContentPlaceHolder>
+		    	</div>
+		    	<!-- END BODY CONTENT PLACEHOLDER -->
+		    </div>
+		</article>
+		<!-- END MAIN CONTENT -->
+		<!-- END SKELETON GRID -->
 
-
+		<!-- SKELETON GRID -->
 	    <footer>
-	    <!-- footer content -->
-	    </footer>
+	    	<div class="container">
+	    		<div class="row">
+	    			<div class="one-half column">
+	    				<h6>About Us</h6>
+	    				<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    			</div>
+	    			<div class="three columns">
+	    				<h6>Navigation</h6>
+	    				<ul>
+	    					<li>Wall</li>
+	    					<li>Events</li>
+	    					<li>Forum</li>
+	    					<li>Buck Shop</li>
+	    					<li>My Account</li>
+	    				</ul>
+	    			</div>
+	    			<div class="three columns">
+	    				<h6>Menu</h6>
+	    				<!-- UNIQUE MENU FOOTER -->
+	    				<ul>
+		                <asp:ContentPlaceHolder id="bar" runat="server">
 
+		                </asp:ContentPlaceHolder>	
+		                <!-- END UNIQUE MENU FOOTER -->
+		                </ul>
+		            </div>
+	    		</div>
+	    		<div class="row" style="text-align: center; color:gray;"><p>website & content &copy; 2016 top 484!</p></div>
+	    	</div>
+	    </footer>
+	    <!-- END SKELETON GRID -->
+
+		<!-- SCRIPTS -->
+	    	<!-- JQUERY -->
 		    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 			<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+			<!-- PLUGINS.JS -->
 			<script src="js/plugins.js"></script>
+			<!-- MAIN.JS -->
 			<script src="js/main.js"></script>
+			<!-- BOOSTRAP MINFIED JS -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- END SCRIPTS -->
 	</body>
 </html>
