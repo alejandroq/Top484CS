@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/StudentMasterPage.master" AutoEventWireup="true" CodeFile="Student.ClassEvaluation.aspx.cs" Inherits="Student_ClassEvaluation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentMasterPage.master" AutoEventWireup="true" CodeFile="Student.ClassEvaluation.aspx.cs" Inherits="Student_ClassEvaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
@@ -13,7 +13,7 @@
         <b><asp:Label ID="lblQuestion2" runat="server" Text="2. How did you hear about this class? "></asp:Label></b><br />
         <asp:RadioButton ID="rdoFB" runat="server" Text="Facebook" GroupName="q2" />
         <asp:RadioButton ID="rdoTwitter" runat="server" Text="Twitter" GroupName="q2" />
-        <asp:RadioButton ID="rdoFriend" runat="server" Text="Friend" GroupName="q2" />
+        <asp:RadioButton ID="rdoFriend" runat="server" Text="Friend" GroupName="q2"  />
         <asp:RadioButton ID="rdoParent" runat="server" Text="Parent / Guardian" GroupName="q2" /><br />
         <asp:RadioButton ID="rdoTeacher" runat="server" Text="Teacher" GroupName="q2" />
         <asp:RadioButton ID="rdoNotSure" runat="server" Text="Not Sure" GroupName="q2" />
@@ -157,13 +157,68 @@
                     <asp:TableRow ID="TableRow15" runat="server" HorizontalAlign="Center">
                         <asp:TableCell ID="TableCell85" runat="server">Resist negativity or negative peer influences</asp:TableCell>
                         <asp:TableCell ID="TableCell86" runat="server"><input type="radio" name="q7row7" value="1"/></asp:TableCell>
-                        <asp:TableCell ID="TableCell87" runat="server"><input type="radio" name="q6row7" value="2"/></asp:TableCell>
-                        <asp:TableCell ID="TableCell88" runat="server"><input type="radio" name="q6row7" value="3"/></asp:TableCell>
-                        <asp:TableCell ID="TableCell89" runat="server"><input type="radio" name="q6row7" value="4"/></asp:TableCell>
-                        <asp:TableCell ID="TableCell90" runat="server"><input type="radio" name="q6row7" value="5"/></asp:TableCell>
+                        <asp:TableCell ID="TableCell87" runat="server"><input type="radio" name="q7row7" value="2"/></asp:TableCell>
+                        <asp:TableCell ID="TableCell88" runat="server"><input type="radio" name="q7row7" value="3"/></asp:TableCell>
+                        <asp:TableCell ID="TableCell89" runat="server"><input type="radio" name="q7row7" value="4"/></asp:TableCell>
+                        <asp:TableCell ID="TableCell90" runat="server"><input type="radio" name="q7row7" value="5"/></asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
             <br />
+
+         <b><asp:Label ID="lblQuestion7a" runat="server" Text="8. By participating in class...  "></asp:Label></b>
+            <asp:Table ID="Table5" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
+                <asp:TableRow ID="TableRow33" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell193" runat="server"></asp:TableCell>
+                    <asp:TableCell ID="TableCell194" runat="server">Completely Disagree</asp:TableCell>
+                    <asp:TableCell ID="TableCell195" runat="server">Disagree</asp:TableCell>
+                    <asp:TableCell ID="TableCell196" runat="server">Neither Agree Nor Disagree</asp:TableCell>
+                    <asp:TableCell ID="TableCell197" runat="server">Agree</asp:TableCell>
+                    <asp:TableCell ID="TableCell198" runat="server">Completely Agree</asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow ID="TableRow34" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell199" runat="server"></asp:TableCell>
+                    <asp:TableCell ID="TableCell200" runat="server"> 1</asp:TableCell>
+                    <asp:TableCell ID="TableCell201" runat="server"> 2</asp:TableCell>
+                    <asp:TableCell ID="TableCell202" runat="server"> 3</asp:TableCell>
+                    <asp:TableCell ID="TableCell203" runat="server"> 4</asp:TableCell>
+                    <asp:TableCell ID="TableCell204" runat="server"> 5</asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow ID="TableRow35" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell205" runat="server">I feel comfortable being creative around my peers</asp:TableCell>
+                    <asp:TableCell ID="TableCell206" runat="server"><input type="radio" name="q10row2" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell207" runat="server"><input type="radio" name="q10row2" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell208" runat="server"><input type="radio" name="q10row2" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell209" runat="server"><input type="radio" name="q10row2" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell210" runat="server"><input type="radio" name="q10row2" value="5"/></asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow ID="TableRow36" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell211" runat="server">I can talk about careers I'm interested in</asp:TableCell>
+                    <asp:TableCell ID="TableCell212" runat="server"><input type="radio" name="q10row3" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell213" runat="server"><input type="radio" name="q10row3" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell214" runat="server"><input type="radio" name="q10row3" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell215" runat="server"><input type="radio" name="q10row3" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell216" runat="server"><input type="radio" name="q10row3" value="5"/></asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow ID="TableRow37" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell217" runat="server">I know the steps needed to reach my career goals</asp:TableCell>
+                    <asp:TableCell ID="TableCell218" runat="server"><input type="radio" name="q10row4" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell219" runat="server"><input type="radio" name="q10row4" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell220" runat="server"><input type="radio" name="q10row4" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell221" runat="server"><input type="radio" name="q10row4" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell222" runat="server"><input type="radio" name="q10row4" value="5"/></asp:TableCell>
+                </asp:TableRow>
+                 <asp:TableRow ID="TableRow38" runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ID="TableCell223" runat="server">I better understand the importance of helping others in the community</asp:TableCell>
+                    <asp:TableCell ID="TableCell224" runat="server"><input type="radio" name="q10row5" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell225" runat="server"><input type="radio" name="q10row5" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell226" runat="server"><input type="radio" name="q10row5" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell227" runat="server"><input type="radio" name="q10row5" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell228" runat="server"><input type="radio" name="q10row5
+                        " value="5"/></asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+
+
             <b><asp:Label ID="lblQuestion8" runat="server" Text="8. I am sure that I will...  "></asp:Label></b>
             <asp:Table ID="Table3" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                 <asp:TableRow ID="TableRow16" runat="server" HorizontalAlign="Center">
@@ -271,43 +326,43 @@
                 </asp:TableRow>
                 <asp:TableRow ID="TableRow28" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell163" runat="server">Teacher fostered a safe and welcoming environment</asp:TableCell>
-                    <asp:TableCell ID="TableCell164" runat="server"><input type="radio" name="q9row4" value="1"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell165" runat="server"><input type="radio" name="q9row4" value="2"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell166" runat="server"><input type="radio" name="q9row4" value="3"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell167" runat="server"><input type="radio" name="q9row4" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell168" runat="server"><input type="radio" name="q9row4" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell164" runat="server"><input type="radio" name="q9row6" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell165" runat="server"><input type="radio" name="q9row6" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell166" runat="server"><input type="radio" name="q9row6" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell167" runat="server"><input type="radio" name="q9row6" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell168" runat="server"><input type="radio" name="q9row6" value="5"/></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow ID="TableRow29" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell169" runat="server">Teacher challenged me to learn and develop skills</asp:TableCell>
-                    <asp:TableCell ID="TableCell170" runat="server"><input type="radio" name="q9row5" value="1"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell171" runat="server"><input type="radio" name="q9row5" value="2"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell172" runat="server"><input type="radio" name="q9row5" value="3"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell173" runat="server"><input type="radio" name="q9row5" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell174" runat="server"><input type="radio" name="q9row5" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell170" runat="server"><input type="radio" name="q9row7" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell171" runat="server"><input type="radio" name="q9row7" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell172" runat="server"><input type="radio" name="q9row7" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell173" runat="server"><input type="radio" name="q9row7" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell174" runat="server"><input type="radio" name="q9row7" value="5"/></asp:TableCell>
                 </asp:TableRow>
             <asp:TableRow ID="TableRow30" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell175" runat="server">Activities were planned</asp:TableCell>
-                    <asp:TableCell ID="TableCell176" runat="server"><input type="radio" name="q9row6" value="1"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell177" runat="server"><input type="radio" name="q9row6" value="2"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell178" runat="server"><input type="radio" name="q9row6" value="3"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell179" runat="server"><input type="radio" name="q9row6" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell180" runat="server"><input type="radio" name="q9row6" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell176" runat="server"><input type="radio" name="q9row8" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell177" runat="server"><input type="radio" name="q9row8" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell178" runat="server"><input type="radio" name="q9row8" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell179" runat="server"><input type="radio" name="q9row8" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell180" runat="server"><input type="radio" name="q9row8" value="5"/></asp:TableCell>
                 </asp:TableRow>
             <asp:TableRow ID="TableRow31" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell181" runat="server">Teacher did their job well</asp:TableCell>
-                    <asp:TableCell ID="TableCell182" runat="server"><input type="radio" name="q9row7" value="1"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell183" runat="server"><input type="radio" name="q9row7" value="2"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell184" runat="server"><input type="radio" name="q9row7" value="3"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell185" runat="server"><input type="radio" name="q9row7" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell186" runat="server"><input type="radio" name="q9row7" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell182" runat="server"><input type="radio" name="q9row9" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell183" runat="server"><input type="radio" name="q9row9" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell184" runat="server"><input type="radio" name="q9row9" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell185" runat="server"><input type="radio" name="q9row9" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell186" runat="server"><input type="radio" name="q9row9" value="5"/></asp:TableCell>
                 </asp:TableRow>
             <asp:TableRow ID="TableRow32" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell187" runat="server">Teacher was supportive of my development as a young artist</asp:TableCell>
-                    <asp:TableCell ID="TableCell188" runat="server"><input type="radio" name="q9row8" value="1"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell189" runat="server"><input type="radio" name="q9row8" value="2"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell190" runat="server"><input type="radio" name="q9row8" value="3"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell191" runat="server"><input type="radio" name="q9row8" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell192" runat="server"><input type="radio" name="q9row8" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell188" runat="server"><input type="radio" name="q9row10" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell189" runat="server"><input type="radio" name="q9row10" value="2"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell190" runat="server"><input type="radio" name="q9row10" value="3"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell191" runat="server"><input type="radio" name="q9row10" value="4"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell192" runat="server"><input type="radio" name="q9row10" value="5"/></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
         <br />
@@ -334,7 +389,7 @@
         <b><asp:Label ID="lblQuestion2s" runat="server" Text="2. Did you complete a final piece of work for All City? "></asp:Label></b><br />
         <asp:RadioButton ID="rdoSelf2a" runat="server" Text="Yes" GroupName="selfEval2"/>
         <asp:RadioButton ID="rdoSelf2b" runat="server" Text="No" GroupName="selfEval2"/><br />
+        <asp:Button ID ="btnSubmit" runat ="server" Text ="Submit" OnClick ="btnSubmit_Click" />
     </form>
 
 </asp:Content>
-
