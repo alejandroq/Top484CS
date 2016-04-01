@@ -12,6 +12,7 @@
     <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate"></asp:Login>
     <asp:LinkButton ID="lnkForgotPassword" runat="server" OnClick="lnkForgotPassword_Click">Forgot Password?</asp:LinkButton><br />
     <asp:LinkButton ID="lnkSignUp" runat="server" OnClick="lnkSignUp_Click">New to the community? Sign up here!</asp:LinkButton>
+
     </div>
         
     </form>

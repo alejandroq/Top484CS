@@ -51,8 +51,9 @@ public partial class Log_In : System.Web.UI.Page
                     // Redirect user to their profile based on their permission
                     if (permission == "5")
                     {
-                        Response.Redirect("Admin.ManageAccounts.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
                         Session["UserID"] = user;
+                        Response.Redirect("Admin.ManageAccounts.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
+                        
                     }
                     if (permission == "4")
                     {
@@ -97,6 +98,8 @@ public partial class Log_In : System.Web.UI.Page
     }
     protected void lnkSignUp_Click(object sender, EventArgs e)
     {
-        Response.Redirect("UserRegistration.aspx");
+        //Session["UserID"] = "";
+        Response.Redirect("SignUpDescriptions.aspx");
     }
+    
 }

@@ -36,8 +36,8 @@
         </asp:DropDownList><br />
 
 
-        <asp:Calendar ID="Calendar1" runat="server" Height="1000px" 
-    ondayrender="Calendar1_DayRender" Width="1500px" DayHeaderStyle-Font-Bold="true" Caption="Words Beats and Life Master Calendar" ShowGridLines="true"></asp:Calendar>
+        <asp:Calendar ID="Calendar1" runat="server"
+    ondayrender="Calendar1_DayRender" DayHeaderStyle-Font-Bold="true" Caption="Words Beats and Life Master Calendar" ShowGridLines="true"></asp:Calendar>
 
     </div>
     </form>

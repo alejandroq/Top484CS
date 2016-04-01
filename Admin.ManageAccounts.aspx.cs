@@ -14,8 +14,17 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        GenerateTable();
+        if (!Page.IsPostBack)
+        {
+            WebActivity.LogActivity("Manage Accounts Page", true);
+            // TODO: replicate this webactivity functionality in all pages visited by students, teachers, parents, ciphers
+            // Track most viewed profiles when we get those going
+            // Add column for Total Logins and a column for UserType in Activity Log Table
+            // Keep names as general Activity names for displaying most viewed pages in tableau
+            // Possibly make an "Analytics" tab on administrator homepage, use DataTable to display listviews / graphs of data trends
+        }
 
+        GenerateTable();
         if (ddlMemberType.SelectedValue.ToString() != "All")
         {
             lblSortBy.Visible = false;

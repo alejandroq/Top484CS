@@ -62,6 +62,7 @@ public partial class _Default : System.Web.UI.Page
 
         // General user database input statements
 
+
         string userType = Session["userType"].ToString();
         Debug.WriteLine(userType);
 
@@ -106,7 +107,7 @@ public partial class _Default : System.Web.UI.Page
             sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -203,7 +204,7 @@ public partial class _Default : System.Web.UI.Page
             sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -241,7 +242,7 @@ public partial class _Default : System.Web.UI.Page
             sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
