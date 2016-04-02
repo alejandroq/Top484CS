@@ -13,11 +13,13 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         // comment session variable back in after testing
         string studentID = "testStud@WBL.org";
         Session["userID"] = studentID; // Session["userID"].ToString();
         // need to pass in the email address of whichever student is logged in to see their own evaluations
         GenerateTable(studentID);
+    
     }
 
     private void GenerateTable(string studentID)
@@ -34,7 +36,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         System.Diagnostics.Debug.WriteLine(dtBoth.Rows[0][3].ToString());
         System.Diagnostics.Debug.WriteLine(dtBoth.Rows[0][4].ToString());
 
-        
+
 
 
 
@@ -77,7 +79,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
                 eval.Controls.Add(evalLink);
                 row.Cells.Add(eval);
                 table.Rows.Add(row);
-                
+
             }
 
 
@@ -85,7 +87,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
 
 
         }
-        
+
 
 
         form1.Controls.Add(table);
@@ -98,7 +100,9 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         string evalResponseID = btn.CommandArgument;
         Session["EvalResponseID"] = evalResponseID;
         System.Diagnostics.Debug.WriteLine(Session["EvalResponseID"].ToString());
-        //Response.Redirect("Student.ViewEvaluations.aspx", false);
+        Response.Redirect("Student.ViewEvaluations.aspx", false);
+
+
     }
 
     // This method creates a data table containing all the evaluations that have been filled out ABOUT a particular student

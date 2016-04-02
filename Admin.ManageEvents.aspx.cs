@@ -30,6 +30,7 @@ public partial class ViewCalendar : System.Web.UI.Page
             Calendar1.Visible = false;
 
         }
+        
         GenerateTable();
 
 

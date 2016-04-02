@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ChildContent1" Runat="Server">
 <form id="form1" runat="server">
     <div>
-        <h3>Manage Accounts Homepage</h3>
+        <h3>Search Classes </h3>
         <br />
         <asp:Button ID="btnSearch" runat="server" Text="Search for: " OnClick="btnAddUser_Click" /><asp:TextBox ID="txtSearch" runat="server"></asp:TextBox><br/>
         <asp:Button ID="btnEnroll" runat="server" Text="Enroll!" OnClick="btnEnroll_Click" />

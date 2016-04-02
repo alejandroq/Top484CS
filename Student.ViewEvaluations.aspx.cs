@@ -22,11 +22,11 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                 SqlCommand insert = new SqlCommand();
       
 
-                sc.ConnectionString = @"Server = LULU; Database = WBLDB; Trusted_Connection = Yes;";
+                sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
                 sc.Open();
 
                 insert.Connection = sc;
-                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = 3";
+                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = '3'"; // +Session["EvalResponseID"].ToString();
    
                 
 

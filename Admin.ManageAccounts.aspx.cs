@@ -414,13 +414,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     }
     #endregion
 
-    #region Event Handler for "View Calendar" button
-    protected void btnViewCalendar_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Admin.ManageEvents.aspx");
-    }
-    #endregion
-
     #region Event Handler for "Export to Excel" button
 
 
@@ -461,6 +454,6 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     protected void btnAddUser_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("Admin.AddUser.aspx");
     }
 }

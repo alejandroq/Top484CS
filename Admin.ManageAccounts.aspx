@@ -5,11 +5,7 @@
      <form id="form1" runat="server">
     <div>
         <h3>Manage Accounts HomePage</h3>
-        <br />
         <asp:Button ID="btnAddUser" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
-        <asp:Button ID="btnAddEvent" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
-        <asp:Button ID="btnViewCalendar" runat="server" Text="View Events / Calendar" OnClick="btnViewCalendar_Click" />
-        <br />
         <asp:Button ID="btnExport" runat="server" Text="Export This Table to Excel" OnClick="btnExport_Click" />
         <asp:Label ID="lblMemberType" runat="server" Text="Select Member Type:  "></asp:Label>
         <asp:DropDownList ID="ddlMemberType" runat="server" AutoPostBack="true">
