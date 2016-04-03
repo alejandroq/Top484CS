@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 public partial class Student_SearchClasses2 : System.Web.UI.Page
 {
@@ -424,6 +425,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         string cmdText = ViewState["enrollQuery"].ToString();
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
+        lbShoppingCart.Items.Clear();
+        cmd.CommandText = "";
+        MessageBox.Show("Enrolled!");
     }
 
     protected void btnViewCalendar_Click(object sender, EventArgs e)
