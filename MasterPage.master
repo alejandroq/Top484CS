@@ -67,7 +67,7 @@
 		    <!-- BEGIN NAVIGATION BAR -->
 		    <nav>
 		    	<ul class="mobile-only"><h5>Navigation</h5></ul>
-		        <li>Wall</li>
+		        <li><a href="Wall.aspx">Wall</a></li>
 		       	<li>Events</li>
 		        <li>Forum</li>
 		        <li class="mobile-last-li">Buck Shop</li>
