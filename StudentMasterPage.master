@@ -10,7 +10,7 @@
     <asp:Panel ID="Panel1" runat="server">
 
       <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
       <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
       <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
       <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
@@ -25,7 +25,7 @@
       <asp:Panel ID="Panel2" runat="server">
 
       <li>View Portfolio</li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
       <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
       <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
       <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
@@ -39,7 +39,7 @@
     <asp:Panel ID="Panel3" runat="server">
 
       <li>View Portfolio</li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
       <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
       <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
       <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
