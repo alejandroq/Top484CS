@@ -11,7 +11,7 @@
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
         <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
         <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 
     </asp:Panel>
     <!-- END HEADER -->
@@ -25,7 +25,7 @@
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
         <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
         <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 
     </asp:Panel>
     <!-- END BODY MENU -->
@@ -40,7 +40,7 @@
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
         <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
         <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
 
     </asp:Panel>
     <!-- END FOOTER MENU -->
