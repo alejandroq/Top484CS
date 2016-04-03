@@ -70,7 +70,7 @@
         </style>    
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
 
     <form id="form1" runat="server">
         <div id="descriptions">
