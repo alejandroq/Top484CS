@@ -9,7 +9,7 @@
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END HEADER -->
@@ -22,7 +22,7 @@
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END BODY MENU -->
@@ -35,7 +35,7 @@
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END FOOTER MENU -->
