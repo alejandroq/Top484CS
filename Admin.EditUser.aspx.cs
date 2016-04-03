@@ -21,13 +21,11 @@ public partial class Admin_EditUser : System.Web.UI.Page
 
     public void populateUserInfo()
     {
-        //change back
         // Session variable containing the Email address of the selected user clicked on from ManageAccounts page is passed in
-        //string userID = Session["userID"].ToString();
-        String userID = "testAdmin@WBL.org";
+        string userID = Session["userID"].ToString();
+        //String userID = "testAdmin@WBL.org";
 
-        //change back
-        //System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select FirstName, LastName, EmailAddress, CellPhone, HomePhone, DOB, ShirtSize, Gender, Race, HomeAddress, City, State, Zip from dbo.GeneralUser where EmailAddress='" + userID + "'";
@@ -37,8 +35,6 @@ public partial class Admin_EditUser : System.Web.UI.Page
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         DataTable dt = new DataTable(); // create data table for sql query
         adp.Fill(dt);
-        //string fullName = dt.Rows[0][0].ToString();
-        //NEED TO BREAK THIS STRING INTO FIRST AND LAST NAME
         txtfName.Text = dt.Rows[0][0].ToString();
         txtlName.Text = dt.Rows[0][1].ToString();
         txtEmail.Text = dt.Rows[0][2].ToString();
@@ -60,9 +56,9 @@ public partial class Admin_EditUser : System.Web.UI.Page
     {
         ViewState["fName"] = txtfName.Text;
         ViewState["lName"] = txtlName.Text;
-        //string email = txtEmail.Text;
-        //string email = Session["userID"].ToString();
-        String email = "testAdmin@WBL.org";
+
+        string email = Session["userID"].ToString();
+        //String email = "testAdmin@WBL.org";
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "update dbo.GeneralUser set FirstName = @FirstName, LastName = @LastName, CellPhone = @CellPhone, HomePhone = @HomePhone, DOB = @DOB, ShirtSize = @ShirtSize, Gender = @Gender, Race = @Race, HomeAddress = @HomeAddress, City = @City, State = @State, Zip = @Zip where EmailAddress = @EmailAddress";
