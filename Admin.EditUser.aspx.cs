@@ -21,10 +21,13 @@ public partial class Admin_EditUser : System.Web.UI.Page
 
     public void populateUserInfo()
     {
+        //change back
         // Session variable containing the Email address of the selected user clicked on from ManageAccounts page is passed in
-        string userID = Session["userID"].ToString();
+        //string userID = Session["userID"].ToString();
+        String userID = "testAdmin@WBL.org";
 
-        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        //change back
+        //System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select FirstName, LastName, EmailAddress from dbo.GeneralUser where EmailAddress='" + userID + "'";
@@ -49,9 +52,12 @@ public partial class Admin_EditUser : System.Web.UI.Page
         string email = txtEmail.Text;
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "update dbo.GeneralUser set FirstName='" + ViewState["fName"] + "', LastName='" + ViewState["lName"] + "' where EmailAddress='" + email + "'";
+        string cmdText = "update dbo.GeneralUser set FirstName = @FirstName, LastName = @LastName where EmailAddress = @EmailAddress";
         System.Diagnostics.Debug.WriteLine(cmdText);
         SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.Parameters.AddWithValue("@FirstName", ViewState["fName"]);
+        cmd.Parameters.AddWithValue("@LastName", ViewState["lName"]);
+        cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
         cmd.ExecuteNonQuery();
         Response.Redirect("Admin.ManageAccounts.aspx", false);
     }
