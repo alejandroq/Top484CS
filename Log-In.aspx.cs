@@ -23,11 +23,10 @@ public partial class Log_In : System.Web.UI.Page
 
         e.Authenticated = false;
 
-        string QueryUserDetails = "Select PasswordHash, ActivatedBool, UserPermission from dbo.GeneralUser where EmailAddress = @EmailAddress"; // This query returns the password hash and the boolean for whether or not the profile is activated
+        string QueryUserDetails = "Select PasswordHash, ActivatedBool, UserPermission from dbo.GeneralUser where EmailAddress = '" + user +"'"; // This query returns the password hash and the boolean for whether or not the profile is activated
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
         connection.Open();
         SqlCommand cmd = new SqlCommand(QueryUserDetails, connection); // execute select statement
-        cmd.Parameters.AddWithValue("@EmailAddress", user);
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         DataTable dt = new DataTable(); // create data table for sql query
         adp.Fill(dt); // populate datatable with query results
@@ -101,10 +100,7 @@ public partial class Log_In : System.Web.UI.Page
     }
     #endregion
 
-    protected void lnkForgotPassword_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("ForgotPassword.aspx");
-    }
+
     protected void lnkSignUp_Click(object sender, EventArgs e)
     {
         //Session["UserID"] = "";
