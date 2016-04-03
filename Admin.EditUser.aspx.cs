@@ -23,11 +23,11 @@ public partial class Admin_EditUser : System.Web.UI.Page
     {
         //change back
         // Session variable containing the Email address of the selected user clicked on from ManageAccounts page is passed in
-        //string userID = Session["userID"].ToString();
-        String userID = "testAdmin@WBL.org";
+        string userID = Session["userID"].ToString();
+        //String userID = "testAdmin@WBL.org";
 
         //change back
-        //System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select FirstName, LastName, EmailAddress from dbo.GeneralUser where EmailAddress='" + userID + "'";
