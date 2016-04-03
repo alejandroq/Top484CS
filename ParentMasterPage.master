@@ -11,7 +11,7 @@
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END HEADER -->
@@ -26,7 +26,7 @@
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END BODY MENU -->
@@ -41,7 +41,7 @@
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
     <!-- END FOOTER MENU -->
