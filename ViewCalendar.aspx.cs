@@ -13,9 +13,13 @@ public partial class ViewCalendar : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        int userType = 0;
+        if(Session["permission"] != null)
+        {
+            userType = Int32.Parse(Session["permission"].ToString());
+        }
+        
 
-
-        int userType = Int32.Parse(Session["permission"].ToString());
 
         switch (userType)
         {
@@ -94,7 +98,22 @@ public partial class ViewCalendar : System.Web.UI.Page
                 instructorFooter.Style["display"] = "none";
                 break;
             default:
-                // ?? display error?
+                // Display no menus since user has no permission (has applied, but has not been approved by admin yet
+                
+                adminPanel1.Style["display"] = "none";
+                adminFooter.Style["display"] = "none";
+
+                cipherPanel1.Style["display"] = "none";
+                cipherFooter.Style["display"] = "none";
+
+                parentPanel1.Style["display"] = "none";
+                parentFooter.Style["display"] = "none";
+
+                studentPanel1.Style["display"] = "none";
+                studentFooter.Style["display"] = "none";
+
+                instructorPanel1.Style["display"] = "none";
+                instructorFooter.Style["display"] = "none";
                 break;
         }
 
