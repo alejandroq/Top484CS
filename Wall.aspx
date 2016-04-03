@@ -42,7 +42,7 @@
     <asp:Panel ID="studentPanel" runat="server">
         <div id="studentPanel1" runat="server">
       <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
       <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
       <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
       <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
@@ -55,7 +55,7 @@
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
         <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
         <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
          </div>
     </asp:Panel>
 
@@ -65,7 +65,7 @@
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
             </div>
     </asp:Panel>
 
@@ -73,7 +73,7 @@
          <div id="cipherPanel1" runat="server">
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
          </div>
     </asp:Panel>
 
@@ -173,7 +173,7 @@
         <asp:Panel ID="studentMenuFooter" runat="server">
         <div id="studentFooter" runat="server">
       <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
       <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
       <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
       <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
@@ -186,7 +186,7 @@
         <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
         <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
         <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
          </div>
     </asp:Panel>
 
@@ -196,7 +196,7 @@
       <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
       <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
       <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
             </div>
     </asp:Panel>
 
@@ -204,7 +204,7 @@
          <div id="cipherFooter" runat="server">
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
       <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
          </div>
     </asp:Panel>
 
