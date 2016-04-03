@@ -42,6 +42,10 @@ public partial class Log_In : System.Web.UI.Page
             System.Diagnostics.Debug.WriteLine(verify);
             e.Authenticated = verify;
             Session["loggedIn"] = e.Authenticated.ToString();
+
+            // Create permissions session variable
+            Session["permission"] = permission.ToString();
+
             // If the log-in credentials are verified
             if (verify)
             {
@@ -52,28 +56,32 @@ public partial class Log_In : System.Web.UI.Page
                     if (permission == "5")
                     {
                         Session["UserID"] = user;
-                        Response.Redirect("Admin.ManageAccounts.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
+                        Response.Redirect("Admin.Dashboard.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
                         
                     }
                     if (permission == "4")
                     {
                         // redirect to staff/instructor/intern profile/// Community Wall
                         Session["UserID"] = user;
+                        Response.Redirect("Wall.aspx");
                     }
                     if (permission == "3")
                     {
                         // redirect to student profile
                         Session["UserID"] = user;
+                        Response.Redirect("Wall.aspx");
                     }
                     if (permission == "2")
                     {
-                        Response.Redirect("Parent.HomePage.aspx"); 
+                        // parent permission
+                        Response.Redirect("Wall.aspx"); 
                         Session["UserID"] = user;
                     }
                     if (permission == "1")
                     {
                         // redirect to cipher profile
                         Session["UserID"] = user;
+                        Response.Redirect("Wall.aspx");
                     }
                 }
                 else                
