@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
+
 
 public partial class Admin_ApproveAccount : System.Web.UI.Page
 {
@@ -53,9 +56,256 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         // need to code a SQL statement to get the profile type of the approved user
         // base the kind of email sent on this
         sendActivationEmail(Session["applicantID"].ToString());
+        ActivateAccount(Session["applicantID"].ToString());
         Response.Redirect("Admin.ManageAccounts.aspx");
+
     }
 
+
+    #region add Record to proper table
+    protected void ActivateAccount(String applicantID)
+    {
+        String accountType = "";
+        
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Select RequestedAccountType From Applicant Where EmailAddress = @EmailAddress";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            SqlDataReader read = query.ExecuteReader();
+
+            while (read.Read())
+            {
+                accountType = read.GetString(0);
+
+            }
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+        switch (accountType)
+        { 
+            case "Cipher":
+                AddCipher(applicantID);
+                DropApplicant(applicantID);
+                break;
+            case "Parent":
+                AddParent(applicantID);
+                DropApplicant(applicantID);
+                break;  
+            case "Student":
+               //
+               //EmailStudent(applicantID);
+                break;
+        }
+    }
+
+
+    
+    protected void AddCipher(String applicantID)
+    {
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Insert Into Cipher(EmailAddress, BoolPaid) Values(@EmailAddress, @BoolPaid)";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            query.Parameters.AddWithValue("@BoolPaid", 1);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            query.ExecuteNonQuery();
+
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+    
+    }
+
+    protected void AddParent(String applicantID)
+    {
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+            String[] student;
+            student = GetStudentInfo(applicantID);
+
+            
+            //Add Parent Record
+
+            query.Connection = sc;
+            query.CommandText = "Insert Into Parent(EmailAddress, LetterCount, Relationship) Values(@EmailAddress, @LetterCount, @Relationship)";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            query.Parameters.AddWithValue("@LetterCount", 0);
+            query.Parameters.AddWithValue("@Relationship", student[4]);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            query.ExecuteNonQuery();
+            // compare student
+            
+            if (VerifyStudent(student))
+            {
+                // add parent student
+                query.Connection = sc;
+                query.CommandText = "Insert Into ParentStudent(StudentEmailAddress, ParentEmailAddress, LetterTitel, LetterText, LetterDate) " +
+                "Values(@StudentEmailAddress, @ParentEmailAddress, @LetterTitel, @LetterText, @LetterDate)";
+
+                query.Parameters.AddWithValue("@StudentEmailAddress", student[0]);
+                query.Parameters.AddWithValue("@ParentEmailAddress", applicantID);
+                query.Parameters.AddWithValue("@LetterTitel", System.DBNull.Value);
+                query.Parameters.AddWithValue("@LetterText", System.DBNull.Value);
+                query.Parameters.AddWithValue("@LetterDate", System.DBNull.Value);
+
+                Debug.WriteLine(query.CommandText);
+                Debug.WriteLine("Where @EmailAddress = " + applicantID);
+                query.ExecuteNonQuery();
+            }
+            
+            
+           
+            
+
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+    }
+
+    protected bool VerifyStudent(String[] student)
+    {
+        bool result = false;
+
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            VerifyStudent(student);
+           // txtChildEmail.Text + "," + txtChildFName.Text + "," + txtChildLName.Text + "," + txtChildDOB.Text + "," + txtParentRelationship.Text
+            query.Connection = sc;
+            query.CommandText = "Select from GeneralUser Where EmailAddress = @EmailAddress AND FirstName = @FName AND LastName = @LName and DOB = @DOB";
+
+            query.Parameters.AddWithValue("@EmailAddress", student[0]);
+            query.Parameters.AddWithValue("@FName", student[1]);
+            query.Parameters.AddWithValue("@LName", student[2]);
+            query.Parameters.AddWithValue("@DOB", student[3]);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + student[0]);
+            SqlDataReader read = query.ExecuteReader();
+
+            if (read.Read())
+            {
+                result = true;
+            }
+       
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+
+        return result;
+    }
+
+    protected String[] GetStudentInfo(String applicantID)
+    {
+
+        
+        String info = "";
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Select StudentInfo From Applicant Where EmailAddress = @EmailAddress";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            SqlDataReader read = query.ExecuteReader();
+
+            read.Read();
+            info = read.GetString(0);
+            
+            
+            
+            sc.Close();
+
+
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+        char[] delimiterChars = {','};
+        String[] result = info.Split(delimiterChars);
+
+        return result;
+    
+    }
+
+    protected void DropApplicant(String applicantID)
+    {
+        try
+        {
+            SqlConnection sc = new SqlConnection();
+            SqlCommand query = new SqlCommand();
+
+            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Drop From Applicant Where EmailAddress = @EmailAddress";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            query.ExecuteNonQuery();
+
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
+    
+    }
+
+    #endregion
     #region Event Handler for "Deny" button
     protected void btnDeny_Click(object sender, EventArgs e)
     {
