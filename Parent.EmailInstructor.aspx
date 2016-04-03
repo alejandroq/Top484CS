@@ -7,8 +7,12 @@
 
         <h3>Email Instructor</h3>
 
-        <asp:Label ID="Label1" runat="server" Text="Your Childs Name"/><asp:DropDownList ID="ddlStudent" runat="server"/>
+        <asp:Label ID="Label1" runat="server" Text="Your Childs Name"/><asp:DropDownList ID="ddlStudent" runat="server" OnSelectedIndexChanged="ddlStudent_SelectedIndexChanged" AutoPostBack ="true"/>
 
+        <asp:Label ID="Label2" runat="server" Text="Professors Name"></asp:Label>
+        <asp:DropDownList ID="ddlProf" runat="server" OnSelectedIndexChanged="ddlProf_SelectedIndexChanged" AutoPostBack ="true">
+        </asp:DropDownList>
+        <br/>
         <asp:Label ID="lblEmailSubject" runat="server" Text="Subject: " CssClass="labels"><asp:TextBox ID="txtEmailSubject" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
 
         <asp:Label ID="lblEmailDescription" runat="server" Text="Description: " CssClass="labels"></asp:Label><br /><asp:TextBox ID="txtEmailDescription" runat="server" TextMode="MultiLine" cssclass="textArea"></asp:TextBox><br />
