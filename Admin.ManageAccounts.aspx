@@ -4,7 +4,8 @@
 
      <form id="form1" runat="server">
     <div>
-        <h3>Manage Accounts HomePage</h3>
+        <h3>Manage Accounts</h3>
+        <hr />
         <asp:Button ID="btnAddUser" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
         <asp:Button ID="btnExport" runat="server" Text="Export This Table to Excel" OnClick="btnExport_Click" />
         <asp:Label ID="lblMemberType" runat="server" Text="Select Member Type:  "></asp:Label>

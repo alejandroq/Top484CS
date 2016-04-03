@@ -5,7 +5,8 @@
 
     <!--Main body for administrator homepage -->
     <h3>Administrator Dashboard</h3>
-    <p> PUT TABLEAU TABLES HERE FOR ADMIN TO SEE</p>
+    <iframe style="border: 0px;" src="https://public.tableau.com/views/prototype_1/Sheet1?:embed=y&:display_count=yes&:showTabs=y&:refresh=yes" scrolling="no" width="652px" height="756px"></iframe>
+        
 
 
 

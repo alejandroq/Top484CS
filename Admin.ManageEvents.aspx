@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <h3>Manage Events HomePage</h3>
+        <h3>Manage Events</h3>
     <hr />
     <asp:Button ID="btnAddEvent" runat="server" Text="Add New Event" OnClick="btnAddEvent_Click" />
     <asp:Button ID="btnViewCalendar" runat="server" Text="Calendar View" onclick="btnViewCalendar_Click"/>

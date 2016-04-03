@@ -13,10 +13,10 @@ public partial class Admin_AddContent : System.Web.UI.Page
     }
     protected void btnUpload_Click(object sender, EventArgs e)
     {
-        if (flAdminAddContent.HasFile)
+        if (fuAdminAddContent.HasFile)
         {
-            string filename = System.IO.Path.GetFileName(flAdminAddContent.FileName);
-            flAdminAddContent.SaveAs(@"C:\Users\lee2rm\Desktop\Portfolios\" + filename); // used this filepath to save on my desktop
+            string filename = System.IO.Path.GetFileName(fuAdminAddContent.FileName);
+            fuAdminAddContent.SaveAs(@"C:\Users\lee2rm\Desktop\Portfolios\" + filename); // used this filepath to save on my desktop
             /*Uploaded file path*/
             /*******************************************/
             /*Code to save the file path into data base??*/

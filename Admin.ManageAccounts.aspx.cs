@@ -302,7 +302,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                         cmd.ExecuteNonQuery();
                         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
                         adp.Fill(dt2);
-                        string approvalDate = dt2.Rows[0][1].ToString(); // this needs to change so not all approved row values show up, only those who were actually approved
+                        string approvalDate = dt2.Rows[i][1].ToString(); // this needs to change so not all approved row values show up, only those who were actually approved
                         TableCell approved = new TableCell();
                         approved.Text = "Approved on " + approvalDate;
                         row.Cells.Add(approved);
@@ -367,8 +367,8 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
         System.Diagnostics.Debug.WriteLine("send email clicked");
         LinkButton btn = (LinkButton)(sender);
         string userID = btn.CommandArgument;
-        Session["userID"] = userID;
-        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        Session["emailAddress"] = userID;
+        System.Diagnostics.Debug.WriteLine(Session["emailAddress"].ToString());
         Response.Redirect("SendEmail.aspx", false);
     }
     #endregion

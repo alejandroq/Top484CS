@@ -555,8 +555,8 @@ public partial class ViewCalendar : System.Web.UI.Page
         System.Diagnostics.Debug.WriteLine("send email clicked");
         LinkButton btn = (LinkButton)(sender);
         string contactID = btn.CommandArgument;
-        Session["userID"] = contactID;
-        System.Diagnostics.Debug.WriteLine(Session["userID"].ToString());
+        Session["emailAddress"] = contactID;
+        System.Diagnostics.Debug.WriteLine(Session["emailAddress"].ToString());
         Response.Redirect("SendEmail.aspx", false);
     }
     
