@@ -24,9 +24,9 @@
             <asp:ListItem>Instructor</asp:ListItem>
             <asp:ListItem>Date (Soonest)</asp:ListItem>
             <asp:ListItem>Location</asp:ListItem>
-        </asp:DropDownList>
-        <asp:Label ID="lblShoppingCart" runat="server" Text="Shopping Cart"></asp:Label>
-        <b><u><asp:ListBox ID="lbShoppingCart" runat="server"><asp:ListItem></asp:ListItem></asp:ListBox></u></b>
+        </asp:DropDownList><br />
+        <asp:Label ID="lblShoppingCart" runat="server" Text="Shopping Cart"></asp:Label><br />
+        <b><u><asp:ListBox ID="lbShoppingCart" runat="server" Width="400px"><asp:ListItem></asp:ListItem></asp:ListBox></u></b>
         <br />
         <br />
     </div>

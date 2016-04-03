@@ -14,10 +14,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     //TODO: get lesson plans and link them to lessonplan cell, see comment below
     //TODO: add in links for lesson plans
     //TODO: add "last log in" and Bucks counter somehow once we figure out how to do those
+    //TODO: add session variable for student that is logged in
     
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         GenerateTable();
     }
 
@@ -165,6 +167,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     {
         string courseID;
         string courseName;
+        string studentID = Session["userID"].ToString();
         LinkButton btn = (LinkButton)(sender);
         string arg = btn.CommandArgument;
         string[] split = new string[2];
@@ -172,12 +175,10 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         courseID = split[0];
         courseName = split[1];
         
-
-        //System.Diagnostics.Debug.WriteLine(courseID);
-        //System.Diagnostics.Debug.WriteLine(courseName);
         Session["courseCount"] = ((int?)Session["courseCount"] ?? 0) + 1;
         System.Diagnostics.Debug.WriteLine(Session["courseCount"].ToString());
-        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('testStud@WBL.org','" + courseID + "', null);";
+        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('" + studentID + "','" + courseID + "', null);";
+        
         System.Diagnostics.Debug.WriteLine(ViewState["enrollQuery"].ToString());
         lbShoppingCart.Items.Add(courseName);
         lbShoppingCart.Rows = lbShoppingCart.Items.Count;
