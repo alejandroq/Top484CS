@@ -196,33 +196,56 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
 
-        if (ddlElementType.SelectedValue.ToString() == "All")
+        if (!txtSearch.Text.Equals(""))
+            //System.Diagnostics.Debug.WriteLine("TEST");
+            dt = CreateSearchDataTable();
+        else
         {
-            dt = CreateAllDataTable();
+            if (ddlElementType.SelectedValue.ToString() == "All")
+            {
+                dt = CreateAllDataTable();
+            }
+            if (ddlElementType.SelectedValue.ToString() == "DJ")
+            {
+                dt = CreateDJDataTable();
+            }
+            if (ddlElementType.SelectedValue.ToString() == "MC")
+            {
+                dt = CreateMCDataTable();
+                // Could potentially add last login, total bucks, or some other fields to query to make this more student specific
+            }
+            if (ddlElementType.SelectedValue.ToString() == "BBOY")
+            {
+                dt = CreateBBOYDataTable();
+            }
+            if (ddlElementType.SelectedValue.ToString() == "Art")
+            {
+                dt = CreateArtDataTable();
+            }
+            if (ddlElementType.SelectedValue.ToString() == "Knowledge of Self")
+            {
+                dt = CreateKnowledgeDataTable();
+            }
         }
-        if (ddlElementType.SelectedValue.ToString() == "DJ")
-        {
-            dt = CreateDJDataTable();
-        }
-        if (ddlElementType.SelectedValue.ToString() == "MC")
-        {
-            dt = CreateMCDataTable();
-            // Could potentially add last login, total bucks, or some other fields to query to make this more student specific
-        }
-        if (ddlElementType.SelectedValue.ToString() == "BBOY")
-        {
-            dt = CreateBBOYDataTable();
-        }
-        if (ddlElementType.SelectedValue.ToString() == "Art")
-        {
-            dt = CreateArtDataTable();
-        }
-        if (ddlElementType.SelectedValue.ToString() == "Knowledge of Self")
-        {
-            dt = CreateKnowledgeDataTable();
-        }
-        
 
+        return dt;
+    }
+
+    private DataTable CreateSearchDataTable()
+    {
+        String keyword = txtSearch.Text;
+  
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText = "Select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from Course WHERE Upper(CourseName) LIKE Upper(@keyword) OR Upper(CourseElement) LIKE (@keyword) OR Upper(CourseLocation) LIKE (@keyword);";
+        System.Diagnostics.Debug.WriteLine(cmdText);
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.Parameters.Add("@keyword", SqlDbType.VarChar).Value = "%" + keyword + "%";
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        txtSearch.Text = "";
         return dt;
     }
 
