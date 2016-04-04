@@ -18,11 +18,10 @@ public partial class ForgotPassword : System.Web.UI.Page
     protected void btnForgotEmail_Click(object sender, EventArgs e)
     {
         Session["forgottenPasswordEmail"] = txtForgotEmail.Text;
-        string resetQuery = "select FirstName, EmailAddress from GeneralUser where EmailAddress = @ForgottenEmail";
+        string resetQuery = "select FirstName, EmailAddress from dbo.GeneralUser where EmailAddress='" + Session["forgottenPasswordEmail"].ToString() + "'";
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
         connection.Open();
         SqlCommand cmd = new SqlCommand(resetQuery, connection);
-        cmd.Parameters.AddWithValue("@ForgottenEmail", Session["forgottenPasswordEmail"].ToString());
         cmd.ExecuteNonQuery();// execute select statement
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         DataTable dt = new DataTable(); // create data table for sql query
