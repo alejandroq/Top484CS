@@ -91,8 +91,8 @@
     
 
     <!-- COMMUNITY WALL -->
-	    	<h3 class="six columns">Community Wall</h3>
-	    	<div id="wall" class="nine columns">
+	    	<h3 class="ten columns">Community Wall</h3>
+	    	<div id="wall" class="ten columns">
 	    		<img src="upload/BBoyBridge.jpg"
 		            alt="WBL BBoy"
 		            title="WBL BBoy"
