@@ -1,5 +1,12 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParentMasterPage.master.cs" Inherits="ParentMasterPage" %>
 
+<asp:Content ID="ContentHead" ContentPlaceHolderID="head" runat="server">
+    <asp:ContentPlaceHolder ID="contentHeader" runat="server">
+
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="foobar" Runat="Server">
 <!-- PARENT SUB-MASTERPAGE -->
 
