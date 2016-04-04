@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -102,33 +102,32 @@
 		</ul>
         <!-- END NOTIFICATION MENU (Icon List) -->
 
-        <!-- BEGIN SKELETON GRID (max-width 1080px) -->
         <!-- MAIN CONTENT -->
+		<aside>
+			<!-- MENU CONTENT PLACEHOLDER -->
+			<p class="pre-menu no-mobile">Menu</p>
+			<ul class="menu no-mobile">
+		    	<asp:ContentPlaceHolder id="foo" runat="server">
+		    
+		    	</asp:ContentPlaceHolder>
+	    	</ul>
+	    	<!-- END MENU CONTENT PLACEHOLDER -->
+	   
+			<!-- BEGIN UPCOMING EVENTS (Icon List) -->
+			<p class="pre-menu">Upcoming Events</p>
+			<ul class="menu ui-icon-list">
+				<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
+				<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
+				<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
+			</ul>
+			<!-- END UPCOMING EVENTS -->
+		</aside>
+
+		<!-- BEGIN SKELETON GRID (max-width 1080px) -->
         <article class="container">
         	<div class="row">
-        		<aside class="two columns">
-        		
-	        		<!-- MENU CONTENT PLACEHOLDER -->
-	        		<p class="pre-menu no-mobile">Menu</p>
-	        		<ul class="menu no-mobile">
-				    	<asp:ContentPlaceHolder id="foo" runat="server">
-				    
-				    	</asp:ContentPlaceHolder>
-			    	</ul>
-			    	<!-- END MENU CONTENT PLACEHOLDER -->
-		       
-					<!-- BEGIN UPCOMING EVENTS (Icon List) -->
-					<p class="pre-menu">Upcoming Events</p>
-					<ul class="menu ui-icon-list">
-						<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
-						<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
-						<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
-					</ul>
-					<!-- END UPCOMING EVENTS -->
-				</aside>
-
 		        <!-- BODY CONTENT PLACEHOLDER-->
-		        <div class="nine columns">
+		        <div class="ui-full-width">
 		        	<asp:ContentPlaceHolder id="body" runat="server">
 		        
 		        	</asp:ContentPlaceHolder>
