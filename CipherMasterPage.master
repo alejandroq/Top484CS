@@ -1,5 +1,14 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CipherMasterPage.master.cs" Inherits="CipherMasterPage" %>
 
+
+<asp:Content ID="ContentHead" ContentPlaceHolderID="head" runat="server">
+    <asp:ContentPlaceHolder ID="headContent" runat="server">
+
+    </asp:ContentPlaceHolder>
+
+</asp:Content>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="foobar" Runat="Server">
 <!-- CIPHER SUB-MASTERPAGE -->
 
@@ -8,7 +17,7 @@
     <asp:Panel ID="Panel1" runat="server" >
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
-      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a href="Cipher.MakeADonation.aspx">Make a Donation</a></li>
       <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
@@ -21,7 +30,7 @@
     <asp:Panel ID="Panel2" runat="server" >
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
-      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a href="Cipher.MakeADonation.aspx">Make a Donation</a></li>
       <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>
@@ -34,7 +43,7 @@
     <asp:Panel ID="Panel3" runat="server">
 
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
-      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a href="Cipher.MakeADonation.aspx">Make a Donation</a></li>
       <li><a href="ViewCalendar.aspx">View Calendar</a></li>
 
     </asp:Panel>

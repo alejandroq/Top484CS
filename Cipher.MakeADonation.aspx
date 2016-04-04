@@ -4,6 +4,8 @@
 
     <html xmlns="http://www.w3.org/1999/xhtml" />
 
+    <h3>Make a Donation Here!</h3>
+
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_donations">
 <input type="hidden" name="business" value="top484.wordsbeatslifeproject@gmail.com">
