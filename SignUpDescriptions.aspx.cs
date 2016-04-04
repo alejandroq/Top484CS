@@ -9,7 +9,7 @@ public partial class SignUpDescriptions : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        WebActivity.LogActivity("Sign Up Descriptions Page", true);
+        
     }
 
     string userType = "";
