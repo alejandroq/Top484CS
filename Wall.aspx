@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="foobar" Runat="Server">
 
@@ -91,44 +93,44 @@
     <!-- COMMUNITY WALL -->
 	    	<h3 class="six columns">Community Wall</h3>
 	    	<div id="wall" class="nine columns">
-	    		<img src="upload/img.jpg"
-		            alt="Title here"
-		            title="Or here(more priority)"
-		            data-desc="some description"
+	    		<img src="upload/BBoyBridge.jpg"
+		            alt="WBL BBoy"
+		            title="WBL BBoy"
+		            data-desc="WBL BBoy 101"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
 		        />
-		        <img src="upload/img.jpg"
-		            alt="Title here"
-		            title="Or here(more priority)"
-		            data-desc="some description"
+		        <img src="upload/chess.jpg"
+		            alt="Andrew W. Chess"
+		            title="Chess by Andrew W."
+		            data-desc="12 year old chess player from DC"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
 		        /> 
-		        <img src="upload/img.jpg"
-		            alt="Title here"
-		            title="Or here(more priority)"
-		            data-desc="some description"
+		        <img src="upload/simon.jpg"
+		            alt="Grafitti"
+		            title="Grafitti Story"
+		            data-desc="Grafitti description"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
 		        /> 
-		        <img src="img/logo.png"
-		            alt="Title here"
-		            title="Or here(more priority)"
-		            data-desc="some description"
+		        <img src="upload/photog.jpg"
+		            alt="Gabriel Benn Photography"
+		            title="Gabriel Benn Photography"
+		            data-desc="Photography 101"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
 		        />
-		        <img src="img/logo.png"
-		            alt="Title here"
-		            title="Or here(more priority)"
-		            data-desc="some description"
+		        <img src="upload/DJpic.jpg"
+		            alt="DJ"
+		            title="DJ by Javier G."
+		            data-desc="DJ 101"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
 		        /> 
-		        <img src="img/logo.png"
-		            alt="Title here"
-		            title="Or here(more priority)"
+		        <img src="upload/beat_production.jpg"
+		            alt="Beat Production"
+		            title="Beat Production"
 		            data-desc="some description"
 		            data-category="image category here"
 		            data-fullsrc="upload/img.jpg"
@@ -138,6 +140,21 @@
     		<!-- END COMMUNITY WALL -->
 
 
+
+
+
+    
+
+  <div class="col-sm-8">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+          </div>
+      </div>
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="bar" Runat="Server">
