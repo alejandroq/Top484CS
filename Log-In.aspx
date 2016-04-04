@@ -44,25 +44,24 @@
 
   <div class="tanbox">
     <div class="row">
-      <div class="col-sm-4 col-sm-offset-4">
+      <div runat="server" class="col-sm-4 col-sm-offset-4">
 
        
 
           <form class="form-signin" runat="server">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
-            <!-- <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate"></asp:Login>-->
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <asp:TextBox runat="server" Type="email" id="inputEmail" CssClass="form-control" Placeholder="Email address"  required="true"/>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <asp:TextBox runat="server" Type="password" id="inputPassword" CssClass="form-control" Placeholder="Password" required="true"/>
             <div class="checkbox">
               <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"/> Remember me
               </label>
 			  <label><a href="ForgotPassword.aspx" id="password">Forgot Password</a></label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="Login1_Authenticate">Sign in</button>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" id="signUp" onclick="lnkSignUp_Click">Sign Up</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="login" onserverclick="Login1_Authenticate" runat="server">Sign in</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" id="signUp" onServerClick="lnkSignUp_Click" runat="server">Sign Up</button>
 			</form>
 
       </div>

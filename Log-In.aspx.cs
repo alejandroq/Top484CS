@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net.Mail; // for e-mail activation
 using System.Data;
+using System.Windows.Forms;
 
 public partial class Log_In : System.Web.UI.Page
 {
@@ -15,88 +16,98 @@ public partial class Log_In : System.Web.UI.Page
     {
 
     }
+
     #region Authenticate Login
-    protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+    protected void Login1_Authenticate(object sender, EventArgs e)
     {
-        string user = Login1.UserName;
-        string password = Login1.Password;
-
-        e.Authenticated = false;
-
-        string QueryUserDetails = "Select PasswordHash, ActivatedBool, UserPermission from dbo.GeneralUser where EmailAddress = '" + user +"'"; // This query returns the password hash and the boolean for whether or not the profile is activated
-        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
-        connection.Open();
-        SqlCommand cmd = new SqlCommand(QueryUserDetails, connection); // execute select statement
-        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
-        DataTable dt = new DataTable(); // create data table for sql query
-        adp.Fill(dt); // populate datatable with query results
-        int no = dt.Rows.Count; // number of rows in data table
-        string activated = dt.Rows[0][1].ToString();
-        string permission = dt.Rows[0][2].ToString();
-
-        if (no > 0) // if the query finds the user-entered Email (username)
+        string user = inputEmail.Text;
+        string password = inputPassword.Text;
+        bool verify = false;
+        try
         {
-            // Get the PasswordHash from DB, verify the hash matches the user-entered password
-            string pwHash = dt.Rows[0][0].ToString();
-            bool verify = SimpleHash.VerifyHash(password, "MD5", pwHash);
-            System.Diagnostics.Debug.WriteLine(verify);
-            e.Authenticated = verify;
-            Session["loggedIn"] = e.Authenticated.ToString();
-
-            // Create permissions session variable
-            Session["permission"] = permission.ToString();
-
-            // If the log-in credentials are verified
-            if (verify)
+            string QueryUserDetails = "Select PasswordHash, ActivatedBool, UserPermission from dbo.GeneralUser where EmailAddress = '" + user + "'"; // This query returns the password hash and the boolean for whether or not the profile is activated
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(QueryUserDetails, connection); // execute select statement
+            SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+            DataTable dt = new DataTable(); // create data table for sql query
+            adp.Fill(dt); // populate datatable with query results
+            
+            
+           
+             // Verify there are rows in the datatable before populating variables
+            if (dt.Rows.Count > 0) // if the query finds the user-entered Email (username)
             {
-                // Verify that the user has activated their profile
-                if (activated == "True") // if the account's activated column is equal to true
+                string activated = dt.Rows[0][1].ToString();
+                string permission = dt.Rows[0][2].ToString();
+                // Get the PasswordHash from DB, verify the hash matches the user-entered password
+                string pwHash = dt.Rows[0][0].ToString();
+                verify = SimpleHash.VerifyHash(password, "MD5", pwHash);
+                System.Diagnostics.Debug.WriteLine(verify);
+                Session["loggedIn"] = verify;
+
+                // Create permissions session variable
+                Session["permission"] = permission.ToString();
+
+                // If the log-in credentials are verified
+                if (verify)
                 {
-                    // Redirect user to their profile based on their permission
-                    if (permission == "5")
+                    // Verify that the user has activated their profile
+                    if (activated == "True") // if the account's activated column is equal to true
                     {
-                        Session["UserID"] = user;
-                        Response.Redirect("Admin.Dashboard.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
-                        
+                        // Redirect user to their profile based on their permission
+                        if (permission == "5")
+                        {
+                            Session["UserID"] = user;
+                            Response.Redirect("Admin.Dashboard.aspx"); // if all details match up, user is redirected to their profile page. TODO: Code profile page, figure out if statements for directing user to their appropriate profile type
+
+                        }
+                        if (permission == "4")
+                        {
+                            // redirect to staff/instructor/intern profile/// Community Wall
+                            Session["UserID"] = user;
+                            Response.Redirect("Wall.aspx");
+                        }
+                        if (permission == "3")
+                        {
+                            // redirect to student profile
+                            Session["UserID"] = user;
+                            Response.Redirect("Wall.aspx");
+                        }
+                        if (permission == "2")
+                        {
+                            // parent permission
+                            Response.Redirect("Wall.aspx");
+                            Session["UserID"] = user;
+                        }
+                        if (permission == "1")
+                        {
+                            // redirect to cipher profile
+                            Session["UserID"] = user;
+                            Response.Redirect("Wall.aspx");
+                        }
                     }
-                    if (permission == "4")
+                    else
                     {
-                        // redirect to staff/instructor/intern profile/// Community Wall
-                        Session["UserID"] = user;
-                        Response.Redirect("Wall.aspx");
-                    }
-                    if (permission == "3")
-                    {
-                        // redirect to student profile
-                        Session["UserID"] = user;
-                        Response.Redirect("Wall.aspx");
-                    }
-                    if (permission == "2")
-                    {
-                        // parent permission
-                        Response.Redirect("Wall.aspx"); 
-                        Session["UserID"] = user;
-                    }
-                    if (permission == "1")
-                    {
-                        // redirect to cipher profile
-                        Session["UserID"] = user;
-                        Response.Redirect("Wall.aspx");
+                        MessageBox.Show("Error: Account is not activated. You will receive an e-mail when your account is approved and ready for activation");
                     }
                 }
-                else                
+                else
                 {
-                    Response.Write("Error: Account is not activated");
+                    MessageBox.Show("Error: Invalid Password. Please enter the correct password or click 'Forgot Password'");
                 }
             }
-        }
         else
-        {
-            Response.Write("Error: That e-mail does not exist");
+            {
+                MessageBox.Show("Error: That account does not exist! Please click sign up to join the community");
+            }
+                
         }
-
-
-
+        catch (SqlException error)
+        {
+            MessageBox.Show(e.ToString());
+            System.Diagnostics.Debug.WriteLine(error.ToString());
+        }
     }
     #endregion
 
