@@ -39,6 +39,9 @@ public partial class _Default : System.Web.UI.Page
     {
         sEducationInfo.Style.Add("display", "inline");
         sEmploymentHistory.Style.Add("display", "inline");
+        sAdditionalInformation.Style.Add("display", "none");
+            sEmergencyInfo.Style.Add("display", "none");
+            sHealthInfo.Style.Add("display", "none");
     }
     protected void btnConfirmEmmployEducation_Click(object sender, EventArgs e)
     {

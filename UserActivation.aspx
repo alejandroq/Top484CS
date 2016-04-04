@@ -4,10 +4,70 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
+    <title>Activate Your Account</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Hege Refsnes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+<!-- Bootstrap CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
+
+<!-- Cutstom CSS -->
+<link href="css/custom.css" rel="stylesheet" type="text/css" media="screen">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/forms.css" />  
+
+    <style type="text/css">
+        div#studentRegistrationForm {
+        margin-left: 20%;
+        }
+        div#sEducationInfo, div#sEmploymentHistory {
+        display: none;
+        }
+    </style>
+
 </head>
 <body>
-    <form id="form1" runat="server">
+
+
+    
+
+    
+<div id="Div1" class="container" runat="server">
+
+<div id="Div2" class="header" runat="server"> 
+    <div id="Div3" class="row" runat="server">
+      <div class="col-sm-12"> <img id="Img1" src="img/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ" runat="server"></div>
+      
+      
+    </div> 
+  </div><!--div header closing div-->
+
+    
+  
+
+  <div id="Div4" class="tanbox" runat="server">
+    <div id="Div5" class="row" runat="server">
+
+       
+
+          <form id="Form2" class="form-signin" runat="server">
+
+
+
     <div id="studentRegistrationForm">
     
         <!-- Student additional information -->
@@ -167,6 +227,39 @@
                 </div>
 
     </div>
-    </form>
+  
+  
+                  
+
+			</form>
+
+
+      <div id="Div8" class="col-sm-2" runat="server"></div>
+      </div>
+
+</div>
+
+      </div><!--closing div to tanbox-->
+<div id="Div9" class="footer" runat="server"><!--starting tag for footer-->
+    <div id="Div10" class="row" runat="server">
+      <div id="Div11" class="col-sm-1" runat="server"> <img src="img/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
+      </div>
+      <div id="Div12" class="col-sm-11" runat="server">
+      </div>
+      
+    </div>  
+
+</div><!--footer div closing div-->
+<!--container closing div-->
+
+
+<!-- jQuery and Bootstrap links - do not delete! -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+    
+
+
 </body>
 </html>

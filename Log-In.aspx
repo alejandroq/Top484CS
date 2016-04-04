@@ -61,7 +61,7 @@
 			  <label><a href="ForgotPassword.aspx" id="password">Forgot Password</a></label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="login" onserverclick="Login1_Authenticate" runat="server">Sign in</button>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" id="signUp" onServerClick="lnkSignUp_Click" runat="server">Sign Up</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" id="signUp" onServerClick="lnkSignUp_Click" runat="server">New to the Community? Register Here!</button>
 			</form>
 
       </div>
