@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Net.Mail; // for e-mail activation
 using System.Data;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 
 public partial class _Default : System.Web.UI.Page
@@ -16,8 +17,8 @@ public partial class _Default : System.Web.UI.Page
     private SqlConnection sc;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
 
+        WebActivity.LogActivity("User Registration Page", true);
         parentAdditions.Style.Add("display", "none");
         parentBlock.Style.Add("display", "none");
         
@@ -163,7 +164,7 @@ public partial class _Default : System.Web.UI.Page
             
             query.Parameters.AddWithValue("@PasswordHash", passHash);
             query.Parameters.AddWithValue("@ShirtSize", ddlShirtSize.Text); //Need Shirt Size Text Box
-            query.Parameters.AddWithValue("@UserPermission", 1);
+            query.Parameters.AddWithValue("@UserPermission", Session["permission"].ToString());
             query.Parameters.AddWithValue("@LastLogin", System.DBNull.Value);
 
             List<String> selectedValues = cblRace.Items.Cast<ListItem>()
@@ -226,6 +227,8 @@ public partial class _Default : System.Web.UI.Page
             query.Parameters.AddWithValue("@StudentInfo", System.DBNull.Value);
             query.ExecuteNonQuery();
             sc.Close();
+            MessageBox.Show("Your application has been submitted! You will receive an e-mail when your account is approved and ready for activation");
+            Response.Redirect("Wall.aspx");
 
         }
         catch (SqlException SQLe)

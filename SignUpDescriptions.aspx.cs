@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,29 +9,36 @@ public partial class SignUpDescriptions : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        WebActivity.LogActivity("Sign Up Descriptions Page", true);
     }
 
     string userType = "";
-
+    int permission = 0;
+    
 
     protected void btnStudent_Click(object sender, EventArgs e)
     {
         userType = "student";
+        permission = 3;
         Session["userType"] = userType;
+        Session["permission"] = permission;
         Response.Redirect("UserRegistration.aspx");
     }
     protected void btnParent_Click(object sender, EventArgs e)
     {
         userType = "parent";
+        permission = 2;
         Session["userType"] = userType;
+        Session["permission"] = permission;
         Response.Redirect("UserRegistration.aspx");
 
     }
     protected void btnCipher_Click(object sender, EventArgs e)
     {
         userType = "cipher";
+        permission = 1;
         Session["userType"] = userType;
+        Session["permission"] = permission;
         Response.Redirect("UserRegistration.aspx");
     }
 }
