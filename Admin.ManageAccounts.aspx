@@ -7,7 +7,7 @@
         <h3>Manage Accounts</h3>
         <hr />
         <asp:Button ID="btnAddUser" runat="server" Text="Add New User" OnClick="btnAddUser_Click" />
-        <asp:Button ID="btnExport" runat="server" Text="Export This Table to Excel" OnClick="btnExport_Click" />
+        <asp:Button ID="btnExport" runat="server" Text="Export This Table to Excel" OnClick="btnExport_Click" /><br />
         <asp:Label ID="lblMemberType" runat="server" Text="Select Member Type:  "></asp:Label>
         <asp:DropDownList ID="ddlMemberType" runat="server" AutoPostBack="true">
             <asp:ListItem>All</asp:ListItem>
