@@ -16,8 +16,8 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            WebActivity.LogActivity("Manage Accounts Page", true);
-            // TODO: replicate this webactivity functionality in all pages visited by students, teachers, parents, ciphers
+            //WebActivity.LogActivity("Manage Accounts Page", true);
+            // TODO: replicate this webactivity functionality in all pages visited by students, teachers, parents, ciphers (once all session variables are squared away)
             // Track most viewed profiles when we get those going
             // Add column for Total Logins and a column for UserType in Activity Log Table
             // Keep names as general Activity names for displaying most viewed pages in tableau
