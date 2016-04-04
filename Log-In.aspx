@@ -33,7 +33,7 @@
 <div class="container">
 <div class="header"> 
     <div class="row">
-      <div class="col-sm-12"> <img src="images/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ"></div>
+      <div class="col-sm-12"> <img src="img/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ"></div>
       
       
     </div> 
@@ -74,7 +74,7 @@
       </div><!--closing div to tanbox-->
 <div class="footer"><!--starting tag for footer-->
     <div class="row">
-      <div class="col-sm-1"> <img src="images/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
+      <div class="col-sm-1"> <img src="img/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
       </div>
       <div class="col-sm-11">
       </div>
