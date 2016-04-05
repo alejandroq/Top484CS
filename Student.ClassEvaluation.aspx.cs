@@ -13,7 +13,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Session["EvaluateeID"] = "testProf@WBL.org";
-        Session["EvalID"] = "1";
+        Session["EvalID"] = "2";
         Session["RespondentID"] = "testStud@WBL.org";
         txtQuestion1.Text = "Student Test";
     }
