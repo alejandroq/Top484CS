@@ -4,7 +4,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -410,7 +412,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
                 LinkButton editLink = new LinkButton();
                 editLink.Text = "Edit User";
                 editLink.CommandArgument = dt.Rows[i][3].ToString();
-                System.Diagnostics.Debug.WriteLine(dt.Rows[i][3].ToString());
+                //System.Diagnostics.Debug.WriteLine(dt.Rows[i][3].ToString());
                 editLink.Click += editLink_Click;
                 editCell.Controls.Add(editLink);
                 row.Cells.Add(editCell);
@@ -438,11 +440,11 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     private void email_Click(object sender, EventArgs e)
     {
 
-        System.Diagnostics.Debug.WriteLine("send email clicked");
+        //System.Diagnostics.Debug.WriteLine("send email clicked");
         LinkButton btn = (LinkButton)(sender);
         string userID = btn.CommandArgument;
         Session["emailAddress"] = userID;
-        System.Diagnostics.Debug.WriteLine(Session["emailAddress"].ToString());
+        //System.Diagnostics.Debug.WriteLine(Session["emailAddress"].ToString());
         Response.Redirect("SendEmail.aspx", false);
     }
     #endregion
@@ -450,7 +452,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Event Handler for "Edit User" button
     protected void editLink_Click(object sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("edit user clicked");
+        //System.Diagnostics.Debug.WriteLine("edit user clicked");
         LinkButton btn = (LinkButton)(sender);
         string userID = btn.CommandArgument;
         Session["userID"] = userID;
@@ -461,7 +463,7 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Event Handler for "View Profile" button
     private void profileLink_Click(object sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("edit user clicked");
+        //System.Diagnostics.Debug.WriteLine("edit user clicked");
         LinkButton btn = (LinkButton)(sender);
         string userID = btn.CommandArgument;
         Session["userID"] = userID;
@@ -472,10 +474,10 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Event Handler for "Needs Approval" button
     protected void approval_Click(object sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("clicked");
+        //System.Diagnostics.Debug.WriteLine("clicked");
         LinkButton btn = (LinkButton)(sender);
         string applicantID = btn.CommandArgument;
-        System.Diagnostics.Debug.WriteLine(applicantID);
+        //System.Diagnostics.Debug.WriteLine(applicantID);
         Session["applicantID"] = applicantID;
         Response.Redirect("Admin.ApproveAccount.aspx", false);
     }
@@ -530,4 +532,28 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     {
         Response.Redirect("Admin.AddUser.aspx");
     }
+
+    protected void btnBulkEmail_Click(object sender, EventArgs e)
+    {
+        Session["emailAddress"] = ddlMemberType.Text;
+        Response.Redirect("SendEmail.aspx");
+
+
+
+        //Create a temporary DataTable
+        //DataTable dtCustomers = new DataTable();
+        //dtCustomers.Columns.AddRange(new DataColumn[2] { new DataColumn("Name", typeof(string)),
+        //                new DataColumn("Email",typeof(string)) });
+
+        //string subject = "Welcome Email";
+        //string body = "Hello {0},<br /><br />Welcome to ASPSnippets<br /><br />Thanks.";
+
+        ////Using Parallel Multi-Threading send multiple bulk email.
+        //Parallel.ForEach(dtCustomers.AsEnumerable(), row =>
+        //{
+        //    SendEmail(row["Email"].ToString(), subject, string.Format(body, row["Name"]));
+        //});
+    }
+
+    
 }
