@@ -133,7 +133,7 @@ public partial class ViewCalendar : System.Web.UI.Page
             SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
             adp.Fill(dt);
             ViewState["dt"] = dt;
-            Calendar1.Visible = false;
+            //Calendar1.Visible = false;
 
         }
         

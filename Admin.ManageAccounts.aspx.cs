@@ -11,30 +11,25 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_ManageAccounts : System.Web.UI.Page
 {
-
+    // New tab for sending notifications/emails/content files (Announcement page)
+    // Make enrollment table and decide how notifications will interact with this
+    // Figure out why Approved On date is always the same for each user :(
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            //WebActivity.LogActivity("Manage Accounts Page", true);
+            // WebActivity.LogActivity("Manage Accounts Page", true);
             // TODO: replicate this webactivity functionality in all pages visited by students, teachers, parents, ciphers (once all session variables are squared away)
             // Track most viewed profiles when we get those going
             // Add column for Total Logins and a column for UserType in Activity Log Table
             // Keep names as general Activity names for displaying most viewed pages in tableau
             // Possibly make an "Analytics" tab on administrator homepage, use DataTable to display listviews / graphs of data trends
+            // Add in ability to mass email everyone or mass email a certain group
         }
 
         GenerateTable();
-        if (ddlMemberType.SelectedValue.ToString() != "All")
-        {
-            lblSortBy.Visible = false;
-            ddlSortBy.Visible = false;
-        }
-        else
-        {
-            lblSortBy.Visible = true;
-            ddlSortBy.Visible = true;
-        }
+        
+        
     }
 
     #region Generate DataTable based on DropDown selection
@@ -76,11 +71,24 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     private DataTable CreateAdminDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Administrator'";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Administrator' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -90,10 +98,23 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     private DataTable CreateCipherDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Cipher'";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Cipher' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -103,10 +124,23 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     private DataTable CreateStaffDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Staff'";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Staff' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -116,10 +150,23 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     private DataTable CreateParentDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Parent'";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Parent' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -129,10 +176,24 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
 
     private DataTable CreateStudentDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
+        
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Student'";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, CellPhone, EmailAddress from dbo.GeneralUser where UserType='Student' " + sortBy; // ADD THE REST OF THE SORTBYS AND DELETE THE set visible = false up top
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -172,11 +233,24 @@ public partial class Admin_ManageAccounts : System.Web.UI.Page
     #region Create data table for applicant selection
     private DataTable CreateApplicantDataTable()
     {
+        string sortBy = "";
+        if (ddlSortBy.SelectedValue.ToString() == "Last Name")
+        {
+            sortBy = "ORDER BY LastName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "First Name")
+        {
+            sortBy = "ORDER BY FirstName";
+        }
+        if (ddlSortBy.SelectedValue.ToString() == "Member Type")
+        {
+            sortBy = "ORDER BY UserType";
+        }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         // need to validate that a user's info doesnt already exist before that info gets put into sql insert statement
-        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, Approved, dbo.GeneralUser.EmailAddress from dbo.GeneralUser Inner JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress";
+        string cmdText = "select (FirstName + ' ' + LastName) as Name, UserType, Approved, dbo.GeneralUser.EmailAddress from dbo.GeneralUser INNER JOIN dbo.Applicant ON dbo.GeneralUser.EmailAddress=dbo.Applicant.EmailAddress " + sortBy;
         // ^^convert to new table structure, we will need to edit this insert statement to show ALL general users
         // also edit sql statement to order by approved/not approved
         SqlCommand cmd = new SqlCommand(cmdText, connection);

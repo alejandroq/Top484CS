@@ -16,9 +16,9 @@ public partial class Parent_EmailInstructor : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Session["userID"] = "Dan@WBL.org";
 
-            students = QueryHandler.GetStudents(Session["userID"].ToString());
+            Debug.WriteLine(Session["UserID"].ToString());
+            students = QueryHandler.GetStudents(Session["UserID"].ToString());
             PopStudDropDown(students);
             ddlStudent.DataBind();
         }

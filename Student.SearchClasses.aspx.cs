@@ -11,12 +11,16 @@ using System.Windows.Forms;
 
 public partial class Student_SearchClasses2 : System.Web.UI.Page
 {
-
+    //TODO: Change capacity to seats left
+    //TODO: make it so that student can only sign up for a class after all their evaluations are complete
+    // we need an enrollment table
     //TODO: get lesson plans and link them to lessonplan cell, see comment below
     //TODO: add in links for lesson plans
     //TODO: add "last log in" and Bucks counter somehow once we figure out how to do those
     //TODO: add session variable for student that is logged in
-    
+    //TODO: add class date to command arguments for shopping cart
+    // Need to be able to hover over class descriptions and read before enrolling
+
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -80,7 +84,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
 
         // any non-DB column NAMES here
         TableHeaderCell enrollCheck = new TableHeaderCell();
-        enrollCheck.Text = "Check to Enroll";
+        enrollCheck.Text = "Click to Enroll";
         row.Cells.Add(enrollCheck);
 
         //Add column title row to the table
@@ -150,7 +154,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             shoppingCart.Text = "Add to Shopping Cart";
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
-            shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString();
+            shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString() + "," + dt.Rows[i][5].ToString();
             System.Diagnostics.Debug.WriteLine(shoppingCart.CommandArgument);
             shoppingCart.Click += shoppingCart_Click;
             
@@ -168,17 +172,19 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     {
         string courseID;
         string courseName;
-        string studentID = Session["userID"].ToString();
+        string courseDate;
+        string studentID = Session["UserID"].ToString();
         LinkButton btn = (LinkButton)(sender);
         string arg = btn.CommandArgument;
-        string[] split = new string[2];
+        string[] split = new string[3];
         split = arg.Split(',');
         courseID = split[0];
         courseName = split[1];
+        courseDate = split[2];
         
         Session["courseCount"] = ((int?)Session["courseCount"] ?? 0) + 1;
         System.Diagnostics.Debug.WriteLine(Session["courseCount"].ToString());
-        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('" + studentID + "','" + courseID + "', null);";
+        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('" + studentID + "','" + courseID + "','" + courseDate + "', null);"; //ADD CLASS DATE
         
         System.Diagnostics.Debug.WriteLine(ViewState["enrollQuery"].ToString());
         lbShoppingCart.Items.Add(courseName);
@@ -455,7 +461,8 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
 
     protected void btnViewCalendar_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("Student.ClassSchedule.aspx");
+        
     }
 
 }

@@ -8,8 +8,8 @@
 
     
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <img src="<%=MakeImageSrcData("C:/Users/lee2rm/Desktop/Top484CS-master5/Top484CS-master/img/paypalprocess.png") %>" />
-            <br /><br /><input type="hidden" name="cmd" value="_donations">
+            <%--<img src="<%=MakeImageSrcData("C:/Users/lee2rm/Desktop/Top484CS-master5/Top484CS-master/img/paypalprocess.png") %>" />
+            --%><br /><br /><input type="hidden" name="cmd" value="_donations">
             <input type="hidden" name="business" value="top484.wordsbeatslifeproject@gmail.com">
             <input type="hidden" name="lc" value="US">
             <input type="hidden" name="item_name" value="Words Beats and Life, Inc">

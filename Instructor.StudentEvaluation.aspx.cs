@@ -7,13 +7,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Configuration;
 
 public partial class Instructor_StudentEvaluation : System.Web.UI.Page
 {
 
         protected void Page_Load(object sender, EventArgs e)
     {
-        Session["EvaluateeID"] = "testStud@WBL.org";
+        Session["EvaluateeID"] = "testStud@WBL.org"; // passed in from previous page
         Session["EvalID"] = "1";
         Session["RespondentID"] = "testProf@WBL.org";
         txtQuestion1.Text = "Student Test";
@@ -58,13 +59,12 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
     protected ArrayList GatherQuestions()
     {
         ArrayList result = new ArrayList();
-        int count = 0;
+        //int count = 0;
         try
         {
-            SqlConnection sc = new SqlConnection();
+            
             SqlCommand query = new SqlCommand();
-
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             sc.Open();
 
             query.Connection = sc;
@@ -93,11 +93,11 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            
             SqlCommand insert = new SqlCommand();
             DateTime date = DateTime.Now;
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             sc.Open();
 
             insert.Connection = sc;

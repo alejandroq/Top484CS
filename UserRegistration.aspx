@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Words Beats and Life, Inc.</title>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Hege Refsnes">

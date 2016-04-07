@@ -8,6 +8,19 @@
             <!-- General user form information -->
             <div id="allInfo" runat="server">
                 <h3>Enter New User Information</h3>
+                        <asp:Label ID="lblUserType" runat="server" CssClass="labels" Text="Select Member Type: ">
+                        <asp:DropDownList ID="ddlUserType" runat="server" CssClass="dropdowns" AutoPostBack="true">
+                                        <asp:ListItem>Administrator</asp:ListItem>
+                                        <asp:ListItem>Staff</asp:ListItem>
+                                        <asp:ListItem>Cipher</asp:ListItem>
+                                        <asp:ListItem>Parent</asp:ListItem>
+                                        <asp:ListItem>Student</asp:ListItem></asp:DropDownList></asp:Label><br />
+                <asp:Label ID="lblStaffType" runat="server" Text="Staff Type: " Visible="false" CssClass="labels"><asp:DropDownList ID="ddlStaffType" runat="server" Visible="false" CssClass="dropdowns">
+                    <asp:ListItem>Instructor</asp:ListItem>
+                    <asp:ListItem>Intern</asp:ListItem>
+                    </asp:DropDownList></asp:Label>
+                <asp:Label ID="lblSpecialty" CssClass="labels" runat="server" Text="Specialty: " Visible="false"><asp:TextBox ID="txtSpecialty" runat="server" Visible="false" CssClass="textbox"></asp:TextBox></asp:Label><asp:Label ID="lblHireDate" CssClass="labels" runat="server" Text="Hire Date: " Visible="false"><asp:TextBox ID="txtHireDate" runat="server" Visible="false" CssClass="textbox"></asp:TextBox></asp:Label><asp:Label ID="lblManagerEmail" CssClass="labels" runat="server" Text="Supervisor's Email: " Visible="false"><asp:TextBox ID="txtManagerEmail" runat="server" Visible="false" CssClass="textbox"></asp:TextBox></asp:Label><asp:Label ID="lblAdminTitle" CssClass="labels" runat="server" Text="Title: " Visible="false"><asp:TextBox ID="txtAdminTitle" runat="server" Visible="false" CssClass="textbox"></asp:TextBox></asp:Label><br />
+                        <asp:Label ID="lblRelation" runat="server" Text="Relationship to Student: " CssClass="labels" Visible="false"><asp:TextBox ID="txtRelation" runat="server" CssClass="textbox" Visible="false"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblfName" runat="server" Text="First Name: " CssClass="labels"><asp:TextBox ID="txtfName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lbllName" runat="server" Text="Last Name: " CssClass="labels"><asp:TextBox ID="txtlName" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblEmail" runat="server" Text="E-mail Address: " CssClass="labels"><asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
@@ -29,32 +42,27 @@
       
                         <asp:Label ID="lblHome" runat="server" Text="Home Phone #: " CssClass="labels"><asp:TextBox ID="txtHome" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
                         <asp:Label ID="lblCell" runat="server" Text="Cell Phone #: " CssClass="labels"><asp:TextBox ID="txtCell" runat="server" CssClass="textbox"></asp:TextBox></asp:Label><br />
+                <asp:Label ID="lblShirtSize" runat="server" Text="Shirt Size"></asp:Label>
+                            <asp:DropDownList ID="ddlShirtSize" runat="server">
+                                <asp:ListItem Text ="XS">XS</asp:ListItem>
+                                <asp:ListItem Text ="S">S</asp:ListItem>
+                                <asp:ListItem Text ="M">M</asp:ListItem>
+                                <asp:ListItem Text ="L">L</asp:ListItem>
+                                <asp:ListItem Text ="XL">XL</asp:ListItem>
+                                <asp:ListItem Text ="XXL">XXL</asp:ListItem>
+                            </asp:DropDownList>
                 <asp:Label ID="lblRace" runat="server" Text="Race: " CssClass="labels"></asp:Label><br />
-                        <asp:RadioButton ID="rdoAmIndian" runat="server" Text="American India or Alaskan Native" GroupName="rdoNationality" cssClass="radioButtons"/><br />
-                        <asp:RadioButton ID="rdoAsian" runat="server" Text="Asian or Pacific Islander" GroupName="rdoNationality" cssClass="radioButtons"/><br />
-                        <asp:RadioButton ID="rdoBlack" runat="server" Text="Black or African American" GroupName="rdoNationality" cssClass="radioButtons"/><br />
-                        <asp:RadioButton ID="rdoLatino" runat="server" Text="Latino/Latina" GroupName="rdoNationality" cssClass="radioButtons"/><br />
-                        <asp:RadioButton ID="rdoWhite" runat="server" Text="White" GroupName="rdoNationality" cssClass="radioButtons"/><br />
-                        <asp:RadioButton ID="rdoOther" runat="server" Text="Other" GroupName="rdoNationality" cssClass="radioButtons"/><asp:TextBox ID="txtOther" runat="server" CssClass="rdoTextBox"></asp:TextBox><br />
-                <br />
-                <br />
-                <asp:Label ID="lblUserType" runat="server" Text="Select Member Type: ">
-                    <asp:DropDownList ID="ddlUserType" runat="server" CssClass="dropdowns">
-                                <asp:ListItem>Administrator</asp:ListItem>
-                                <asp:ListItem>Instrustor/Intern</asp:ListItem>
-                                <asp:ListItem>Cipher</asp:ListItem>
-                                <asp:ListItem>Parent</asp:ListItem>
-                                <asp:ListItem>Student</asp:ListItem></asp:DropDownList></asp:Label><br />
-                <br />
+                        <asp:CheckBoxList ID="cblRace" runat="server">   
+                        <asp:ListItem  runat="server" Value="American India or Alaskan Native" cssClass="radioButtons"/>
+                        <asp:ListItem  runat="server" Value="Asian or Pacific Islander" cssClass="radioButtons"/>
+                        <asp:ListItem  runat="server" Value="Black or African American" cssClass="radioButtons"/>
+                        <asp:ListItem  runat="server" Value="Latino/Latina" cssClass="radioButtons"/>
+                        <asp:ListItem  runat="server" Value="White" cssClass="radioButtons"/>
+                        <asp:ListItem  runat="server" Value="Other" cssClass="radioButtons"/>
+                    </asp:CheckBoxList>
+                <br />           
                 <asp:Button ID="btnSignUpAllInfo" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" CssClass="buttons" /><br /> 
-                 </div>
-
-
-                
-            
-
-          
-
+                </div>
         </div>
     </form>
 

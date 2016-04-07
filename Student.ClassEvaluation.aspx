@@ -213,12 +213,11 @@
                     <asp:TableCell ID="TableCell225" runat="server"><input type="radio" name="q10row5" value="2"/></asp:TableCell>
                     <asp:TableCell ID="TableCell226" runat="server"><input type="radio" name="q10row5" value="3"/></asp:TableCell>
                     <asp:TableCell ID="TableCell227" runat="server"><input type="radio" name="q10row5" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell228" runat="server"><input type="radio" name="q10row5" value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell228" runat="server"><input type="radio" name="q10row5
+                        " value="5"/></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
 
-            <br />
-            <br />
 
             <b><asp:Label ID="lblQuestion8" runat="server" Text="8. I am sure that I will...  "></asp:Label></b>
             <asp:Table ID="Table3" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
@@ -376,8 +375,8 @@
         <b><asp:Label ID="lblQuestion4t" runat="server" Text="4. Is there anything else you would like to comment on?"></asp:Label></b><br />
         <asp:TextBox ID="txtQuestion4t" runat="server" Height="75px" Width="500px" TextMode="MultiLine"></asp:TextBox><br />
         <br />
-        <b><asp:Label ID="lblQuestion5t" runat="server" Text="5. Is this class taught by an additional teacher?"></asp:Label></b>
-        <asp:Label ID="radioYes">Yes<asp:RadioButton ID="rdoYes" runat="server" GroupName="q5t" /></asp:Label><asp:RadioButton ID="rdoNo" runat="server" Text="No" GroupName="q5t" />
+        <b><asp:Label ID="lblQuestion5t" runat="server" Text="5. Is this class taught by an additional teacher?"></asp:Label></b><br />
+        <asp:RadioButton ID="rdoYes" runat="server" Text="Yes" GroupName="q5t" /><asp:RadioButton ID="rdoNo" runat="server" Text="No" GroupName="q5t" />
         <br />
         <br />
         <b><u><asp:Label ID="lblSelfEval" runat="server" Text="Self Evaluation"></asp:Label></u></b><br />

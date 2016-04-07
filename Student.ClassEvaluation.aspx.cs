@@ -12,10 +12,10 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["EvaluateeID"] = "testProf@WBL.org";
+        Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
         Session["EvalID"] = "2";
-        Session["RespondentID"] = "testStud@WBL.org";
-        txtQuestion1.Text = "Student Test";
+        Session["RespondentID"] = Session["UserID"].ToString();
+        txtQuestion1.Text = Session["UserID"].ToString(); 
     }
 
     /*
@@ -49,7 +49,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         {
             result.Add(rdoFriend.Text);
         }
-        else if (rdoParent.Checked) 
+        else if (rdoParent.Checked)
         {
             result.Add(rdoParent.Text);
         }
@@ -57,7 +57,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         {
             result.Add(rdoTeacher.Text);
         }
-        else if (rdoNotSure.Checked) 
+        else if (rdoNotSure.Checked)
         {
             result.Add(rdoNotSure.Text);
         }
@@ -137,17 +137,17 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         {
             result.Add(rdoSelf1c.Text);
         }
-        
+
         if (rdoSelf2a.Checked)
         {
             result.Add(rdoSelf2a.Text);
         }
-        else if(rdoSelf2b.Checked)
+        else if (rdoSelf2b.Checked)
         {
             result.Add(rdoSelf2b.Text);
         }
-   
-;
+
+        ;
 
 
 
@@ -157,13 +157,13 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     protected ArrayList GatherQuestions()
     {
         ArrayList result = new ArrayList();
-        int count = 0;
+        //int count = 0;
         try
         {
             SqlConnection sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LULU; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -196,7 +196,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
             SqlCommand insert = new SqlCommand();
             DateTime date = DateTime.Now;
 
-            sc.ConnectionString = @"Server = LULU; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             insert.Connection = sc;
@@ -252,4 +252,3 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     }
 
 }
-

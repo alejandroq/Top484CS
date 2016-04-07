@@ -11,6 +11,9 @@ using System.Web.UI.WebControls;
 
 public partial class ViewCalendar : System.Web.UI.Page
 {
+
+    //TODO: add in email notifications for upcoming events or anything that has been updated that week
+    // Weekly email that says what has changed
     protected void Page_Load(object sender, EventArgs e)
     {
 

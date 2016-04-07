@@ -12,8 +12,8 @@ public partial class SendEmail : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string userID = Session["userID"].ToString();
-            txtRecipient.Text = userID;
+            string email = Session["emailAddress"].ToString();
+            txtRecipient.Text = email;
         }
     }
     protected void btnSend_Click(object sender, EventArgs e)

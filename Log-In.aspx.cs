@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Net.Mail; // for e-mail activation
 using System.Data;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 public partial class Log_In : System.Web.UI.Page
 {
@@ -20,8 +21,8 @@ public partial class Log_In : System.Web.UI.Page
     #region Authenticate Login
     protected void Login1_Authenticate(object sender, EventArgs e)
     {
-        string user = inputEmail.Text;
-        string password = inputPassword.Text;
+        String user = inputEmail.Text;
+        String password = inputPassword.Text;
         bool verify = false;
         try
         {
@@ -77,8 +78,11 @@ public partial class Log_In : System.Web.UI.Page
                         if (permission == "2")
                         {
                             // parent permission
+                          //  Debug.WriteLine(user);  
+                            Session["UserID"] = inputEmail.Text;
+                            Debug.WriteLine(Session["UserID"].ToString());
                             Response.Redirect("Wall.aspx");
-                            Session["UserID"] = user;
+                            
                         }
                         if (permission == "1")
                         {

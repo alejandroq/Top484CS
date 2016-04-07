@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -75,7 +76,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
             SqlConnection sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -288,7 +289,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
             SqlConnection sc = new SqlConnection();
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -309,6 +310,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
     }
 
     #endregion
+
     #region Event Handler for "Deny" button
     protected void btnDeny_Click(object sender, EventArgs e)
     {
@@ -331,7 +333,7 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         client.Host = "smtp.gmail.com";
         client.Port = 587;
 
-        string userActivation = "http://localhost:55693/Top484CS-master/UserActivation.aspx?email=" + email; // TODO: change this to WBL admin email
+        string userActivation = "http://localhost:52899/Top484CS-master/UserActivation.aspx?EmailAddress=" + email; // TODO: change this to WBL admin email
 
         message.From = new MailAddress("top484.wordsbeatslifeproject@gmail.com"); // where activation email is being sent FROM
         message.To.Add(email); // where activation email is sent to user-supplied email address.

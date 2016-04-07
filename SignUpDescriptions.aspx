@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SignUpDescriptions.aspx.cs" Inherits="SignUpDescriptions" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SignUpDescriptions.aspx.cs" Inherits="SignUpDescriptions" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
         
 <meta charset="utf-8">
     <meta name="description" content="Free Web tutorials">
@@ -32,13 +32,9 @@
 
 
       <style type="text/css">
-
-
         #descriptions {
             padding-top: 3%;
         }
-
-
         .descriptionTop
         {
             border-top-left-radius: 20px;
@@ -52,7 +48,6 @@
         .btns {
             width: 100%;
             height: 10%;
-
         }
          #studentDescriptionList, #parentDescriptionList, #cipherDescriptionList {
             background: lightgreen;
@@ -66,22 +61,20 @@
             width: 25%;
             float: left;
             margin-left: 7%;
-            height: 500px;
+            height: 75%;
         }
-
            #parent {
             width: 25%;
             float: left;
             margin-left: 5%;
-            height: 500px;
+            height: 75%;
             display: inline;
         }
-
          #cipher {
             width: 25%;
             float: right;
             margin-right: 7%;
-            height: 500px;
+            height: 75%;
             display: inline;
         }
        
@@ -98,7 +91,7 @@
 <div class="container">
 <div class="header"> 
     <div class="row">
-      <div class="col-sm-12"> <img src="images/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ"></div>
+      <div class="col-sm-12"> <img src="img/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ"></div>
       
       
     </div> 
@@ -115,15 +108,15 @@
         <div id="student">
             <div class="descriptionTop">
             <h2>Student</h2>
-        <p> Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales. Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales.</p>
-        </div>
+            <p>Our Master Arts Instructors guide Academy apprentice students as a learning community working towards realizing success in our five foundational outcomes: Skill-Set Mastery, Employability, the Pursuit of a Post-Secondary Education, Community, and Self Mastery. </p>
+                        </div>
             <asp:Button ID="btnStudent" runat="server" Text="Student" CssClass="btns" OnClick="btnStudent_Click" />
         <div id="studentDescriptionList">
             <asp:BulletedList ID="bLStudentDesc" runat="server">
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
+            <asp:ListItem>Enroll in classes at The Academy</asp:ListItem>
+            <asp:ListItem>Win bucks that are used to purchase supplies and materials!</asp:ListItem>
+            <asp:ListItem>Master the arts!</asp:ListItem>
+            <asp:ListItem>Access to opprotunities in and around the DC area</asp:ListItem>
         </asp:BulletedList>
             </div>
             </div>
@@ -131,15 +124,15 @@
         <div id="parent">
             <div class="descriptionTop">
             <h2>Parent</h2>
-        <p> Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales. Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales.</p>
+        <p>Do you have a student in the WBL Academy? Would you like to follow your student's progress? Sign up for your own account and have access to your student's evaluations, content, and the community wall. Follow your child's development and share their work as they develop.</p>
         </div>
             <asp:Button ID="btnParent" runat="server" Text="Parent" CssClass="btns" OnClick="btnParent_Click" />
         <div id="parentDescriptionList">
             <asp:BulletedList ID="bLParentDescription" runat="server">
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-                <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
+            <asp:ListItem>Membership Fee: none</asp:ListItem>
+            <asp:ListItem>Acess all student content</asp:ListItem>
+                <asp:ListItem>Must have a student registered in the Academy</asp:ListItem>
+            <asp:ListItem>Ability to view your student's progress</asp:ListItem>
         </asp:BulletedList>
             </div>
             </div>
@@ -147,15 +140,15 @@
         <div id="cipher">
             <div class="descriptionTop">
             <h2>Cipher</h2>
-        <p> Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales. Vestibulum gravida metus at ipsum feugiat, a dignissim nunc aliquam. Duis sit amet ex non diam vulputate sodales.</p>
+        <p>The Cipher is a sacred circle of interconnectedness whose members are artists, activists, educators, practitioners and scholars. We publish peer-reviewed research and promising practices to make our work as a field more impactful, sustainable and measurable.</p>
         </div>
                 <asp:Button ID="btnCipher" runat="server" Text="Cipher" CssClass="btns" OnClick="btnCipher_Click"/>
         <div id="cipherDescriptionList">
             <asp:BulletedList ID="bLCipherDescList" runat="server">
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-                <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
-            <asp:ListItem>Lorem ipsum dolor sit amet</asp:ListItem>
+            <asp:ListItem>Membership Fee: $75 paid annually</asp:ListItem>
+            <asp:ListItem>Access to all student content</asp:ListItem>
+                <asp:ListItem>FREE WBL Merchandise and discounts</asp:ListItem>
+            <asp:ListItem>10% off any workshops or services purchased through WBL</asp:ListItem>
         </asp:BulletedList>
             </div>
             </div>
@@ -169,7 +162,7 @@
 
 <div class="footer"><!--starting tag for footer-->
     <div class="row">
-      <div class="col-sm-1"> <img src="images/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
+      <div class="col-sm-1"> <img src="img/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
       </div>
       <div class="col-sm-11">
       </div>

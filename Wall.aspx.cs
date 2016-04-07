@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class Wall : System.Web.UI.Page
 {
+    // TODO: add a search feature to the wall
+    // TODO: embed Vimeo, add a link button to upload content
     protected void Page_Load(object sender, EventArgs e)
     {
         int userType = 0;

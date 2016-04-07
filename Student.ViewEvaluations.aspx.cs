@@ -26,7 +26,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                 sc.Open();
 
                 insert.Connection = sc;
-                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = '3'"; // +Session["EvalResponseID"].ToString();
+                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = '3'"; // +Session["EvalResponseID"].ToString(); PASS IN EVAL ID FROM EVAL HOMEPAGE
    
                 
 
@@ -38,7 +38,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                 {
 
 
-                    txtQuestion1.Text = "studentName";
+                    txtQuestion1.Text = Session["UserID"].ToString();
                                      
                         
                    

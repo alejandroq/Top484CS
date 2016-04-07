@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 
 public partial class Student_ClassSchedule : System.Web.UI.Page
 {
+    //TODO: track bucks thru attendance 
+    // 
     protected void Page_Load(object sender, EventArgs e)
     {
         GenerateTable();
@@ -128,11 +130,11 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseLocation";
         }
-        //string studentID = Session["userID"].ToString();
+        string studentID = Session["userID"].ToString();
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select Course.CourseID, CourseName, CourseDate, CourseLocation, CourseTime, EmailAddress from dbo.Course left join dbo.Attendance ON EmailAddress='testStud@WBL.org' WHERE Course.CourseID=Attendance.CourseID " + sortBy;
+        string cmdText = "select Course.CourseID, CourseName, CourseDate, CourseLocation, CourseTime, EmailAddress from dbo.Course left join dbo.Attendance ON EmailAddress='" + studentID + "' WHERE Course.CourseID=Attendance.CourseID " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results

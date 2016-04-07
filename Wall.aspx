@@ -74,7 +74,7 @@
      <asp:Panel ID="cipherPanel" runat="server" >
          <div id="cipherPanel1" runat="server">
       <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
-      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
+      <li><a href="Cipher.MakeADonation.aspx">Make a Donation</a></li>
       <li><a href="ViewCalendar.aspx">View Calendar</a></li>
          </div>
     </asp:Panel>
@@ -93,47 +93,47 @@
     <!-- COMMUNITY WALL -->
 	    	<h3 class="ten columns">Community Wall</h3>
 	    	<div id="wall" class="ten columns">
-	    		<img src="upload/BBoyBridge.jpg"
+	    		<img src="img/BBoyBridge.jpg"
 		            alt="WBL BBoy"
 		            title="WBL BBoy"
 		            data-desc="WBL BBoy 101"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        />
-		        <img src="upload/chess.jpg"
+		        <img src="img/chess.jpg"
 		            alt="Andrew W. Chess"
 		            title="Chess by Andrew W."
 		            data-desc="12 year old chess player from DC"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        /> 
-		        <img src="upload/simon.jpg"
+		        <img src="img/simon.jpg"
 		            alt="Grafitti"
 		            title="Grafitti Story"
 		            data-desc="Grafitti description"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        /> 
-		        <img src="upload/photog.jpg"
+		        <img src="img/GB.jpg"
 		            alt="Gabriel Benn Photography"
 		            title="Gabriel Benn Photography"
 		            data-desc="Photography 101"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        />
-		        <img src="upload/DJpic.jpg"
+		        <img src="img/DJpic.jpg"
 		            alt="DJ"
 		            title="DJ by Javier G."
 		            data-desc="DJ 101"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        /> 
-		        <img src="upload/beat_production.jpg"
+		        <img src="img/beat_production.jpg"
 		            alt="Beat Production"
 		            title="Beat Production"
 		            data-desc="some description"
 		            data-category="image category here"
-		            data-fullsrc="upload/img.jpg"
+		            data-fullsrc="img/img.jpg"
 		        />  
 
     		</div>
@@ -145,16 +145,7 @@
 
     
 
-  <div class="col-sm-8">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
-          </div>
-      </div>
+  
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="bar" Runat="Server">

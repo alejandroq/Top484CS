@@ -15,8 +15,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
     {
 
         // comment session variable back in after testing
-        string studentID = "testStud@WBL.org";
-        Session["userID"] = studentID; // Session["userID"].ToString();
+        string studentID = Session["UserID"].ToString();
         // need to pass in the email address of whichever student is logged in to see their own evaluations
         GenerateTable(studentID);
     

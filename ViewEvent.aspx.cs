@@ -124,8 +124,8 @@ public partial class ViewEvent : System.Web.UI.Page
                         txtDate.Text = dt.Rows[0][4].ToString();
                         txtLocation.Text = dt.Rows[0][5].ToString();
                         txtPCName.Text = dt.Rows[0][6].ToString();
-                        txtPCPhone.Text = dt.Rows[0][7].ToString();
-                        txtPCEmail.Text = dt.Rows[0][8].ToString();
+                        txtPCPhone.Text = dt.Rows[0][8].ToString();
+                        txtPCEmail.Text = dt.Rows[0][7].ToString();
                     }
 
                 }
