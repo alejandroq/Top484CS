@@ -111,7 +111,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select EvalResponseID, RespondentEmail, EvaluateeEmail from EvalResponse where EvaluateeEmail = '" + Session["userID"] + "' and NOT RespondentEmail = '" + Session["userID"].ToString() + "'";
+        string cmdText = "select EvalResponseID, RespondentEmail, EvaluateeEmail from EvalResponse where EvaluateeEmail = '" + Session["UserID"] + "' and NOT RespondentEmail = '" + Session["userID"].ToString() + "'";
         // ^^^ TODO: change this query to accept the session variable of the student email that is passed in (replace testStud@WBL.org)
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
@@ -127,7 +127,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select dbo.Course.CourseID, CourseName, EmailAddress from dbo.Course inner join dbo.CourseStaff ON dbo.Course.CourseID=dbo.CourseStaff.CourseID";
+        string cmdText = "select dbo.Course.CourseID, CourseName, EmailAddress from dbo.Course inner join dbo.SectionStaff ON dbo.Course.CourseID=dbo.SectionStaff.CourseID";
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
