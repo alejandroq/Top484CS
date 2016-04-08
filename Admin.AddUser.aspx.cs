@@ -14,7 +14,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
 {
     //TODO: When Admin creates a user, an email should be sent to them prompting them to change their password
     // ^^ need this to be specific to the type of user
+    // ^^^ whenever this happens change @ActivatedBool paramter back to 0
     // Once this email strategy is created, take out the set Activated = 1 query
+    // TODO: figure out why Relationship isnt entering to DB when adding parents
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -89,7 +91,7 @@ public partial class Admin_AddUser : System.Web.UI.Page
             {
                 permission = 5;
             }
-            if (ddlUserType.Text == "Instrustor/Intern")
+            if (ddlUserType.Text == "Staff")
             {
                 permission = 4;
             }
@@ -109,6 +111,7 @@ public partial class Admin_AddUser : System.Web.UI.Page
 
             cmd.Parameters.AddWithValue("@PasswordHash", passHash);
             cmd.Parameters.AddWithValue("@ShirtSize", ddlShirtSize.Text); //Need Shirt Size Text Box
+            Debug.WriteLine(permission);
             cmd.Parameters.AddWithValue("@UserPermission", permission);
             cmd.Parameters.AddWithValue("@LastLogin", System.DBNull.Value);
 
@@ -121,7 +124,7 @@ public partial class Admin_AddUser : System.Web.UI.Page
             {
                 races += item + ", ";
             }
-            Debug.WriteLine(races);
+            
             if (races.Trim().Equals(""))
             { cmd.Parameters.AddWithValue("@Race", System.DBNull.Value); }
             else
@@ -129,7 +132,7 @@ public partial class Admin_AddUser : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@CellPhone", txtCell.Text);
             DateTime today = DateTime.Now;
             cmd.Parameters.AddWithValue("@JoinDate", today);
-            cmd.Parameters.AddWithValue("@Activated", 0);
+            cmd.Parameters.AddWithValue("@Activated", 1);
 
             cmd.ExecuteNonQuery();
 
@@ -167,10 +170,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -207,10 +209,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -246,10 +247,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -269,7 +269,6 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
 
-
             sc.Close();
         }
         catch (SqlException SQLe)
@@ -282,10 +281,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -308,7 +306,6 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
 
-
             sc.Close();
         }
         catch (SqlException SQLe)
@@ -321,10 +318,9 @@ public partial class Admin_AddUser : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
