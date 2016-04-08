@@ -3,11 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
     <form id="form1" runat="server">
+    <div id ="divClassEval" runat ="server">
     <div>
         <b><u><asp:Label ID="lblHeader" runat="server" Text="WBL Class Evaluation"></asp:Label></u></b><br />
         <br />
 
-        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. What is your Name? "></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
+        <b><asp:Label ID="lblQuestion1" runat="server" Text="1. What is your Name? " ></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
         <br />
 
         <b><asp:Label ID="lblQuestion2" runat="server" Text="2. How did you hear about this class? "></asp:Label></b><br />
@@ -56,7 +57,7 @@
                 </asp:TableRow>
                 <asp:TableRow ID="TableRow3" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell13" runat="server">Try New Things</asp:TableCell>
-                    <asp:TableCell ID="TableCell14" runat="server"><input type="radio" name="q6row1" value="1"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell14" runat="server"><input type="radio" name="q6row1" value="1" /></asp:TableCell>
                     <asp:TableCell ID="TableCell15" runat="server"><input type="radio" name="q6row1" value="2"/></asp:TableCell>
                     <asp:TableCell ID="TableCell16" runat="server"><input type="radio" name="q6row1" value="3"/></asp:TableCell>
                     <asp:TableCell ID="TableCell17" runat="server"><input type="radio" name="q6row1" value="4"/></asp:TableCell>
@@ -213,8 +214,8 @@
                     <asp:TableCell ID="TableCell225" runat="server"><input type="radio" name="q10row5" value="2"/></asp:TableCell>
                     <asp:TableCell ID="TableCell226" runat="server"><input type="radio" name="q10row5" value="3"/></asp:TableCell>
                     <asp:TableCell ID="TableCell227" runat="server"><input type="radio" name="q10row5" value="4"/></asp:TableCell>
-                    <asp:TableCell ID="TableCell228" runat="server"><input type="radio" name="q10row5
-                        " value="5"/></asp:TableCell>
+                    <asp:TableCell ID="TableCell228" runat="server"><input type="radio" name="q10row5"  value="5"/></asp:TableCell>
+                        
                 </asp:TableRow>
             </asp:Table>
 
@@ -264,6 +265,10 @@
             </asp:Table>
         <br />
         <br />
+        </div>
+        
+
+        <div id ="divInstructorEval" runat ="server" >
         <b><u><asp:Label ID="lblTeacher" runat="server" Text="Teacher Evaluation"></asp:Label></u></b><br />
         <br />
         <b><asp:Label ID="lblQuestion1t" runat="server" Text="1. What is the teacher's name?  "></asp:Label></b><asp:TextBox ID="txtQuestion9a" runat="server"></asp:TextBox><br />
@@ -390,6 +395,8 @@
         <asp:RadioButton ID="rdoSelf2a" runat="server" Text="Yes" GroupName="selfEval2"/>
         <asp:RadioButton ID="rdoSelf2b" runat="server" Text="No" GroupName="selfEval2"/><br />
         <asp:Button ID ="btnSubmit" runat ="server" Text ="Submit" OnClick ="btnSubmit_Click" />
+        <asp:Button ID ="btnSubmit2" runat ="server" Text ="Submit Second Evaluation" OnClick ="btnSubmit2_Click" Visible ="false" />
+        </div>
     </form>
 
 </asp:Content>
