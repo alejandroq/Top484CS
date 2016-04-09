@@ -21,6 +21,10 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     //TODO: add class date to command arguments for shopping cart
     // Need to be able to hover over class descriptions and read before enrolling
 
+    // Enrollment table
+    // do we need capacity and seats left for every record? me thinks they should be in course and not enrollment
+    // do we need teacher email in there? me thinks this 
+    // 
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,11 +59,17 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                 courseElement.Text = "Hip-Hop Element";
                 row.Cells.Add(courseElement);
             }
-            if (dt.Columns[j].ColumnName == "LessonPlan")
+            if (dt.Columns[j].ColumnName == "Location")
             {
-                TableHeaderCell lessonPlan = new TableHeaderCell();
-                lessonPlan.Text = "Class Description";
-                row.Cells.Add(lessonPlan);
+                TableHeaderCell courseLoc = new TableHeaderCell();
+                courseLoc.Text = "Location";
+                row.Cells.Add(courseLoc);
+            }
+            if (dt.Columns[j].ColumnName == "Semester")
+            {
+                TableHeaderCell courseLocation = new TableHeaderCell();
+                courseLocation.Text = "Semester";
+                row.Cells.Add(courseLocation);
             }
             if (dt.Columns[j].ColumnName == "Capacity")
             {
@@ -67,19 +77,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                 capacity.Text = "Capacity";
                 row.Cells.Add(capacity);
             }
-            if (dt.Columns[j].ColumnName == "CourseDate")
+            if (dt.Columns[j].ColumnName == "LessonPlan")
             {
-                TableHeaderCell courseDate = new TableHeaderCell();
-                courseDate.Text = "Start Date";
-                row.Cells.Add(courseDate);
+                TableHeaderCell lessonPlan = new TableHeaderCell();
+                lessonPlan.Text = "Class Description";
+                row.Cells.Add(lessonPlan);
             }
-            if (dt.Columns[j].ColumnName == "CourseLocation")
-            {
-                TableHeaderCell courseLocation = new TableHeaderCell();
-                courseLocation.Text = "Class Location";
-                row.Cells.Add(courseLocation);
-            }
-
         }
 
         // any non-DB column NAMES here
@@ -97,7 +100,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             // add the column for each row
             for (int j = 0; j < dt.Columns.Count; j++)
             {
-                //System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
+                System.Diagnostics.Debug.WriteLine(dt.Columns[j].ColumnName);
                 if (dt.Columns[j].ColumnName == "CourseName")
                 {
                     TableCell nameCell = new TableCell();
@@ -111,6 +114,24 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                     elementCell.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(elementCell);
                 }
+                if (dt.Columns[j].ColumnName == "Location")
+                {
+                    TableCell courseLoc = new TableCell();
+                    courseLoc.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(courseLoc);
+                }
+                if (dt.Columns[j].ColumnName == "Semester")
+                {
+                    TableCell semester = new TableCell();
+                    semester.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(semester);
+                }
+                if (dt.Columns[j].ColumnName == "Capacity")
+                {
+                    TableCell capacity = new TableCell();
+                    capacity.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(capacity);
+                }
                 if (dt.Columns[j].ColumnName == "LessonPlan")
                 {
                     TableCell lessonCell = new TableCell();
@@ -122,31 +143,6 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                     //lessonCell.Controls.Add(link);
                     row.Cells.Add(lessonCell);
                 }
-                if (dt.Columns[j].ColumnName == "Capacity")
-                {
-                    TableCell capacity = new TableCell();
-                    capacity.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(capacity);
-                }
-                if (dt.Columns[j].ColumnName == "CourseDate")
-                {
-                    TableCell startDate = new TableCell();
-                    startDate.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(startDate);
-                }
-                if (dt.Columns[j].ColumnName == "CourseTime")
-                {
-                    TableCell courseTime = new TableCell();
-                    courseTime.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(courseTime);
-                }
-                if (dt.Columns[j].ColumnName == "CourseLocation")
-                {
-                    TableCell courseLoc = new TableCell();
-                    courseLoc.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(courseLoc);
-                }
-                
             }
             // Any non-DB column VALUES here
             TableCell enroll = new TableCell();
@@ -154,7 +150,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             shoppingCart.Text = "Add to Shopping Cart";
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
-            shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString() + "," + dt.Rows[i][5].ToString();
+            shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString() + "," + dt.Rows[i][2].ToString();
             System.Diagnostics.Debug.WriteLine(shoppingCart.CommandArgument);
             shoppingCart.Click += shoppingCart_Click;
             
@@ -171,25 +167,25 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     void shoppingCart_Click(object sender, EventArgs e)
     {
         string courseID;
+        string sectionID;
         string courseName;
-        string courseDate;
         string studentID = Session["UserID"].ToString();
         LinkButton btn = (LinkButton)(sender);
         string arg = btn.CommandArgument;
         string[] split = new string[3];
         split = arg.Split(',');
         courseID = split[0];
-        courseName = split[1];
-        courseDate = split[2];
+        sectionID = split[1];
+        courseName = split[2];
+        
         
         Session["courseCount"] = ((int?)Session["courseCount"] ?? 0) + 1;
         System.Diagnostics.Debug.WriteLine(Session["courseCount"].ToString());
-        ViewState["enrollQuery"] += "insert into dbo.Attendance values ('" + studentID + "','" + courseID + "','" + courseDate + "', null);"; //ADD CLASS DATE
-        
+        ViewState["enrollQuery"] += "insert into dbo.Enrollment values ('" + studentID + "','" + sectionID + "','" + courseID + "', 0);"; 
+        // TODO: figure out how to insert into enrollment table
         System.Diagnostics.Debug.WriteLine(ViewState["enrollQuery"].ToString());
         lbShoppingCart.Items.Add(courseName);
         lbShoppingCart.Rows = lbShoppingCart.Items.Count;
-        
     }
 
 
@@ -244,7 +240,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "Select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from Course WHERE Upper(CourseName) LIKE Upper(@keyword) OR Upper(CourseElement) LIKE (@keyword) OR Upper(CourseLocation) LIKE (@keyword);";
+        string cmdText = "Select CourseID, CourseName, CourseElement, LessonPlan from Course WHERE Upper(CourseName) LIKE Upper(@keyword) OR Upper(CourseElement) LIKE (@keyword);";
         System.Diagnostics.Debug.WriteLine(cmdText);
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.Parameters.Add("@keyword", SqlDbType.VarChar).Value = "%" + keyword + "%";
@@ -262,9 +258,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date (Soonest)")
@@ -273,12 +269,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'Knowledge of Self' " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID where Course.CourseElement = 'Knowledge of Self' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -294,9 +290,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -305,12 +301,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'Art' " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID where Course.CourseElement = 'Art' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -325,9 +321,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -336,12 +332,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'BBOY' " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID where Course.CourseElement = 'BBOY' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -356,9 +352,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -367,12 +363,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'MC' " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID where Course.CourseElement = 'MC' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -387,9 +383,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -398,12 +394,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course where CourseElement = 'DJ' " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID where Course.CourseElement = 'DJ' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -418,9 +414,9 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Instructor")
+        if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -429,12 +425,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select CourseID, CourseName, CourseElement, LessonPlan, Capacity, CourseDate, CourseLocation from dbo.Course " + sortBy;
+        string cmdText = "select Course.CourseID, Section.SectionID, CourseName, CourseElement, dbo.Section.Capacity, dbo.Section.Location, dbo.Section.Semester, CourseDescription, LessonPlan from dbo.Course INNER JOIN dbo.Section ON dbo.Course.CourseID=dbo.Section.CourseID " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -452,10 +448,12 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = ViewState["enrollQuery"].ToString();
+        System.Diagnostics.Debug.WriteLine(cmdText);
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         lbShoppingCart.Items.Clear();
         cmd.CommandText = "";
+        ViewState["enrollQuery"] = "";
         MessageBox.Show("Enrolled!");
     }
 

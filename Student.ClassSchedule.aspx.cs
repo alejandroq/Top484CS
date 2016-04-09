@@ -39,30 +39,31 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                 className.Text = "Class Name";
                 row.Cells.Add(className);
             }
-            if (dt.Columns[j].ColumnName == "CourseElement")
+            if (dt.Columns[j].ColumnName == "Semester")
             {
-                TableHeaderCell courseElement = new TableHeaderCell();
-                courseElement.Text = "Hip-Hop Element";
-                row.Cells.Add(courseElement);
+                TableHeaderCell semester = new TableHeaderCell();
+                semester.Text = "Semester";
+                row.Cells.Add(semester);
             }
-            if (dt.Columns[j].ColumnName == "CourseDate")
+            if (dt.Columns[j].ColumnName == "CourseTime")
             {
-                TableHeaderCell courseDate = new TableHeaderCell();
-                courseDate.Text = "Start Date";
-                row.Cells.Add(courseDate);
+                TableHeaderCell semester = new TableHeaderCell();
+                semester.Text = "Class Meeting Time";
+                row.Cells.Add(semester);
             }
-            if (dt.Columns[j].ColumnName == "CourseLocation")
+            if (dt.Columns[j].ColumnName == "Location")
             {
                 TableHeaderCell courseLocation = new TableHeaderCell();
                 courseLocation.Text = "Class Location";
                 row.Cells.Add(courseLocation);
             }
-            if (dt.Columns[j].ColumnName == "CourseTime")
+            if (dt.Columns[j].ColumnName == "EmailAddress")
             {
                 TableHeaderCell courseLocation = new TableHeaderCell();
-                courseLocation.Text = "Start Time";
+                courseLocation.Text = "Instructor Email";
                 row.Cells.Add(courseLocation);
             }
+            
         }
         // Add Title row with column headers to the table
         table.Rows.Add(row);
@@ -82,17 +83,11 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                     row.Cells.Add(nameCell);
 
                 }
-                if (dt.Columns[j].ColumnName == "CourseElement")
+                if (dt.Columns[j].ColumnName == "Semester")
                 {
-                    TableCell elementCell = new TableCell();
-                    elementCell.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(elementCell);
-                }
-                if (dt.Columns[j].ColumnName == "CourseDate")
-                {
-                    TableCell startDate = new TableCell();
-                    startDate.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(startDate);
+                    TableCell semester = new TableCell();
+                    semester.Text = dt.Rows[i][j].ToString();
+                    row.Cells.Add(semester);
                 }
                 if (dt.Columns[j].ColumnName == "CourseTime")
                 {
@@ -100,11 +95,21 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                     courseTime.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(courseTime);
                 }
-                if (dt.Columns[j].ColumnName == "CourseLocation")
+                if (dt.Columns[j].ColumnName == "Location")
                 {
                     TableCell courseLoc = new TableCell();
                     courseLoc.Text = dt.Rows[i][j].ToString();
                     row.Cells.Add(courseLoc);
+                }
+                if (dt.Columns[j].ColumnName == "EmailAddress")
+                {
+                        TableCell email = new TableCell();
+                        LinkButton link = new LinkButton();
+                        link.Text = dt.Rows[i][j].ToString();
+                        link.Click += email_Click; // assign event action, link_click method below
+                        link.CommandArgument = dt.Rows[i][j].ToString(); // Assign the e-mail address of this row to the arguments passed when the linkbutton is clicked
+                        email.Controls.Add(link);
+                        row.Cells.Add(email);
                 }
 
             }
@@ -115,6 +120,16 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
         }
     }
 
+    private void email_Click(object sender, EventArgs e)
+    {
+        //System.Diagnostics.Debug.WriteLine("send email clicked");
+        LinkButton btn = (LinkButton)(sender);
+        string teacherID = btn.CommandArgument;
+        Session["emailAddress"] = teacherID;
+        //System.Diagnostics.Debug.WriteLine(Session["emailAddress"].ToString());
+        Response.Redirect("SendEmail.aspx", false);
+    }
+
     private DataTable CreateDataTable()
     {
         string sortBy = "";
@@ -122,21 +137,27 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
         {
             sortBy = "ORDER BY CourseName";
         }
-        if (ddlSortBy.SelectedValue.ToString() == "Date (Soonest)")
+        if (ddlSortBy.SelectedValue.ToString() == "Day of the Week")
         {
-            sortBy = "ORDER BY CourseDate";
+            sortBy = "ORDER BY CourseTime";
         }
         if (ddlSortBy.SelectedValue.ToString() == "Location")
         {
-            sortBy = "ORDER BY CourseLocation";
+            sortBy = "ORDER BY Location";
         }
-        string studentID = Session["userID"].ToString();
+        if (ddlSortBy.SelectedValue.ToString() == "Semester")
+        {
+            sortBy = "ORDER BY Semester";
+        }
+        string studentID = Session["UserID"].ToString();
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select Course.CourseID, CourseName, CourseDate, CourseLocation, CourseTime, EmailAddress from dbo.Course left join dbo.Attendance ON EmailAddress='" + studentID + "' WHERE Course.CourseID=Attendance.CourseID " + sortBy;
+        string cmdText = "select dbo.Course.CourseName, (dbo.Enrollment.EmailAddress) AS StudentID, dbo.Enrollment.SectionID, dbo.Section.CourseID, dbo.Section.CourseTime, dbo.Section.Semester, dbo.Section.Location, dbo.SectionStaff.EmailAddress from dbo.Enrollment inner join dbo.Section ON dbo.Enrollment.SectionID=dbo.Section.SectionID inner join dbo.Course ON dbo.Course.CourseID = dbo.Section.CourseID inner join dbo.SectionStaff ON dbo.SectionStaff.SectionID=dbo.Enrollment.SectionID WHERE dbo.Enrollment.EmailAddress ='" + studentID + "' " + sortBy;
         SqlCommand cmd = new SqlCommand(cmdText, connection);
+        
         cmd.ExecuteNonQuery();
+        
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         adp.Fill(dt);
         return dt;
@@ -145,6 +166,7 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
     // ondayrender for each day (e.cell) as calendar is being constructed
     protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
     {
+        System.Diagnostics.Debug.WriteLine("Calendar Day: " + e.Day.Date.DayOfWeek.ToString());
         e.Cell.Attributes.Add("OnClick", e.SelectUrl);
         if (e.Day.IsToday)
         {
@@ -163,8 +185,15 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
+                string courseTime = dt.Rows[i][4].ToString();
+                System.Diagnostics.Debug.WriteLine(courseTime);
+                int index = courseTime.IndexOf(' ');
+                System.Diagnostics.Debug.WriteLine(index);
+                string dayOfWeek = courseTime.Substring(0, index);
+                System.Diagnostics.Debug.WriteLine(dayOfWeek);
+                string meetTime = courseTime.Substring(index + 1);
                 // If an EventDate from our datatable is equal to each day's date as its being rendered
-                if (Convert.ToDateTime(dt.Rows[i][2]).ToString("dd-MM-yyyy") == e.Day.Date.ToString("dd-MM-yyyy"))
+                if (e.Day.Date.DayOfWeek.ToString() == dayOfWeek)
                 {
                     // DateTime variable to recognize each day that has an event
                     DateTime thisDay = e.Day.Date;
@@ -184,13 +213,14 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                     b.Font.Size = 12;
                     b.Font.Bold = true;
                     b.ForeColor = System.Drawing.Color.MediumVioletRed;
-                    b.Text = dt.Rows[i][1].ToString();
+                    b.Text = dt.Rows[i][0].ToString() + " @ " + meetTime;
                     e.Cell.Controls.Add(b);
 
-                    Literal ltrl2 = new Literal();
-                    ltrl2.Text = "<BR/><a style='font-size:8' href='ViewEvent.aspx?EventDateTime=" + thisDay + "'>View Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
-                    // TODO: code the logic for editing the event from the page this links to
-                    e.Cell.Controls.Add(ltrl2);
+
+
+                    //Literal ltrl2 = new Literal();
+                    //ltrl2.Text = "<BR/><a style='font-size:8' href='Student.ClassSchedule.aspx'>View Class Details</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
+                    //e.Cell.Controls.Add(ltrl2);
                 }
 
             }

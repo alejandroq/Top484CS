@@ -10,8 +10,9 @@
             <asp:Button ID="btnHide" runat="server" Text="Class List View" OnClick="btnHide_Click" />
             <asp:DropDownList ID="ddlSortBy" runat="server" AutoPostBack="true">
                 <asp:ListItem>Name</asp:ListItem>
-                <asp:ListItem>Date (Soonest)</asp:ListItem>
+                <asp:ListItem></asp:ListItem>
                 <asp:ListItem>Location</asp:ListItem>
+                <asp:ListItem>Semester</asp:ListItem>
             </asp:DropDownList>
             <asp:Calendar ID="Calendar1" runat="server"
             ondayrender="Calendar1_DayRender" DayHeaderStyle-Font-Bold="true" Caption="Words Beats and Life Master Calendar" ShowGridLines="true"></asp:Calendar>
