@@ -12,6 +12,9 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        studentRegistrationForm.Style.Add("display", "none");
+
         if (Request.QueryString.Count > 0) // if there is a query string, meaning if there is a variable in the email= link (useractivation)
         {
             if (Request.QueryString.Keys[0] == "EmailAddress") // if the first value of the query string is email
@@ -24,8 +27,16 @@ public partial class _Default : System.Web.UI.Page
                 int no = cmd.ExecuteNonQuery();
                 if (no > 0) // if more than zero values executed and returned
                 {
-
-                    MessageBox.Show("Account activated successfully!");
+                    if (Request.QueryString["AccountType"].ToString() == "student")
+                    {
+                        MessageBox.Show("Your account has been activated! Please fill out the rest of your information to complete the registration process and enroll in classes");
+                        studentRegistrationForm.Style.Add("display", "inline");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Account activated successfully!");
+                        Response.Redirect("Log-In.aspx");
+                    }
                 }
                 else
                 {

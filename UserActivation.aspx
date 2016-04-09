@@ -68,7 +68,7 @@
 
 
 
-    <div id="studentRegistrationForm">
+    <div id="studentRegistrationForm" runat="server">
     
         <!-- Student additional information -->
             <div id="sAdInfoBlock" class="infoBlock"> 
@@ -121,7 +121,7 @@
             <div id="sEdInfoBlock" >
             <div id="sEducationInfo" runat="server">
 
-                    <h3>Ecuation Information</h3>
+                    <h3>Education Information</h3>
                     <asp:Label ID="lblEStatus" runat="server" Text="Student Status" CssClass="labels"></asp:Label>
                     <asp:RadioButton ID="rdoEStatusNo" runat="server" Text="Not in School" GroupName="educationStatus" CssClass="radioButtons"/><br />
                     <asp:RadioButton ID="rdoEStatusSchool" runat="server" Text="Currently attending school" GroupName="educationStatus" CssClass="radioButtons"/>

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 public partial class _Default : System.Web.UI.Page
 {
-    private SqlConnection sc;
+   
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -31,9 +31,6 @@ public partial class _Default : System.Web.UI.Page
     #region Sign Up New User
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
-        
-
-
         // General user database input statements
 
         string userType = Session["userType"].ToString();
@@ -77,10 +74,9 @@ public partial class _Default : System.Web.UI.Page
         
         try
         {
-            sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -174,10 +170,9 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -200,6 +195,7 @@ public partial class _Default : System.Web.UI.Page
             query.ExecuteNonQuery();
             sc.Close();
             MessageBox.Show("Your application has been submitted! You will receive an e-mail when your account is approved and ready for activation");
+            // send notification to admin here
             Response.Redirect("Wall.aspx");
 
         }
@@ -214,7 +210,7 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
             sc.ConnectionString = "Server=@LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";

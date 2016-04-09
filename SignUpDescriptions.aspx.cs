@@ -19,7 +19,7 @@ public partial class SignUpDescriptions : System.Web.UI.Page
     protected void btnStudent_Click(object sender, EventArgs e)
     {
         userType = "student";
-        permission = 0; //should be 3 changed for prototype
+        permission = 3; //should be 3 changed for prototype
         Session["userType"] = userType;
         Session["permission"] = permission;
         Response.Redirect("UserRegistration.aspx");

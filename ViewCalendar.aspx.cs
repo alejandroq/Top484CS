@@ -256,10 +256,6 @@ public partial class ViewCalendar : System.Web.UI.Page
             
         }
 
-        TableHeaderCell eEdit = new TableHeaderCell();
-        eEdit.Text = "Click to Edit";
-        row.Cells.Add(eEdit);
-
         table.Rows.Add(row);
 
         //Add each row in the DataTable
@@ -316,16 +312,7 @@ public partial class ViewCalendar : System.Web.UI.Page
                     row.Cells.Add(eContact);
                 }
             }
-            // Populate 1st non-DB column for linking cell to edit user page
-            TableCell editCell = new TableCell();
-            LinkButton editLink = new LinkButton();
-            editLink.Text = "Edit Event";
-            editLink.CommandArgument = dt2.Rows[i][6].ToString();
-            System.Diagnostics.Debug.WriteLine(dt2.Rows[i][6].ToString());
-            editLink.Click += editLink_Click;
-            editCell.Controls.Add(editLink);
-            row.Cells.Add(editCell);
-
+            
 
             // Add the TableRow to the Table
             table.Rows.Add(row);

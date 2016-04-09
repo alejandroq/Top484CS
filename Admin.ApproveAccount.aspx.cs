@@ -56,11 +56,12 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         cmd.ExecuteNonQuery();
         DateTime approvalDate = new DateTime();
         approvalDate = DateTime.Now;
-        cmdText = "update dbo.Applicant set DateApproved = '" + approvalDate + "'";
+        cmdText = "update dbo.Applicant set DateApproved = '" + approvalDate + "' where EmailAddress = '" + applicantID + "'";
         SqlCommand cmd2 = new SqlCommand(cmdText, connection);
         cmd2.ExecuteNonQuery();
         // need to code a SQL statement to get the profile type of the approved user
         // base the kind of email sent on this
+        ActivateAccount(Session["applicantID"].ToString());
         sendActivationEmail(Session["applicantID"].ToString());
         Response.Redirect("Admin.ManageAccounts.aspx");
     }
@@ -73,10 +74,9 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
 
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -121,10 +121,11 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
+            
             sc.Open();
 
             query.Connection = sc;
@@ -149,10 +150,9 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
             String[] student;
             student = GetStudentInfo(applicantID);
@@ -207,10 +207,9 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
 
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             VerifyStudent(student);
@@ -248,10 +247,9 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
         String info = "";
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = DESKTOP-QEKTMG0\LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -286,10 +284,9 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;
@@ -327,13 +324,42 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
 
     public void sendActivationEmail(string email)
     {
+        String accountType = "";
+        string applicantID = Session["applicantID"].ToString();
+        try
+        {
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
+            SqlCommand query = new SqlCommand();
+
+            sc.Open();
+
+            query.Connection = sc;
+            query.CommandText = "Select RequestedAccountType From Applicant Where EmailAddress = @EmailAddress";
+
+            query.Parameters.AddWithValue("@EmailAddress", applicantID);
+            Debug.WriteLine(query.CommandText);
+            Debug.WriteLine("Where @EmailAddress = " + applicantID);
+            SqlDataReader read = query.ExecuteReader();
+
+            while (read.Read())
+            {
+                accountType = read.GetString(0);
+
+            }
+            sc.Close();
+        }
+        catch (SqlException SQLe)
+        {
+            System.Diagnostics.Debug.Write(SQLe.ToString());
+        }
         // Setting up an e-mail message, establishing the credentials for the email address it is coming from and the email address it is going to
         MailMessage message = new MailMessage();
         SmtpClient client = new SmtpClient();
         client.Host = "smtp.gmail.com";
         client.Port = 587;
-
-        string userActivation = "http://localhost:52899/Top484CS-master/UserActivation.aspx?EmailAddress=" + email; // TODO: change this to WBL admin email
+        // LOCALHOST NUMBER SHOULD MATCH YOUR BROWSERS
+        // run any webpage and copy the number over 55866 to debug
+        string userActivation = "http://localhost:55866/Top484CS-master/UserActivation.aspx?EmailAddress=" + email + "&AccountType=" + accountType; // TODO: change this to WBL admin email
 
         message.From = new MailAddress("top484.wordsbeatslifeproject@gmail.com"); // where activation email is being sent FROM
         message.To.Add(email); // where activation email is sent to user-supplied email address.
