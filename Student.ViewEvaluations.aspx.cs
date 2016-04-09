@@ -16,6 +16,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            string id = Session["EvalResponseID"].ToString();
             try
             {
                 SqlConnection sc = new SqlConnection();
@@ -26,7 +27,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                 sc.Open();
 
                 insert.Connection = sc;
-                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = '3'"; // +Session["EvalResponseID"].ToString(); PASS IN EVAL ID FROM EVAL HOMEPAGE
+                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID ='" + Session["EvalResponseID"].ToString() + "'";
    
                 
 
