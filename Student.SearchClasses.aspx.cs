@@ -74,7 +74,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             if (dt.Columns[j].ColumnName == "Capacity")
             {
                 TableHeaderCell capacity = new TableHeaderCell();
-                capacity.Text = "Capacity";
+                capacity.Text = "Seats Remaining";
                 row.Cells.Add(capacity);
             }
             if (dt.Columns[j].ColumnName == "LessonPlan")
@@ -128,9 +128,27 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                 }
                 if (dt.Columns[j].ColumnName == "Capacity")
                 {
-                    TableCell capacity = new TableCell();
-                    capacity.Text = dt.Rows[i][j].ToString();
-                    row.Cells.Add(capacity);
+                    string sectionID = dt.Rows[i][1].ToString();
+                    DataTable dtSeats = new DataTable();
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                    connection.Open();
+                    string cmdText = "SELECT COUNT(EmailAddress) from dbo.Enrollment where SectionID = '" + sectionID + "'";
+                    SqlCommand cmd = new SqlCommand(cmdText, connection);
+                    cmd.ExecuteNonQuery();
+                    SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+                    adp.Fill(dtSeats);
+                    int seatsTaken = Convert.ToInt32(dtSeats.Rows[0][0].ToString());
+                    int capacity = Convert.ToInt32(dt.Rows[i][j].ToString());
+                    int seatsAvailable = (capacity - seatsTaken);
+                    TableCell seatsLeft = new TableCell();
+                    seatsLeft.Text = seatsAvailable.ToString();
+                    if (seatsAvailable < 6)
+                    {
+                        seatsLeft.ForeColor = System.Drawing.Color.PaleVioletRed;
+                        seatsLeft.Font.Bold = true;
+                        
+                    }
+                    row.Cells.Add(seatsLeft);
                 }
                 if (dt.Columns[j].ColumnName == "LessonPlan")
                 {
@@ -374,6 +392,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
         adp.Fill(dt);
         return dt;
+    
     }
 
     private DataTable CreateDJDataTable()
