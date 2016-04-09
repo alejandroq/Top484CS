@@ -12,12 +12,12 @@ using System.Configuration;
 public partial class Instructor_StudentEvaluation : System.Web.UI.Page
 {
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
     {
-        Session["EvaluateeID"] = "testStud@WBL.org"; // passed in from previous page
+        ViewState["EvaluateeID"] = Session["EvaluateeID"].ToString(); // passed in from previous page
         Session["EvalID"] = "1";
-        Session["RespondentID"] = "testProf@WBL.org";
-        txtQuestion1.Text = "Student Test";
+        ViewState["RespondentID"] = Session["UserID"].ToString();
+        txtQuestion1.Text = ViewState["EvaluateeID"].ToString();
     }
 
     /*
@@ -151,5 +151,6 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
         }
 
     }
+
     
 }
