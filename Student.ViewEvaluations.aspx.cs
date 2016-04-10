@@ -17,17 +17,17 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             string id = Session["EvalResponseID"].ToString();
+            System.Diagnostics.Debug.WriteLine(id);
             try
             {
-                SqlConnection sc = new SqlConnection();
+                SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
                 SqlCommand insert = new SqlCommand();
       
 
-                sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
                 sc.Open();
 
                 insert.Connection = sc;
-                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID ='" + Session["EvalResponseID"].ToString() + "'";
+                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID ='" + id + "'";
    
                 
 
@@ -49,27 +49,29 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                         //     TextBox txt = (TextBox)Table2.Rows[i+2].Cells[1].Controls[0];
 
                         string txt = "";
-                            switch (reader.GetString(0))
-                            {
-                                case "1":
-                                    txt = "Unsatisfactory";
-                                    break;
-                                case "2":
-                                    txt = "Needs Improvement";
-                                    break;
+                        System.Diagnostics.Debug.WriteLine(reader.GetString(0));
+                        switch (reader.GetString(0))
+                        {
+                                    
+                            case "1":
+                                txt = "Unsatisfactory";
+                                break;
+                            case "2":
+                                txt = "Needs Improvement";
+                                break;
                             case "3":
-                                    txt = "Meets Expectations";
-                                    break;
-                                case "4":
-                                    txt = "Meets Expectations";
-                                    break;
-                                case "5":
-                                    txt = "Exceeds Expectations";
-                                    break;
-                                case "6":
-                                    txt = "Exceptional";
-                                    break;
-                            }
+                                txt = "Meets Expectations";
+                                break;
+                            case "4":
+                                txt = "Meets Expectations";
+                                break;
+                            case "5":
+                                txt = "Exceeds Expectations";
+                                break;
+                            case "6":
+                                txt = "Exceptional";
+                                break;
+                        }
                         Table2.Rows[i + 2].Cells[1].Text = txt;
                         }
                         else if (i == 8)

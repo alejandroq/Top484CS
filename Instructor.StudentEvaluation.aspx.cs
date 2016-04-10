@@ -41,13 +41,21 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
 
 
         result.Add(Request.Form["q1row1"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row1"].ToString());
         result.Add(Request.Form["q1row2"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row2"].ToString());
         result.Add(Request.Form["q1row3"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row3"].ToString());
         result.Add(Request.Form["q1row4"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row4"].ToString());
         result.Add(Request.Form["q1row5"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row5"].ToString());
         result.Add(Request.Form["q1row6"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row6"].ToString());
         result.Add(Request.Form["q1row7"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row7"].ToString());
         result.Add(Request.Form["q1row8"].ToString());
+        System.Diagnostics.Debug.WriteLine(Request.Form["q1row8"].ToString());
 
         result.Add(txtQuestion2.Text);
         result.Add(txtQuestion3.Text);
@@ -72,7 +80,9 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
             SqlDataReader read = query.ExecuteReader();
             while (read.Read())
             {
+
                 result.Add(read[0]);
+                System.Diagnostics.Debug.WriteLine(read[0]);
                 //count++;
             }
             sc.Close();
@@ -103,9 +113,9 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
             insert.Connection = sc;
             insert.CommandText = "Insert INTO EvalResponse(RespondentEmail, EvalID, EvaluateeEmail, ResponseDate)" +
                 " Values(@RespondentEmail, @EvalID, @EvaluateeEmail, @Date)";
-            insert.Parameters.AddWithValue("@RespondentEmail", (String)Session["RespondentID"]);
+            insert.Parameters.AddWithValue("@RespondentEmail", (String)ViewState["RespondentID"]);
             insert.Parameters.AddWithValue("@EvalID", (String)Session["EvalID"]);
-            insert.Parameters.AddWithValue("@EvaluateeEmail", (String)Session["EvaluateeID"]);
+            insert.Parameters.AddWithValue("@EvaluateeEmail", (String)ViewState["EvaluateeID"]);
             insert.Parameters.AddWithValue("@Date", date);
             insert.ExecuteNonQuery();
 
@@ -124,7 +134,7 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
                     "Values(@RespondentID, @EvalResponseID, @ResponseText, @QuestionID)";
 
                 
-                insert.Parameters.AddWithValue("@RespondentID", (String)Session["RespondentID"]);
+                insert.Parameters.AddWithValue("@RespondentID", (String)ViewState["RespondentID"]);
                 insert.Parameters.AddWithValue("@EvalResponseID", evalResponse);
                 if (a[i] != null || (String)a[i] != "")
                 {

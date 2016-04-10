@@ -15,7 +15,7 @@
               <br />
               <asp:Table ID="Table2" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                   <asp:TableRow ID="TableRow1" runat="server" HorizontalAlign="Center">
-                      <asp:TableCell ID="TableCell1" runat="server"></asp:TableCell>
+                      <asp:TableCell ID="TableCell1" runat="server">Instructor Response: </asp:TableCell>
                       <asp:TableCell ID="TableCell2" runat="server">Unsatisfactory</asp:TableCell>
                       <asp:TableCell ID="TableCell3" runat="server">Needs Improvement</asp:TableCell>
                       <asp:TableCell ID="TableCell4" runat="server">Meets Expectations</asp:TableCell>
@@ -23,8 +23,8 @@
                       <asp:TableCell ID="TableCell6" runat="server">Exceptional</asp:TableCell>
                   </asp:TableRow>
                   <asp:TableRow ID="TableRow2" runat="server" HorizontalAlign="Center">
-                      <asp:TableCell ID="TableCell7" runat="server">Question</asp:TableCell>
-                      <asp:TableCell ID="TableCell8" runat="server"> Instructor Response</asp:TableCell>
+                      <asp:TableCell ID="TableCell7" runat="server"><u>Question</u></asp:TableCell>
+                      <asp:TableCell ID="TableCell8" runat="server"></asp:TableCell>
                       <asp:TableCell ID="TableCell9" runat="server"></asp:TableCell>
                       <asp:TableCell ID="TableCell10" runat="server"></asp:TableCell>
                       <asp:TableCell ID="TableCell11" runat="server"></asp:TableCell>

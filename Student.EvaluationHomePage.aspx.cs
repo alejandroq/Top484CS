@@ -29,11 +29,11 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         //DataTable dt2 = CreatDataTable2();
         //DataTable dtBoth = myJoinMethod(dt, dt2, "EvalResponseID", "CourseID");
 
-        System.Diagnostics.Debug.WriteLine(dt.Rows[0][0].ToString());
-        System.Diagnostics.Debug.WriteLine(dt.Rows[0][1].ToString());
-        System.Diagnostics.Debug.WriteLine(dt.Rows[0][2].ToString());
-        System.Diagnostics.Debug.WriteLine(dt.Rows[0][3].ToString());
-        System.Diagnostics.Debug.WriteLine(dt.Rows[0][4].ToString());
+        //System.Diagnostics.Debug.WriteLine(dt.Rows[0][0].ToString());
+        //System.Diagnostics.Debug.WriteLine(dt.Rows[0][1].ToString());
+        //System.Diagnostics.Debug.WriteLine(dt.Rows[0][2].ToString());
+        //System.Diagnostics.Debug.WriteLine(dt.Rows[0][3].ToString());
+        //System.Diagnostics.Debug.WriteLine(dt.Rows[0][4].ToString());
 
 
 
@@ -46,7 +46,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         table.CellPadding = 10;
         table.GridLines = GridLines.Vertical;
 
-        //Add the Headers
+        // Add the Headers
         row = new TableRow();
         TableHeaderCell course = new TableHeaderCell();
         course.Text = "Class Name";
@@ -57,7 +57,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         table.Rows.Add(row);
         // determine which datatable has more rows so for loop captures everything
         int rowCount = dt.Rows.Count;
-        //System.Diagnostics.Debug.WriteLine(rowCount);
+        // System.Diagnostics.Debug.WriteLine(rowCount);
         for (int i = 0; i < rowCount; i++)
         {
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
@@ -74,7 +74,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
                 LinkButton evalLink = new LinkButton();
                 evalLink.Text = "View This Evaluation";
                 evalLink.Click += evalLink_Click;
-                evalLink.CommandArgument = dt.Rows[i][4].ToString();
+                evalLink.CommandArgument = dt.Rows[i][5].ToString();
                 eval.Controls.Add(evalLink);
                 row.Cells.Add(eval);
                 table.Rows.Add(row);
@@ -111,7 +111,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select Course.CourseName, enrollment.CourseID, enrollment.EmailAddress, enrollment.SectionID, EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["userID"] + "'";
+        string cmdText = "select Course.CourseName, Enrollment.CourseID, Enrollment.EmailAddress, Enrollment.SectionID, Enrollment.InstructorEvalBool, EvalResponse.EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["UserID"].ToString() + "' AND Enrollment.InstructorEvalBool = '1'";
         // ^^^ TODO: change this query to accept the session variable of the student email that is passed in (replace testStud@WBL.org)
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
