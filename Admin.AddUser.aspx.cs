@@ -235,10 +235,16 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
 
-            query.CommandText = "insert into Evaluatee (EmailAddress, StaffEmailAddress) values (@EmailAddress, @StaffEmailAddress)";
-            query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+            query.CommandText = "insert into Evaluatee (EvaluateeEmail, StaffEmailAddress) values (@EmailAddress, @StaffEmailAddress)";
+            query.Parameters.AddWithValue("@EvaluateeEmail", txtEmail.Text);
             query.Parameters.AddWithValue("@StaffEmailAddress", txtEmail.Text);
-            
+            query.ExecuteNonQuery();
+
+            query.CommandText = "insert into Respondent (RespondentEmail, StaffEmailAddress) values (@RespondentEmail, @StaffEmailAddress)";
+            query.Parameters.AddWithValue("@RespondentEmail", txtEmail.Text);
+            query.Parameters.AddWithValue("@StaffEmailAddress", txtEmail.Text);
+            query.ExecuteNonQuery();
+
             sc.Close();
         }
         catch (SqlException SQLe)
@@ -273,9 +279,16 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
 
-            query.CommandText = "insert into Evaluatee (EmailAddress, StudentEmailAddress) values (@EmailAddress, @StudentEmailAddress)";
+            query.CommandText = "insert into Evaluatee (EvaluateeEmail, StudentEmailAddress) values (@EmailAddress, @StudentEmailAddress)";
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.Parameters.AddWithValue("@StudentEmailAddress", txtEmail.Text);
+            query.ExecuteNonQuery();
+
+            query.CommandText = "insert into Respondent (RespondentEmail, StudentEmailAddress) values (@RespondentEmail, @StudentEmailAddress)";
+            query.Parameters.AddWithValue("@RespondentEmail", txtEmail.Text);
+            query.Parameters.AddWithValue("@StudentEmailAddress", txtEmail.Text);
+            query.ExecuteNonQuery();
+
 
             sc.Close();
         }

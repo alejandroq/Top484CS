@@ -116,10 +116,16 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
                 sc.Open();
 
                 query.Connection = sc;
-                query.CommandText = "insert into Evaluatee (EmailAddress, StudentEmailAddress) values (@EmailAddress, @StudentEmailAddress)";
-                query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
-                query.Parameters.AddWithValue("@StudentEmailAddress", txtEmail.Text);
-                
+                query.CommandText = "insert into Evaluatee (EvaluateeEmail, StudentEmailAddress) values (@EvaluateeEmail, @StudentEmailAddress)";
+                query.Parameters.AddWithValue("@EvaluateeEmail", applicantID);
+                query.Parameters.AddWithValue("@StudentEmailAddress", applicantID);
+                query.ExecuteNonQuery();
+
+                query.CommandText = "insert into Respondent (RespondentEmail, StudentEmailAddress) values (@RespondentEmail, @StudentEmailAddress)";
+                query.Parameters.AddWithValue("@RespondentEmail", applicantID);
+                query.Parameters.AddWithValue("@StudentEmailAddress", applicantID);
+                query.ExecuteNonQuery();
+
                 //EmailStudent(applicantID);
                 //Send email to student to get the rest of their details
                 break;
