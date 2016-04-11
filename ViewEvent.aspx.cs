@@ -20,76 +20,56 @@ public partial class ViewEvent : System.Web.UI.Page
             case 1:
                 // display cipher menu
                 adminPanel1.Style["display"] = "none";
-                adminFooter.Style["display"] = "none";
 
                 parentPanel1.Style["display"] = "none";
-                parentFooter.Style["display"] = "none";
 
                 studentPanel1.Style["display"] = "none";
-                studentFooter.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
-                instructorFooter.Style["display"] = "none";
 
                 break;
             case 2:
                 // display parent menu
                 adminPanel1.Style["display"] = "none";
-                adminFooter.Style["display"] = "none";
 
                 cipherPanel1.Style["display"] = "none";
-                cipherFooter.Style["display"] = "none";
 
                 studentPanel1.Style["display"] = "none";
-                studentFooter.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
-                instructorFooter.Style["display"] = "none";
 
                 break;
             case 3:
                 // display student menu
                 adminPanel1.Style["display"] = "none";
-                adminFooter.Style["display"] = "none";
 
                 cipherPanel1.Style["display"] = "none";
-                cipherFooter.Style["display"] = "none";
 
                 parentPanel1.Style["display"] = "none";
-                parentFooter.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
-                instructorFooter.Style["display"] = "none";
 
                 break;
             case 4:
                 // display instructor menu
                 adminPanel1.Style["display"] = "none";
-                adminFooter.Style["display"] = "none";
 
                 cipherPanel1.Style["display"] = "none";
-                cipherFooter.Style["display"] = "none";
 
                 parentPanel1.Style["display"] = "none";
-                parentFooter.Style["display"] = "none";
 
                 studentPanel1.Style["display"] = "none";
-                studentFooter.Style["display"] = "none";
 
                 break;
             case 5:
                 // display admin menu
                 cipherPanel1.Style["display"] = "none";
-                cipherFooter.Style["display"] = "none";
 
                 parentPanel1.Style["display"] = "none";
-                parentFooter.Style["display"] = "none";
 
                 studentPanel1.Style["display"] = "none";
-                studentFooter.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
-                instructorFooter.Style["display"] = "none";
                 break;
             default:
                 // ?? display error?
