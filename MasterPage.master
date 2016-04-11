@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -41,26 +41,63 @@
     	</asp:ContentPlaceHolder>
     	<!-- END UNIQUE HEADERS -->
 
+
+        <style type="text/css">
+            #footerLogo {
+                height: 8%;
+                width: 8%;
+                position: relative;
+                float: left;
+                padding: 5px 0 10px 0;
+            }
+            #wrapperHeader {
+				position: relative;
+				background-image:url(img/wblheader.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+                box-shadow: 0 3px 5px #888888;
+			}
+            #notificationMenu {
+                position: relative;
+                float: right;
+                margin-right: 0px;
+                margin-top: -15px;
+                    }
+            #contenthere {
+                position: absolute;
+                margin-left: 400px;
+                margin-top: 100px;
+            background-color: white;
+            box-shadow: 0 3px 5px #888888;
+            width: 25%;
+            height: 25%;
+            }
+            #foo {
+                color: white;
+            }
+        </style>
+
 	</head>
-	<body>
-		<header>
+	<body runat="server">
+		<header runat="server">
 			<!-- BEGIN LOGO-BRANDING -->
-			<div id="branding"><img id="branding-logo" src="img/logo.png" alt="Words Beats & Life Inc. Logo" /></div>
+			<div id="wrapperHeader">
+            <div id="branding">
+                <img id="branding-logo" src="img/logo.png" alt="Words Beats & Life Inc. Logo" />
+            </div>
+             </div>
 			<!-- END LOGO-BRANDING -->
 
 			<!-- BEGIN ICONIC NAVIGATION CONTROLS -->
-		    <ul class="navigation-controls">
+		    <ul class="navigation-controls" runat="server">
 				<li id="stackMenu" class="mobile-only">
 					<i class="fa fa-bars icon"></i>
 					<span class="usupur">Menu</span>
 				</li>
-		        <li id="notificationMenu">
-		        	<i class="fa fa-bell icon"></i>
-		        	<span class="usupur">Notifications</span>
-		        </li>
-		        <li id="search">
-		        	<span class="fa fa-search"></span>
-		        	<input type="text" placeholder="Search"/>
+		        <li id="notificationMenu" runat="server">
+                    <span id="numNotif" class="usupur" runat="server"></span>
+		        	<i class="fa fa-bell icon" id="redIcon" runat="server"></i>
+		        	<span class="usupur" id="redText" runat="server">Notifications</span>
 		        </li>
 		    </ul>
 		    <!-- END ICONIC NAVIGATION CONTROLS -->
@@ -68,9 +105,9 @@
 		    <!-- BEGIN NAVIGATION BAR -->
 		    <nav>
 		    	<ul class="mobile-only"><h5>Navigation</h5></ul>
-		        <li><a href="Wall.aspx">Wall</a></li>
+		        <li>Hub</li>
+                <li><a href="Wall.aspx">Wall</a></li>
 		       	<li><a href="ViewEvent.aspx">Events</a></li>
-		        <li>Forum</li>
 		        <li class="mobile-last-li">Buck Shop</li>
                 <li class="mobile-last-li">My Account</li>
                 
@@ -90,15 +127,7 @@
 		<!-- END HEADER -->
 
         <!-- BEGIN NOTIFICATION & SEARCH MENU (Icon List)-->
-		<ul id="ui-data-menu" class="menu ui-icon-list ui-menu-large">
-			<li><i class="fa fa-users"></i>Users</li>
-			<li class="ui-branch"><p>New: </p>Laura Dawbs</li>
-			<li><i class="fa fa-calendar"></i>Events</li>
-			<li class="ui-branch"><p>Upcoming: </p>Event 1</li>
-			<li><i class="fa fa-file-text-o"></i>Content</li>
-			<li class="ui-branch"><p>New: </p>Laura's Evaluation</li>
-			<li><i class="fa fa-comments"></i>Forum</li>
-			<li class="ui-branch"><p>Flagged: </p>Post Title</li>
+		<ul id="notif" runat="server" class="menu ui-icon-list ui-menu-large">
 		</ul>
         <!-- END NOTIFICATION MENU (Icon List) -->
 
@@ -128,7 +157,7 @@
         	<div class="row">
 		        <!-- BODY CONTENT PLACEHOLDER-->
 		        <div class="ui-full-width">
-		        	<asp:ContentPlaceHolder id="body" runat="server">
+		        	<asp:ContentPlaceHolder id="body1" runat="server">
 		        
 		        	</asp:ContentPlaceHolder>
 		    	</div>
@@ -141,32 +170,7 @@
 		<!-- SKELETON GRID -->
 	    <footer>
 	    	<div class="container">
-	    		<div class="row">
-	    			<div class="one-half column">
-	    				<h6>About Us</h6>
-                        <p>Words Beats & Life began as a conference at the University of Maryland in the fall of 2000; founders worked to create a vehicle to transform individual lives and communities through Hip-Hop. In 2003, WBL was incorporated as a nonprofit organization with 501(c)(3) status in the District of Columbia and began its first program, the Saturday Arts Academy, which is now known as the Words Beats & Life Academy. </p>
-	    			</div>
-	    			<div class="three columns">
-	    				<h6>Navigation</h6>
-	    				<ul>
-	    					<li>Wall</li>
-	    					<li>Events</li>
-	    					<li>Forum</li>
-	    					<li>Buck Shop</li>
-	    					<li>My Account</li>
-	    				</ul>
-	    			</div>
-	    			<div class="three columns">
-	    				<h6>Menu</h6>
-	    				<!-- UNIQUE MENU FOOTER -->
-	    				<ul>
-		                <asp:ContentPlaceHolder id="bar" runat="server">
-
-		                </asp:ContentPlaceHolder>	
-		                <!-- END UNIQUE MENU FOOTER -->
-		                </ul>
-		            </div>
-	    		</div>
+	    		<img id="footerLogo" src="img/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"/>
 	    		<div class="row" style="text-align: center; color:gray;"><p>website & content &copy; 2016 top 484!</p></div>
 	    	</div>
 	    </footer>
