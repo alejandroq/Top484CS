@@ -75,7 +75,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
             LinkButton evalLink = new LinkButton();
             evalLink.Text = "View This Evaluation";
             evalLink.Click += evalLink_Click;
-            evalLink.CommandArgument = dt.Rows[i][5].ToString() + dt.Rows[i][1].ToString();
+            evalLink.CommandArgument = dt.Rows[i][5].ToString();
             eval.Controls.Add(evalLink);
             row.Cells.Add(eval);
             table.Rows.Add(row);

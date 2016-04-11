@@ -17,7 +17,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             string id = Session["EvalResponseID"].ToString();
-            System.Diagnostics.Debug.WriteLine(id);
+            System.Diagnostics.Debug.WriteLine("EvalResponse ID passed: " + id);
             try
             {
                 SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
