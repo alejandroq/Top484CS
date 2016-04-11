@@ -10,12 +10,12 @@ $('#stackMenu').on('click', function() {
 });
 
 $('#notificationMenu').on('click', function() {
-	if ($('#ui-data-menu').is(':visible')){
+	if ($('#notif').is(':visible')){
 		$('#notificationMenu').css('background-color', '#cccccc'); //#cccccc #B94657
 	} else {
 		$('#notificationMenu').css('background-color', '#ffffff'); //#ffffff
 	}
-	$('#ui-data-menu').toggle('blind',200);
+	$('#notif').toggle('blind',200);
 });
 
 $('#wall').galereya({
