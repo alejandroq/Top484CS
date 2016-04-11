@@ -43,9 +43,9 @@
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
     <asp:panel ID="Panel4" runat="server">
-
+        <div class="mainContent">
         <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
-
+        </div>
     </asp:panel>
 <!-- END BODY CONTENT -->
 </asp:Content>
