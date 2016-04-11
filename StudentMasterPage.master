@@ -34,20 +34,7 @@
   <!-- END BODY MENU -->
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="bar" Runat="Server">
-  <!-- FOOTER MENU -->
-    <asp:Panel ID="Panel3" runat="server">
 
-      <li>View Portfolio</li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
-      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
-
-    </asp:Panel>
-    <!-- END FOOTER MENU -->
-<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
-</asp:Content>
 
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->

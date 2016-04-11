@@ -157,7 +157,7 @@
         	<div class="row">
 		        <!-- BODY CONTENT PLACEHOLDER-->
 		        <div class="ui-full-width">
-		        	<asp:ContentPlaceHolder id="body1" runat="server">
+		        	<asp:ContentPlaceHolder id="body" runat="server">
 		        
 		        	</asp:ContentPlaceHolder>
 		    	</div>

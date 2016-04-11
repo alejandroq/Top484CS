@@ -40,20 +40,7 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="bar" Runat="Server">
-  <!-- FOOTER MENU -->
-    <asp:Panel ID="Panel3" runat="server">
 
-      <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
-      <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
-      <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
-      <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
-
-    </asp:Panel>
-    <!-- END FOOTER MENU -->
-<!-- END UNIQUE MENU (HEADER / FOOTER) ITEMS  -->
-</asp:Content>
 
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
