@@ -13,7 +13,7 @@ public partial class ViewEvent : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        int userType = Int32.Parse(Session["permission"].ToString());
+        int userType = 5; //Int32.Parse(Session["permission"].ToString());
 
         switch (userType)
         {
@@ -127,7 +127,7 @@ public partial class ViewEvent : System.Web.UI.Page
                         txtPCPhone.Text = dt.Rows[0][8].ToString();
                         txtPCEmail.Text = dt.Rows[0][7].ToString();
                     }
-
+                    myIframe.Attributes["src"] = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBZi6ob0guXfcA9OV2j1fKMhKDJIP7upHE&q=" + txtLocation.Text;
                 }
             }
         }

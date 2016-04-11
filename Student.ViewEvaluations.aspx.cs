@@ -40,7 +40,7 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
 
 
                     txtQuestion1.Text = Session["UserID"].ToString();
-                                     
+                    txtQuestion1.ReadOnly = true;
                         
                    
                         if (i < 8)
@@ -72,21 +72,24 @@ public partial class Student_ViewEvaluations : System.Web.UI.Page
                                 txt = "Exceptional";
                                 break;
                         }
-                        Table2.Rows[i + 2].Cells[1].Text = txt;
+                        Table2.Rows[i + 1].Cells[1].Text = txt;
                         }
                         else if (i == 8)
                         {
                         txtQuestion2.Text = reader.GetString(0);
+                        txtQuestion2.ReadOnly = true;
                         }
 
                         else if (i == 9)
                         {
                         txtQuestion3.Text = reader.GetString(0);
+                        txtQuestion3.ReadOnly = true;
                         }
 
                         else if (i == 10)
                         {
                         txtQuestion4.Text = reader.GetString(0);
+                        txtQuestion4.ReadOnly = true;
                         }
 
                        i++;

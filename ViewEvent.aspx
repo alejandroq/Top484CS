@@ -95,8 +95,15 @@
         <asp:Label ID="lblPCName" runat="server" Text="Primary Contact Name: "><asp:TextBox ID="txtPCName" runat="server"></asp:TextBox></asp:Label><br />
         <asp:Label ID="lblPCEmail" runat="server" Text="Primary Contact E-mail: "><asp:TextBox ID="txtPCEmail" runat="server"></asp:TextBox></asp:Label><br />
         <asp:Label ID="lblPCPhone" runat="server" Text="Primary Contact Phone #: "><asp:TextBox ID="txtPCPhone" runat="server"></asp:TextBox></asp:Label><br />
-        <asp:Label ID="lblDescription" runat="server" Text="Description: "></asp:Label><br /><asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox><br />
-        
+        <asp:Label ID="lblDescription" runat="server" Text="Description: "></asp:Label><br /><asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="400px" Height="200px"></asp:TextBox>
+        <%--API KEY: AIzaSyBZi6ob0guXfcA9OV2j1fKMhKDJIP7upHE--%>
+        <iframe id="myIframe"
+  width="600"
+  height="450"
+  frameborder="0" style="border:0" runat="server"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBZi6ob0guXfcA9OV2j1fKMhKDJIP7upHE
+    &q=Words_Beats_Life_Inc" allowfullscreen>
+    </iframe>
     </div>
     </form>
 

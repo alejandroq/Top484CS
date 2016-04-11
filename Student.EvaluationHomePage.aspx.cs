@@ -80,28 +80,16 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
                 table.Rows.Add(row);
 
             }
-
-
-
-
-
-        
-
-
-
         form1.Controls.Add(table);
     }
 
     private void evalLink_Click(object sender, EventArgs e)
     {
-
         LinkButton btn = (LinkButton)(sender);
         string evalResponseID = btn.CommandArgument;
         Session["EvalResponseID"] = evalResponseID;
         System.Diagnostics.Debug.WriteLine(Session["EvalResponseID"].ToString());
         Response.Redirect("Student.ViewEvaluations.aspx", false);
-
-
     }
 
     // This method creates a data table containing all the evaluations that have been filled out ABOUT a particular student
@@ -111,7 +99,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText = "select Course.CourseName, Enrollment.CourseID, Enrollment.EmailAddress, Enrollment.SectionID, Enrollment.InstructorEvalBool, EvalResponse.EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["UserID"].ToString() + "' AND Enrollment.InstructorEvalBool = '1'";
+        string cmdText = "select Course.CourseName, Enrollment.CourseID, Enrollment.EmailAddress, Enrollment.SectionID, Enrollment.InstructorEvalBool, EvalResponse.EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["UserID"].ToString() + "' AND Enrollment.InstructorEvalBool = '1' AND EvalResponse.CourseID = Course.CourseID";
         // ^^^ TODO: change this query to accept the session variable of the student email that is passed in (replace testStud@WBL.org)
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();

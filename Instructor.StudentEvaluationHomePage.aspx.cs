@@ -115,6 +115,8 @@ public partial class Instructor_StudentEvaluationHomePage : System.Web.UI.Page
         LinkButton btn = (LinkButton)(sender);
         string studentID = btn.CommandArgument;
         Session["EvaluateeID"] = studentID;
+        Session["sectionID"] = ViewState["sectionID"].ToString();
+        Session["courseID"] = ViewState["courseID"].ToString();
         Response.Redirect("Instructor.StudentEvaluation.aspx", false);
     }
 

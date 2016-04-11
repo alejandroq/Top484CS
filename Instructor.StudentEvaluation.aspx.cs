@@ -18,6 +18,8 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
         Session["EvalID"] = "1";
         ViewState["RespondentID"] = Session["UserID"].ToString();
         txtQuestion1.Text = ViewState["EvaluateeID"].ToString();
+        ViewState["sectionID"] = Session["sectionID"].ToString();
+        ViewState["courseID"] = Session["courseID"].ToString();
     }
 
     /*
@@ -29,6 +31,7 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
         ArrayList answers = GatherAnswers();
         ArrayList questions = GatherQuestions();
         SubmitEval(questions, answers);
+
         //get student Id from Session Variable
     }
     /*
@@ -111,12 +114,14 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
             sc.Open();
 
             insert.Connection = sc;
-            insert.CommandText = "Insert INTO EvalResponse(RespondentEmail, EvalID, EvaluateeEmail, ResponseDate)" +
-                " Values(@RespondentEmail, @EvalID, @EvaluateeEmail, @Date)";
+            insert.CommandText = "Insert INTO EvalResponse(RespondentEmail, EvalID, EvaluateeEmail, ResponseDate, CourseID)" +
+                " Values(@RespondentEmail, @EvalID, @EvaluateeEmail, @Date, @CourseID)";
             insert.Parameters.AddWithValue("@RespondentEmail", (String)ViewState["RespondentID"]);
             insert.Parameters.AddWithValue("@EvalID", (String)Session["EvalID"]);
             insert.Parameters.AddWithValue("@EvaluateeEmail", (String)ViewState["EvaluateeID"]);
             insert.Parameters.AddWithValue("@Date", date);
+            insert.Parameters.AddWithValue("@CourseID", (String)ViewState["courseID"]);
+            System.Diagnostics.Debug.WriteLine(insert.CommandText.ToString());
             insert.ExecuteNonQuery();
 
 
@@ -150,8 +155,12 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
 
             }
 
+            insert.Parameters.Clear();
+            insert.CommandText = "update dbo.Enrollment set InstructorEvalBool = '1' where EmailAddress = '" + ViewState["EvaluateeID"].ToString() +"'" + "AND SectionID = '" + ViewState["sectionID"].ToString() + "'";
+            insert.ExecuteNonQuery();
 
             sc.Close();
+            
 
         }
         catch (SqlException SQLe)
@@ -159,8 +168,6 @@ public partial class Instructor_StudentEvaluation : System.Web.UI.Page
             System.Diagnostics.Debug.Write(SQLe.ToString());
 
         }
-
+        Response.Redirect("Instructor.StudentEvaluationHomePage.aspx");
     }
-
-    
 }

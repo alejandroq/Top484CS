@@ -99,7 +99,7 @@
         <br />
         <b><asp:Label ID="lblQuestion4" runat="server" Text="4. Is there anything else you would like to comment on? "></asp:Label></b><br />
         <asp:TextBox ID="txtQuestion4" runat="server" Height="75px" Width="500px" TextMode="MultiLine"></asp:TextBox><br />
-        <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT EVALUATION" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit Evaluation" OnClick="btnSubmit_Click"/>
         <br />
     
     </div>
