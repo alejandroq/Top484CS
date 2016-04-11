@@ -65,7 +65,6 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][4].ToString());
            
-
             // Row containing the class names that the studentID passed in has taken (EvaluateeEmail to see how many evaluations have been filled out ABOUT a student)
             row = new TableRow();
             TableCell courseName = new TableCell();
@@ -76,13 +75,14 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
             LinkButton evalLink = new LinkButton();
             evalLink.Text = "View This Evaluation";
             evalLink.Click += evalLink_Click;
-            evalLink.CommandArgument = dt.Rows[i][5].ToString();
+            evalLink.CommandArgument = dt.Rows[i][5].ToString() + dt.Rows[i][1].ToString();
             eval.Controls.Add(evalLink);
             row.Cells.Add(eval);
             table.Rows.Add(row);
-
+    
         }
         form1.Controls.Add(table);
+    
     }
 
     private void evalLink_Click(object sender, EventArgs e)
@@ -103,7 +103,6 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         connection.Open();
         string cmdText = "select Course.CourseName, Enrollment.CourseID, Enrollment.EmailAddress, Enrollment.SectionID, Enrollment.InstructorEvalBool, EvalResponse.EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["UserID"].ToString() + "' AND Enrollment.InstructorEvalBool = '1' AND EvalResponse.CourseID = Course.CourseID";
         System.Diagnostics.Debug.WriteLine(cmdText);
-        // ^^^ TODO: change this query to accept the session variable of the student email that is passed in (replace testStud@WBL.org)
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results

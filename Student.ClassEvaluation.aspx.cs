@@ -20,19 +20,19 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        //Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
+        Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
         Session["EvalID"] = "2";
-        Session["RespondentID"] = "Dobbs@WBL.org";
+        Session["RespondentID"] = Session["UserID"].ToString();
         //Session["RespondentID"] = Session["UserID"].ToString();
         //txtQuestion1.Text = Session["UserID"].ToString(); 
-        txtQuestion1.Text = "Student Test";
+       
 
 
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        // Query for finding every section taught by a specific teacher
-        string cmdText = "select Course.CourseName, Enrollment.SectionID from Enrollment inner join Section on Enrollment.SectionID = Section.SectionID inner join Course  on Section.CourseID = Course.CourseID where Enrollment.EmailAddress ='" + (String)Session["RespondentID"] + "'";
+        // Query for finding each class a student is enrolled in
+        string cmdText = "select Course.CourseName, Enrollment.SectionID, Enrollment.CourseID from Enrollment inner join Section on Enrollment.SectionID = Section.SectionID inner join Course  on Section.CourseID = Course.CourseID where Enrollment.EmailAddress ='" + (String)Session["RespondentID"] + "'";
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();
         SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
@@ -45,10 +45,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
             {
                 string className = dt.Rows[i][0].ToString();
                 section = dt.Rows[i][1].ToString();
-
-                ddClassName.Items.Insert(i + 1, new ListItem(className + " " + section, section));
-
-
+                ddClassName.Items.Insert(i + 1, new ListItem(className, section));
                 ddClassName.DataBind();
 
             }
@@ -60,12 +57,11 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     {
        
         string selectedEmail = ddInstructorName.SelectedValue;
-        int emailIndex = selectedEmail.IndexOf(emailAddress.ToString());
-        System.Diagnostics.Debug.WriteLine(emailIndex);
-        emailAddress = selectedEmail.Substring(emailIndex);
-        Session["EvaluateeID"] = emailAddress;
+        //int emailIndex = selectedEmail.IndexOf(emailAddress.ToString());
+        //System.Diagnostics.Debug.WriteLine(emailIndex);
+        //emailAddress = selectedEmail.Substring(emailIndex);
+        Session["EvaluateeID"] = selectedEmail;
         System.Diagnostics.Debug.WriteLine(Session["EvaluateeID"].ToString());
-
 
         ArrayList answers = GatherAnswers();
         ArrayList questions = GatherQuestions();
@@ -217,7 +213,6 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         {
             result.Add(rdoSelf1c.Text);
         }
-
         if (rdoSelf2a.Checked)
         {
             result.Add(rdoSelf2a.Text);
@@ -227,13 +222,8 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
             result.Add(rdoSelf2b.Text);
         }
 
-      
-
         return result;
 
-        
-
-        
     }
 
     protected ArrayList GatherQuestions()
@@ -281,20 +271,21 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     {
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             SqlCommand insert = new SqlCommand();
             DateTime date = DateTime.Now;
 
-            sc.ConnectionString = @"Server = LOCALHOST; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             insert.Connection = sc;
-            insert.CommandText = "Insert INTO EvalResponse(RespondentEmail, EvalID, EvaluateeEmail, ResponseDate)" +
-                " Values(@RespondentEmail, @EvalID, @EvaluateeEmail, @Date)";
+            insert.CommandText = "Insert INTO EvalResponse(RespondentEmail, EvalID, EvaluateeEmail, ResponseDate, CourseID)" +
+                " Values(@RespondentEmail, @EvalID, @EvaluateeEmail, @Date, @CourseID)";
             insert.Parameters.AddWithValue("@RespondentEmail", (String)Session["RespondentID"]);
             insert.Parameters.AddWithValue("@EvalID", (String)Session["EvalID"]);
             insert.Parameters.AddWithValue("@EvaluateeEmail", (String)Session["EvaluateeID"]);
             insert.Parameters.AddWithValue("@Date", date);
+            System.Diagnostics.Debug.WriteLine("session courseID is: " + Session["courseID"].ToString());
+            insert.Parameters.AddWithValue("@CourseID", (String)Session["courseID"]);
             insert.ExecuteNonQuery();
 
 
@@ -318,7 +309,7 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
 
                 insert.Parameters.AddWithValue("@RespondentID", (String)Session["RespondentID"]);
                 insert.Parameters.AddWithValue("@EvalResponseID", evalResponse);
-                if (a[i] != null && !a[i].ToString().Equals(""))
+                if (a[i] != null)
                 {
                     insert.Parameters.AddWithValue("@ResponseText", (String)a[i]);
                 }
@@ -362,7 +353,6 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         ArrayList result = new ArrayList();
         for (int j = 0; j <=21; j++)
         {
-         
             result.Add(rdoValues[j]);
             Debug.WriteLine(rdoValues[j]);
         }
@@ -419,18 +409,16 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
 
     protected void ddClassName_SelectedIndexChanged(object sender, EventArgs e)
     {
-        string selection = ddClassName.SelectedValue;
-        System.Diagnostics.Debug.WriteLine(selection);
-        int index = selection.IndexOf(section.ToString());
-        System.Diagnostics.Debug.WriteLine(index);
-        section = selection.Substring(index);
+        ddInstructorName.Items.Clear();
 
-
+        string section = ddClassName.SelectedValue;
+        System.Diagnostics.Debug.WriteLine("Section selected is: " + section);
 
         DataTable dt2 = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
-        string cmdText2 = "select (FirstName + ' '+ LastName) As fullName, GeneralUser.EmailAddress from GeneralUser inner join Staff on GeneralUser.EmailAddress = Staff.EmailAddress inner join SectionStaff on Staff.EmailAddress = SectionStaff.EmailAddress where SectionStaff.SectionID = '" + Convert.ToInt32(section) + "'";
+        string cmdText2 = "select (FirstName + ' '+ LastName) As fullName, GeneralUser.EmailAddress from GeneralUser inner join Staff on GeneralUser.EmailAddress = Staff.EmailAddress inner join SectionStaff on Staff.EmailAddress = SectionStaff.EmailAddress where SectionStaff.SectionID = '" + section + "'";
+        System.Diagnostics.Debug.WriteLine(cmdText2);
         SqlCommand cmd2 = new SqlCommand(cmdText2, connection);
         cmd2.ExecuteNonQuery();
         SqlDataAdapter adp2 = new SqlDataAdapter(cmd2); // read in data from query results
@@ -439,21 +427,20 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         for (int i = 0; i < dt2.Rows.Count; i++)
         {
             string instructor = dt2.Rows[i][0].ToString();
-            emailAddress = dt2.Rows[i][1].ToString();
-
-            ddInstructorName.Items.Insert(i + 1, new ListItem(instructor + " - " + emailAddress, emailAddress));
-         
-
-
-
-
+            string emailAddress = dt2.Rows[i][1].ToString();
+            System.Diagnostics.Debug.WriteLine("Test email is: " + emailAddress);
+            System.Diagnostics.Debug.WriteLine("Test instructor is: " + instructor);
+            ddInstructorName.Items.Insert(i, new ListItem(instructor, emailAddress));
         }
-   
-
-        
-       
-        System.Diagnostics.Debug.WriteLine(ddInstructorName.Text);
-
+        DataTable dt3 = new DataTable();
+        string cmdText3 = "select Course.CourseID, Enrollment.SectionID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID where Enrollment.SectionID = '" + ddClassName.Text.ToString() + "'";
+        System.Diagnostics.Debug.WriteLine(cmdText3);
+        SqlCommand cmd3 = new SqlCommand(cmdText3, connection);
+        cmd3.ExecuteNonQuery();
+        SqlDataAdapter adp3 = new SqlDataAdapter(cmd3); // read in data from query results
+        adp3.Fill(dt3);
+        Session["courseID"] = dt3.Rows[0][0].ToString();
+        System.Diagnostics.Debug.WriteLine(Session["courseID"].ToString());
 
     }
 }
