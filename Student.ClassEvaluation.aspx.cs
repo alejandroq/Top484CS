@@ -242,10 +242,9 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         //int count = 0;
         try
         {
-            SqlConnection sc = new SqlConnection();
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             SqlCommand query = new SqlCommand();
 
-            sc.ConnectionString = @"Server = LULU; Database = WBLDB; Trusted_Connection = Yes;";
             sc.Open();
 
             query.Connection = sc;

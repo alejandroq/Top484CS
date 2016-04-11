@@ -109,8 +109,19 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
                 DropApplicant(applicantID);
                 break;
             case "Student":
-                //
+                
+                SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
+                SqlCommand query = new SqlCommand();
+
+                sc.Open();
+
+                query.Connection = sc;
+                query.CommandText = "insert into Evaluatee (EmailAddress, StudentEmailAddress) values (@EmailAddress, @StudentEmailAddress)";
+                query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+                query.Parameters.AddWithValue("@StudentEmailAddress", txtEmail.Text);
+                
                 //EmailStudent(applicantID);
+                //Send email to student to get the rest of their details
                 break;
         }
     }
@@ -125,7 +136,6 @@ public partial class Admin_ApproveAccount : System.Web.UI.Page
             SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString); // connection string is in web config
             SqlCommand query = new SqlCommand();
 
-            
             sc.Open();
 
             query.Connection = sc;

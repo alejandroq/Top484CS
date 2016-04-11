@@ -16,6 +16,8 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
 
         // comment session variable back in after testing
         string studentID = Session["UserID"].ToString();
+        System.Diagnostics.Debug.WriteLine(studentID);
+        System.Diagnostics.Debug.WriteLine(Session["UserID"].ToString());
         // need to pass in the email address of whichever student is logged in to see their own evaluations
         GenerateTable(studentID);
     
@@ -57,29 +59,29 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         table.Rows.Add(row);
         // determine which datatable has more rows so for loop captures everything
         int rowCount = dt.Rows.Count;
-        // System.Diagnostics.Debug.WriteLine(rowCount);
+        System.Diagnostics.Debug.WriteLine(rowCount);
         for (int i = 0; i < rowCount; i++)
         {
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][4].ToString());
-            //if (dtBoth.Rows[i][1].ToString() == dtBoth.Rows[i][4].ToString())
-            //{
-                // Row containing the class names that the studentID passed in has taken (EvaluateeEmail to see how many evaluations have been filled out ABOUT a student)
-                row = new TableRow();
-                TableCell courseName = new TableCell();
-                courseName.Text = dt.Rows[i][0].ToString();
-                row.Cells.Add(courseName);
+           
 
-                TableCell eval = new TableCell();
-                LinkButton evalLink = new LinkButton();
-                evalLink.Text = "View This Evaluation";
-                evalLink.Click += evalLink_Click;
-                evalLink.CommandArgument = dt.Rows[i][5].ToString();
-                eval.Controls.Add(evalLink);
-                row.Cells.Add(eval);
-                table.Rows.Add(row);
+            // Row containing the class names that the studentID passed in has taken (EvaluateeEmail to see how many evaluations have been filled out ABOUT a student)
+            row = new TableRow();
+            TableCell courseName = new TableCell();
+            courseName.Text = dt.Rows[i][0].ToString();
+            row.Cells.Add(courseName);
 
-            }
+            TableCell eval = new TableCell();
+            LinkButton evalLink = new LinkButton();
+            evalLink.Text = "View This Evaluation";
+            evalLink.Click += evalLink_Click;
+            evalLink.CommandArgument = dt.Rows[i][5].ToString();
+            eval.Controls.Add(evalLink);
+            row.Cells.Add(eval);
+            table.Rows.Add(row);
+
+        }
         form1.Controls.Add(table);
     }
 
@@ -100,6 +102,7 @@ public partial class Student_EvaluationHomePage : System.Web.UI.Page
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
         connection.Open();
         string cmdText = "select Course.CourseName, Enrollment.CourseID, Enrollment.EmailAddress, Enrollment.SectionID, Enrollment.InstructorEvalBool, EvalResponse.EvalResponseID from Course inner join Enrollment ON Course.CourseID = Enrollment.CourseID inner join Student on Enrollment.EmailAddress = Student.EmailAddress inner Join Evaluatee on Student.EmailAddress = Evaluatee.EvaluateeEmail inner join EvalResponse on Evaluatee.EvaluateeEmail = EvalResponse.EvaluateeEmail where EvalResponse.EvaluateeEmail = '" + Session["UserID"].ToString() + "' AND Enrollment.InstructorEvalBool = '1' AND EvalResponse.CourseID = Course.CourseID";
+        System.Diagnostics.Debug.WriteLine(cmdText);
         // ^^^ TODO: change this query to accept the session variable of the student email that is passed in (replace testStud@WBL.org)
         SqlCommand cmd = new SqlCommand(cmdText, connection);
         cmd.ExecuteNonQuery();

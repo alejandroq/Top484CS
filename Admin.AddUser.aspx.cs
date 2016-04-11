@@ -235,6 +235,10 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
 
+            query.CommandText = "insert into Evaluatee (EmailAddress, StaffEmailAddress) values (@EmailAddress, @StaffEmailAddress)";
+            query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+            query.Parameters.AddWithValue("@StaffEmailAddress", txtEmail.Text);
+            
             sc.Close();
         }
         catch (SqlException SQLe)
@@ -268,6 +272,10 @@ public partial class Admin_AddUser : System.Web.UI.Page
             query.CommandText = "update dbo.GeneralUser set UserPermission = 3 where EmailAddress = @EmailAddress";
             query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
             query.ExecuteNonQuery();
+
+            query.CommandText = "insert into Evaluatee (EmailAddress, StudentEmailAddress) values (@EmailAddress, @StudentEmailAddress)";
+            query.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+            query.Parameters.AddWithValue("@StudentEmailAddress", txtEmail.Text);
 
             sc.Close();
         }
