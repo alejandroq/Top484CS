@@ -12,7 +12,6 @@ public partial class Admin_ManageContent : System.Web.UI.Page
 {
 
     // TODO: Switch the table to sub categories, most important at the top (portfolios, lesson plans, evaluations)
-    //
     // TODO: direct to a yes / no approval page where file downloads for review
     // TODO: figure out how to delete an item
     // TODO: Turn file name column into clickable links that downloads file

@@ -77,80 +77,18 @@
 
     
     <form id="form1" runat="server">
-        <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Change Your Password" /><br />
-        <asp:Button ID="btnViewProfile" runat="server" Text="View Your Profile" OnClick="btnViewProfile_Click" /><br />
-        <asp:Button ID="btnEditInfo" runat="server" Text="Edit Your Information" OnClick="btnEditInfo_Click" />
+        <asp:Image ID="imgProfile" runat="server"  ImageUrl="~/img/Lex.jpg" /><br />
+        <br />
+        <asp:Label ID="lblName" runat="server" Text="Name: "><asp:TextBox ID="txtName" runat="server"></asp:TextBox></asp:Label><br />
+        <asp:Label ID="lblLevel" runat="server" Text="Academy Level: "><asp:TextBox ID="txtLevel" runat="server"></asp:TextBox></asp:Label><br />
+        <asp:Label ID="lblBucks" runat="server" Text="Your WBL Bucks: "><asp:TextBox ID="txtBucks" runat="server"></asp:TextBox></asp:Label><asp:Button ID="btnShop" runat="server" Text="Shop Now!" /><br />
+        <asp:Label ID="lblWaiver" runat="server" Text="Waiver Status: "><asp:TextBox ID="txtWaiver" runat="server"></asp:TextBox></asp:Label><br />
+        <asp:Button ID="btnViewSchedule" runat="server" Text="View your Class Schedule" OnClick="btnViewSchedule_Click" Width="300px"/>
+        <asp:Button ID="btnViewProfile" runat="server" Text="View Your Profile" OnClick="btnViewProfile_Click" Width="300px"/><br />
+        <asp:Button ID="btnEditInfo" runat="server" Text="Edit Your Information" OnClick="btnEditInfo_Click" Width="300px"/>
+        <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Change Your Password" Width="300px"/><br />
+        <asp:Button ID="btnDownloadWaiver" runat="server" Text="Download Waivers" OnClick="btnDownloadWaiver_Click" Width="300px"/>
     </form>
 
 
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="bar" Runat="Server">
-
-    
-      <asp:Panel ID="adminMenuFooter" runat="server">
-          <div id="adminFooter" runat="server">
-        <li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
-            <ul>
-                <li><a href="Admin.AddUser.aspx">Add New User</a></li>
-            </ul>
-        </li>
-        <li><a href="Admin.ManageContent.aspx">Manage Content</a> 
-            <ul>
-                <li><a href="Admin.AddContent.aspx">Add Content</a></li>
-                </ul>
-            </li>
-        <li><a href="Admin.ManageEvents.aspx">Manage Events</a> 
-            <ul>
-                <li><a href="Admin.AddEvent.aspx">Add Event</a></li>
-            </ul>
-        </li>
-        <li>Manage Inventory 
-            <ul>
-                <li>Add Item</li>
-            </ul>
-        </li>
-        <li><a href="ViewCalendar.aspx">View Calendar</a></li>
-        <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
-              </div>
-    </asp:Panel>
-
-        <asp:Panel ID="studentMenuFooter" runat="server">
-        <div id="studentFooter" runat="server">
-      <li>View Portfolio</li> <!-- either change this to view your profile or link to pathbrite TBD-->
-      <li><a>View Calendar</a></li>
-      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
-      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
-        </div>
-    </asp:Panel>
-
-       <asp:Panel ID="instructorMenuFooter" runat="server">
-         <div id="instructorFooter" runat="server">
-        <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
-        <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
-        <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
-        <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
-        <li><a>View Calendar</a> </li>
-         </div>
-    </asp:Panel>
-
-    <asp:Panel ID="parentMenuFooter" runat="server">
-        <div id="parentFooter" runat="server">
-      <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
-      <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
-      <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
-      <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
-      <li><a>View Calendar</a></li>
-            </div>
-    </asp:Panel>
-
-     <asp:Panel ID="cipherMenuFooter" runat="server" >
-         <div id="cipherFooter" runat="server">
-      <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
-      <li><a href="http://www.wblinc.org/donations/">Make a Donation</a></li>
-      <li><a>View Calendar</a></li>
-         </div>
-    </asp:Panel>
-
-</asp:Content>
-

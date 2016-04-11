@@ -13,7 +13,7 @@ public partial class ViewEvent : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        int userType = 5; //Int32.Parse(Session["permission"].ToString());
+        int userType = Int32.Parse(Session["permission"].ToString());
 
         switch (userType)
         {
@@ -26,6 +26,15 @@ public partial class ViewEvent : System.Web.UI.Page
                 studentPanel1.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
+                // Set fields un-editable if user is not an admin
+                txtEventName.ReadOnly = true;
+                ddlElement.Enabled = false;
+                txtDescription.ReadOnly = true;
+                txtDate.ReadOnly = true;
+                txtLocation.ReadOnly = true;
+                txtPCName.ReadOnly = true;
+                txtPCPhone.ReadOnly = true;
+                txtPCEmail.ReadOnly = true;
 
                 break;
             case 2:
@@ -37,6 +46,15 @@ public partial class ViewEvent : System.Web.UI.Page
                 studentPanel1.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
+                // Set fields un-editable if user is not an admin
+                txtEventName.ReadOnly = true;
+                ddlElement.Enabled = false;
+                txtDescription.ReadOnly = true;
+                txtDate.ReadOnly = true;
+                txtLocation.ReadOnly = true;
+                txtPCName.ReadOnly = true;
+                txtPCPhone.ReadOnly = true;
+                txtPCEmail.ReadOnly = true;
 
                 break;
             case 3:
@@ -48,6 +66,16 @@ public partial class ViewEvent : System.Web.UI.Page
                 parentPanel1.Style["display"] = "none";
 
                 instructorPanel1.Style["display"] = "none";
+                // Set fields un-editable if user is not an admin
+                txtEventName.ReadOnly = true;
+                ddlElement.Enabled = false;
+                txtDescription.ReadOnly = true;
+                txtDate.ReadOnly = true;
+                txtLocation.ReadOnly = true;
+                txtPCName.ReadOnly = true;
+                txtPCPhone.ReadOnly = true;
+                txtPCEmail.ReadOnly = true;
+
 
                 break;
             case 4:
@@ -59,6 +87,16 @@ public partial class ViewEvent : System.Web.UI.Page
                 parentPanel1.Style["display"] = "none";
 
                 studentPanel1.Style["display"] = "none";
+                // Set fields un-editable if user is not an admin
+                txtEventName.ReadOnly = true;
+                ddlElement.Enabled = false;
+                txtDescription.ReadOnly = true;
+                txtDate.ReadOnly = true;
+                txtLocation.ReadOnly = true;
+                txtPCName.ReadOnly = true;
+                txtPCPhone.ReadOnly = true;
+                txtPCEmail.ReadOnly = true;
+
 
                 break;
             case 5:

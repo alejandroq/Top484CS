@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMasterPage.master" AutoEventWireup="true" CodeFile="SendEmail.aspx.cs" Inherits="SendEmail" %>
 
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ChildContent1" Runat="Server">
 
     <!DOCTYPE html>

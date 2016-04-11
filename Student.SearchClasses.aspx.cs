@@ -310,7 +310,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "CourseElement";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -341,7 +341,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "CourseElement";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date")
@@ -473,7 +473,8 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         lbShoppingCart.Items.Clear();
         cmd.CommandText = "";
         ViewState["enrollQuery"] = "";
-        MessageBox.Show("Enrolled!");
+        MessageBox.Show("Enrolled! Please download the required waiver forms from the 'My Account' tab, fill out the forms, and bring to the first class.");
+        Response.Redirect("MyAccount.aspx");
     }
 
     protected void btnViewCalendar_Click(object sender, EventArgs e)
