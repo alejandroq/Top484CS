@@ -26,30 +26,70 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+    <style type="text/css">
+         #entireBox {
+				position: relative;
+				background-image:url(img/dj_header.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+                height: 100%;
+                box-shadow: 0 3px 5px #888888;
+			}
+        #loginContainer {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        height: 590px;
+        }
+        #loginForm {
+            width: 30%;
+            margin-left: 35%;
+            position: absolute;
+            margin-top: 7%;
+            background-color: grey;
+            box-shadow: 5px 5px 5px grey;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: 3px solid #22EECF;
+            background:rgba(146,146,146,0.98);
+            -webkit-box-shadow: #949494 10px 10px 10px;
+            -moz-box-shadow: #949494 10px 10px 10px; 
+            box-shadow: #949494 10px 10px 10px;
+            padding: 0px 15px 15px 15px;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        #loginFooter {
+        margin-top: 0;
+        }
+        #branding {
+            padding: 15px 15px 0 15px;
+        }
+    </style>
+
 </head>
 <body>
     
     
-<div class="container">
-<div class="header"> 
-    <div class="row">
-      <div class="col-sm-12"> <img src="img/header.jpg" align="right" class="img-responsive img-fullwidth" alt="header image of DJ"></div>
-      
-      
-    </div> 
-  </div><!--div header closing div-->
+<div class="container" id="loginContainer" >
 
-    
-  
 
-  <div class="tanbox">
-    <div class="row">
-      <div runat="server" class="col-sm-4 col-sm-offset-4">
 
+  <div id="entireBox" >
+
+          <div id="wrapperHeader">
+            <div id="branding">
+                <img id="branding-logo" src="img/logo.png" alt="Words Beats & Life Inc. Logo" />
+            </div>
+             </div>
        
 
-          <form class="form-signin" runat="server">
-            <h2 class="form-signin-heading">Please sign in</h2>
+          <form id="loginForm" class="form-signin" runat="server">
+            <h2 class="form-signin-heading">Please Sign In</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
             <asp:TextBox runat="server" Type="email" id="inputEmail" CssClass="form-control" Placeholder="Email address"  required="true"/>
             <label for="inputPassword" class="sr-only">Password</label>
@@ -65,25 +105,17 @@
 			</form>
 
       </div>
-      <div class="col-sm-2"></div>
-      </div>
 
-</div>
+
+
 
       </div><!--closing div to tanbox-->
 
 
-</div><!--container closing div-->
 
-
-<!-- jQuery and Bootstrap links - do not delete! -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
     
     <footer>
-        <div class="footer"><!--starting tag for footer-->
+        <div class="footer" id="loginFooter"><!--starting tag for footer-->
     <div class="row">
       <div class="col-sm-1"> <img src="img/WBL_LOGO_blk.png" class="img-responsive" alt="small WBL logo"> 
       </div>
