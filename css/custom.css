@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*css document*/
 
 body {
@@ -68,16 +68,16 @@ a { color: white;}/*this is the text in the nav*/
 
 p {
     color: black;
-    font-family: "Minion Pro Bold" , Minion, serif;
+    font-family: "Oswald" , Minion, serif;
     font-size: 16px;
 }
 h3 {
-    font-family:  "Minion Pro Bold" , Minion, serif;
+    font-family:  "Oswald" , Minion, serif;
     color: #27430d;
     text-decoration: underline;
 }
 .contact {
-    font-family:  "Minion Pro Bold" , Minion, serif;
+    font-family:  "Oswald" , Minion, serif;
     color: #452900;
     font-size: 20px;
 }
@@ -85,8 +85,9 @@ h3 {
 	background-color: #030303;
 	padding:20px;
 	padding-top: 30px;
-    margin-top:60px;
+    margin-top:380px;
     border-top: 12px solid #22eecf;
+
 }
 .jumbotron {
 	    padding: 30px 15px;
