@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 public partial class Student_SearchClasses2 : System.Web.UI.Page
 {
-    //TODO: Change capacity to seats left
+ 
     //TODO: make it so that student can only sign up for a class after all their evaluations are complete
     // we need an enrollment table
     //TODO: get lesson plans and link them to lessonplan cell, see comment below
@@ -278,7 +278,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
         if (ddlSortBy.SelectedValue.ToString() == "Element")
         {
-            sortBy = "CourseElement";
+            sortBy = "ORDER BY CourseElement";
             // TODO: figure out the query to tie an instructor to the class they teach
         }
         if (ddlSortBy.SelectedValue.ToString() == "Date (Soonest)")

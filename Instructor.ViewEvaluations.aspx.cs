@@ -16,15 +16,11 @@ public partial class Instructor_ViewEvaluations : System.Web.UI.Page
         {
             try
             {
-                SqlConnection sc = new SqlConnection();
+                SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
                 SqlCommand insert = new SqlCommand();
 
-
-                sc.ConnectionString = @"Server = LULU; Database = WBLDB; Trusted_Connection = Yes;";
-
-
                 insert.Connection = sc;
-                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = 7";
+                insert.CommandText = "Select ResponseText from Response where Response.EvalResponseID = '" + Session["EvalResponseID"].ToString() + "'";
                 sc.Open();
 
 
@@ -36,11 +32,8 @@ public partial class Instructor_ViewEvaluations : System.Web.UI.Page
 
                 while (reader.Read())
                 {
-
-
-                    //txtQuestion16Text = "studentName";
-                    txtQuestion1.Text = "StudentName";
-                    txtQuestion9a.Text = "ProfessorName";
+                    txtQuestion1.Text = "Anonymous";
+                    txtQuestion9a.Text = "";
                     if (i == 0)
                     {
                         txtQuestion2.Text = reader.GetString(0);

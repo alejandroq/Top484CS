@@ -8,13 +8,12 @@
               </u></b>
               <br />
               <br /><b>
-              <asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Name: "></asp:Label>
+              <asp:Label ID="lblQuestion1" runat="server" Text="1. Student's Email: "></asp:Label>
               </b>
               <asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox>
               <br />
               <br />
-              <asp:Table ID="Table2" runat="server" Width="100%" BorderStyle="Dotted" GridLines="Horizontal" HorizontalAlign="Right">
-                  
+              <asp:Table ID="Table2" runat="server" Width="100%" BorderStyle="Dotted" GridLines="Horizontal" HorizontalAlign="Right">    
                   <asp:TableRow ID="TableRow2" runat="server" HorizontalAlign="Right">
                       <asp:TableCell ID="TableCell7" runat="server"><b><u>Question</u></b></asp:TableCell>
                       <asp:TableCell ID="TableCell8" runat="server"><b><u>Instructor's Response</u></b></asp:TableCell>
