@@ -31,10 +31,10 @@ public partial class Instructor_TakeAttendance : System.Web.UI.Page
             Session["UserId"] = "Matam.Pages@gmail.com";
             PopDropDown(); 
         }
-        if (!ddlClasses.SelectedItem.Value.ToString().Equals("Please select"))
+        if (ddlClasses.SelectedItem.Value.ToString().Equals("Please select"))
         {
-            studs = GetStudents();
-            PopChkBox(studs);
+            chkStudent.Items.Clear();
+            
 
         }
 
@@ -73,7 +73,7 @@ public partial class Instructor_TakeAttendance : System.Web.UI.Page
             int count = 1;
             for (int i = 0; i < result.Count; i += 2)
             {
-                Debug.WriteLine(i);
+                //Debug.WriteLine(i);
                 ddlClasses.Items.Insert(count, new ListItem(result[i + 1].ToString(), result[i].ToString()));
                 count++;
             }
@@ -81,7 +81,7 @@ public partial class Instructor_TakeAttendance : System.Web.UI.Page
         }
         catch (SqlException SQLe)
         {
-            System.Diagnostics.Debug.Write(SQLe.ToString());
+            System.Diagnostics.Debug.Write(SQLe.ToString() + "line 84");
         }
     }
 
@@ -204,107 +204,78 @@ public partial class Instructor_TakeAttendance : System.Web.UI.Page
 
         DateTime today = DateTime.Now;
         
-        int size = (studs.Count);
-        for (int i = 0; i < size; i++ )
+         try
+         {
+            //Creates a new sql connection and links the application to the DB
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+
+            //Opens the sql connection
+            sc.Open();
+
+            //user stored procedures to avoid SQL injection
+            SqlCommand update = new SqlCommand();
+            update.Connection = sc;
+            update.CommandType = CommandType.StoredProcedure;
+            update.CommandText = "AttendanceProcedure";
+
+            Debug.WriteLine("Button Clicked");
+            int size = chkStudent.Items.Count;
+
+            for (int i = 0; i < size; i++)
+            {
+                if (chkStudent.Items[i].Selected)
+                {
+                    update.Parameters.AddWithValue("@CourseID", ddlClasses.SelectedValue);
+                    update.Parameters.AddWithValue("@EmailAddress", chkStudent.Items[i].Value.ToString());
+                    update.Parameters.AddWithValue("@AttendanceDate", today);
+                    update.Parameters.AddWithValue("@PresentBool", 1);
+
+                    update.ExecuteNonQuery();
+
+                    update.Parameters.Clear();
+
+                    Debug.WriteLine("Present");
+                }
+                else
+                {
+                    update.Parameters.AddWithValue("@CourseID", ddlClasses.SelectedValue);
+                    update.Parameters.AddWithValue("@EmailAddress", chkStudent.Items[i].Value.ToString());
+                    update.Parameters.AddWithValue("@AttendanceDate", today);
+                    update.Parameters.AddWithValue("@PresentBool", 0);
+                    update.ExecuteNonQuery();
+
+                    update.Parameters.Clear();
+
+
+                    Debug.WriteLine("Absent");
+                    Debug.WriteLine(chkStudent.Items[i].Value.ToString());
+                }
+            }
+            sc.Close();
+
+            chkStudent.Items.Clear();
+            lblSuccess.Visible = true;
+            HtmlGenericControl h3 = new HtmlGenericControl("h3");
+            h3.InnerText = "Attendance for " + ddlClasses.SelectedItem.Text +" taken successfully";
+            lblSuccess.Controls.Add(h3);
+        } 
+        catch (SqlException s)
+        //shows an error message if there is a problem connecting to the DB.
         {
-            if (chkStudent.Items[i].Selected)
-            {
-                try
-                {
-                    //Creates a new sql connection and links the application to the DB
-                    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-
-                    //Opens the sql connection
-                    sc.Open();
-
-                    //user stored procedures to avoid SQL injection
-                    SqlCommand update = new SqlCommand();
-                    update.Connection = sc;
-                    update.CommandType = CommandType.StoredProcedure;
-                    update.CommandText = "AttendanceProcedure";
-
-                    SqlParameter courseID = new SqlParameter();
-                    courseID.ParameterName = "@CourseID";
-                    courseID.Value = ddlClasses.SelectedValue;
-                    update.Parameters.Add(courseID);
-
-                    SqlParameter email = new SqlParameter();
-                    email.ParameterName = "@EmailAddress";
-                    email.Value = studs[i];
-                    update.Parameters.Add(email);
-
-                    SqlParameter date = new SqlParameter();
-                    date.ParameterName = "@AttendanceDate";
-                    date.Value = today;
-                    update.Parameters.Add(date);
-
-                    SqlParameter present = new SqlParameter();
-                    present.ParameterName = "@PresentBool";
-                    present.Value = "1";
-                    update.Parameters.Add(present);
-
-                    update.ExecuteNonQuery();
-                    sc.Close();
-
-                }
-                catch (SqlException s)
-                //shows an error message if there is a problem connecting to the DB.
-                {
-                    MessageBox.Show(s.Message);
-                }
-            }
-            else
-            {
-                try
-                {
-                    //Creates a new sql connection and links the application to the DB
-                    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-
-                    //Opens the sql connection
-                    sc.Open();
-
-                    //user stored procedures to avoid SQL injection
-                    SqlCommand update = new SqlCommand();
-                    update.Connection = sc;
-                    update.CommandType = CommandType.StoredProcedure;
-                    update.CommandText = "AttendanceProcedure";
-
-                    SqlParameter courseID = new SqlParameter();
-                    courseID.ParameterName = "@CourseID";
-                    courseID.Value = ddlClasses.SelectedValue;
-                    update.Parameters.Add(courseID);
-
-                    SqlParameter email = new SqlParameter();
-                    email.ParameterName = "@EmailAddress";
-                    email.Value = studs[i];
-                    update.Parameters.Add(email);
-
-                    SqlParameter date = new SqlParameter();
-                    date.ParameterName = "@AttendanceDate";
-                    date.Value = today;
-                    update.Parameters.Add(date);
-
-                    SqlParameter present = new SqlParameter();
-                    present.ParameterName = "@PresentBool";
-                    present.Value = "0";
-                    update.Parameters.Add(present);
-
-                    update.ExecuteNonQuery();
-                    sc.Close();
-
-                }
-                catch (SqlException s)
-                //shows an error message if there is a problem connecting to the DB.
-                {
-                    MessageBox.Show(s.Message);
-                }
-            }
+            Debug.WriteLine(s.Message + "line 253" + "\n" + s.ToString());
         }
+
+
     }
     protected void ddlClasses_SelectedIndexChanged(object sender, EventArgs e)
     {
-        chkStudent.Items.Clear();
-        studs = GetStudents();
-        PopChkBox(studs);
+        lblSuccess.Visible = false;
+
+        if (ddlClasses.SelectedIndex != 0)
+        {
+            chkStudent.Items.Clear();
+            studs = GetStudents();
+            PopChkBox(studs);
+        }
     }
 }

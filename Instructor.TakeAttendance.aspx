@@ -29,8 +29,8 @@
                 <br />
                 <br />
                 <br />
-                <asp:CheckBoxList ID="chkStudent" runat="server" AutoPostBack="true" ></asp:CheckBoxList>
-
+                <asp:CheckBoxList ID="chkStudent" runat="server" ></asp:CheckBoxList>
+                <asp:Label ID="lblSuccess" runat="server" Visible="false"></asp:Label>
                 <br />
                 <br />
                 <br />
