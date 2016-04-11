@@ -199,7 +199,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         
         Session["courseCount"] = ((int?)Session["courseCount"] ?? 0) + 1;
         System.Diagnostics.Debug.WriteLine(Session["courseCount"].ToString());
-        ViewState["enrollQuery"] += "insert into dbo.Enrollment values ('" + studentID + "','" + sectionID + "','" + courseID + "', 0);"; 
+        ViewState["enrollQuery"] += "insert into dbo.Enrollment values ('" + studentID + "','" + sectionID + "','" + courseID + "', 0, 0);"; 
         // TODO: figure out how to insert into enrollment table
         System.Diagnostics.Debug.WriteLine(ViewState["enrollQuery"].ToString());
         lbShoppingCart.Items.Add(courseName);

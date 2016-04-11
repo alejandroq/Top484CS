@@ -83,11 +83,12 @@
         <asp:Label ID="lblLevel" runat="server" Text="Academy Level: "><asp:TextBox ID="txtLevel" runat="server"></asp:TextBox></asp:Label><br />
         <asp:Label ID="lblBucks" runat="server" Text="Your WBL Bucks: "><asp:TextBox ID="txtBucks" runat="server"></asp:TextBox></asp:Label><asp:Button ID="btnShop" runat="server" Text="Shop Now!" /><br />
         <asp:Label ID="lblWaiver" runat="server" Text="Waiver Status: "><asp:TextBox ID="txtWaiver" runat="server"></asp:TextBox></asp:Label><br />
-        <asp:Button ID="btnViewSchedule" runat="server" Text="View your Class Schedule" OnClick="btnViewSchedule_Click" Width="300px"/>
-        <asp:Button ID="btnViewProfile" runat="server" Text="View Your Profile" OnClick="btnViewProfile_Click" Width="300px"/><br />
-        <asp:Button ID="btnEditInfo" runat="server" Text="Edit Your Information" OnClick="btnEditInfo_Click" Width="300px"/>
-        <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Change Your Password" Width="300px"/><br />
+        
+        <asp:Button ID="btnViewProfile" runat="server" Text="View Your Profile" OnClick="btnViewProfile_Click" Width="300px"/>
+        <asp:Button ID="btnEditInfo" runat="server" Text="Edit Your Information" OnClick="btnEditInfo_Click" Width="300px"/><br />
         <asp:Button ID="btnDownloadWaiver" runat="server" Text="Download Waivers" OnClick="btnDownloadWaiver_Click" Width="300px"/>
+        <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Change Your Password" Width="300px"/><br />
+        <asp:Button ID="btnViewSchedule" runat="server" Text="View your Class Schedule" OnClick="btnViewSchedule_Click" Width="602px"/>
     </form>
 
 

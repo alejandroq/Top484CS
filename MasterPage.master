@@ -156,7 +156,7 @@
                 <li><a href="Wall.aspx">Wall</a></li>
 		       	<li><a href="ViewEvent.aspx">Events</a></li>
 		        <li class="mobile-last-li">Buck Shop</li>
-                <li class="mobile-last-li">My Account</li>
+                <li class="mobile-last-li"><a href="MyAccount.aspx">My Account</a></li>
                 
                 <!-- MOBILE ONLY ITEMS (UNIQUE MENU) WILL APPEAR HERE -->
                 <div class="mobile-only">
