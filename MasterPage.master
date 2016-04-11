@@ -59,10 +59,11 @@
 			}
             #notificationMenu {
                 position: relative;
-                float: right;
-                margin-right: 0px;
-                margin-top: -15px;
-                width: 70%;
+                margin-left: 5px;
+               margin-top: -17px;
+                text-align: right;
+                width: 40%;
+                float: left;
                     }
             #contenthere {
                 position: absolute;
@@ -79,7 +80,26 @@
             #btnLogOut {
                 color: white;
                 display: inline;
+                 position: relative;
+                float: right;
+                width: 25%;
+                position: relative;
+                width: 20%;
+                text-align: left;
             }
+            #donate {
+                  display: inline;
+                width: 118px;
+                    float: right;
+                padding-right: 40px;
+                margin-top: -30px;
+            }
+            #paypallbtn {
+                  margin: 1em 1em;
+                display: inline;
+                float: right;
+            }
+
         </style>
 
 	</head>
@@ -90,23 +110,42 @@
             <div id="branding">
                 <img id="branding-logo" src="img/logo.png" alt="Words Beats & Life Inc. Logo" />
             </div>
+                <div id="donate">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <%--<img src="<%=MakeImageSrcData("C:/Users/lee2rm/Desktop/Top484CS-master5/Top484CS-master/img/paypalprocess.png") %>" />
+                    --%><br /><br /><input type="hidden" name="cmd" value="_donations">
+                    <input type="hidden" name="business" value="top484.wordsbeatslifeproject@gmail.com">
+                    <input type="hidden" name="lc" value="US">
+                    <input type="hidden" name="item_name" value="Words Beats and Life, Inc">
+                    <input type="hidden" name="item_number" value="WBL">
+                    <input type="hidden" name="no_note" value="0">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>                
+
+                </div>
              </div>
+
 			<!-- END LOGO-BRANDING -->
 
 			<!-- BEGIN ICONIC NAVIGATION CONTROLS -->
-		    <ul class="navigation-controls" runat="server">
+		    <ul  class="navigation-controls" runat="server">
 				<li id="stackMenu" class="mobile-only">
 					<i class="fa fa-bars icon"></i>
 					<span class="usupur">Menu</span>
 				</li>
-		        <li id="notificationMenu" runat="server">
+		        
+                <li id="notificationMenu" runat="server">
                     <span id="numNotif" class="usupur" runat="server"></span>
 		        	<i class="fa fa-bell icon" id="redIcon" runat="server"></i>
 		        	<span class="usupur" id="redText" runat="server">Notifications</span>
                    </li>
-                <li> <span class="usupur" id="btnLogOut" runat="server"><a onclick="btnLogOut_Click">Log Out</a></span>
-		        </li>
+                <li><a class="usupur" id="btnLogOut" runat="server" onclick="btnLogOut_Click">Log Out</a></li>
 		    </ul>
+             
+		       
 		    <!-- END ICONIC NAVIGATION CONTROLS -->
 
 		    <!-- BEGIN NAVIGATION BAR -->

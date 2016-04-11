@@ -21,7 +21,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+ 
+
+
        Session["UserID"] = "Matam.Pages@gmail.com";
+
+       Response.Cache.SetNoStore();
 
         String userType = GetUserType();
         switch (userType)
@@ -44,6 +50,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
 
     }
+
+    protected void btnLogOut_Click(object sender, EventArgs e)
+    {
+        //FormsAuthentication.SignOut();
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("Log-In.aspx");
+    }
+
 
     /*
      * Gets user type 

@@ -56,6 +56,7 @@
                 <li>Add Item</li>
             </ul>
         </li>
+        <li>Send Notification</li>
         <li><a href="ViewCalendar.aspx">View Calendar</a></li>
         <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
     </asp:Panel>
@@ -63,11 +64,11 @@
 </asp:Content>
 
 
-<asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="body" runat="server">
+<asp:Content ID="ContentPlaceHolder1"  ContentPlaceHolderID="body" runat="server">
 <!-- BODY CONTENT -->
     <asp:panel ID="Panel4" runat="server">
 
-        <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
+        <asp:ContentPlaceHolder ID="ChildContent1"  runat="server" />
 
     </asp:panel>
 <!-- END BODY CONTENT -->
