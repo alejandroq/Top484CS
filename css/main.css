@@ -342,7 +342,8 @@ input[type="button"] {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: #172129;
+  box-shadow: 3px 3px 5px grey;
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
@@ -360,6 +361,7 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
   color: black;
   border-color: #888;
+  background-color: #22EECF;
   outline: 0;
 }
 .button.button-primary,
@@ -1323,6 +1325,13 @@ li ul {
 #eventsContent {
   margin-top: 10px;
   margin-left: 10px;
+}
+.mainContent a {
+    color: black !important;
+}
+.mainContent .button {
+    background-color: #172129;
+    color: white;
 }
 
 
