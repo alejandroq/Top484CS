@@ -6,30 +6,67 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 using System.Diagnostics;
 
 public partial class Student_ClassEvaluation : System.Web.UI.Page
 {
-
+    string section = "";
+    string emailAddress = "";
     bool addTeacher = false;
     string[] rdoValues = new string[22];
     //string[] rdoValues2 = new string[18];
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
+
+        //Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
         Session["EvalID"] = "2";
-        Session["RespondentID"] = "testStud@WBL.org";
+        Session["RespondentID"] = "Dobbs@WBL.org";
         //Session["RespondentID"] = Session["UserID"].ToString();
         //txtQuestion1.Text = Session["UserID"].ToString(); 
         txtQuestion1.Text = "Student Test";
-    }
 
-    /*
-     * Method that controls actions after Submit button is
-     * clicked on Evaluation
-     */
+
+        DataTable dt = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        // Query for finding every section taught by a specific teacher
+        string cmdText = "select Course.CourseName, Enrollment.SectionID from Enrollment inner join Section on Enrollment.SectionID = Section.SectionID inner join Course  on Section.CourseID = Course.CourseID where Enrollment.EmailAddress ='" + (String)Session["RespondentID"] + "'";
+        SqlCommand cmd = new SqlCommand(cmdText, connection);
+        cmd.ExecuteNonQuery();
+        SqlDataAdapter adp = new SqlDataAdapter(cmd); // read in data from query results
+        adp.Fill(dt);
+        // Populate class list drop down when the page loads
+        if (!IsPostBack)
+        {
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string className = dt.Rows[i][0].ToString();
+                section = dt.Rows[i][1].ToString();
+
+                ddClassName.Items.Insert(i + 1, new ListItem(className + " " + section, section));
+
+
+                ddClassName.DataBind();
+
+            }
+        }
+        System.Diagnostics.Debug.WriteLine(ddClassName.Text);
+    }
+     
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+       
+        string selectedEmail = ddInstructorName.SelectedValue;
+        int emailIndex = selectedEmail.IndexOf(emailAddress.ToString());
+        System.Diagnostics.Debug.WriteLine(emailIndex);
+        emailAddress = selectedEmail.Substring(emailIndex);
+        Session["EvaluateeID"] = emailAddress;
+        System.Diagnostics.Debug.WriteLine(Session["EvaluateeID"].ToString());
+
+
         ArrayList answers = GatherAnswers();
         ArrayList questions = GatherQuestions();
         SubmitEval(questions, answers);
@@ -380,4 +417,44 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     }
 
 
+
+    protected void ddClassName_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string selection = ddClassName.SelectedValue;
+        System.Diagnostics.Debug.WriteLine(selection);
+        int index = selection.IndexOf(section.ToString());
+        System.Diagnostics.Debug.WriteLine(index);
+        section = selection.Substring(index);
+
+
+
+        DataTable dt2 = new DataTable();
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        connection.Open();
+        string cmdText2 = "select (FirstName + ' '+ LastName) As fullName, GeneralUser.EmailAddress from GeneralUser inner join Staff on GeneralUser.EmailAddress = Staff.EmailAddress inner join SectionStaff on Staff.EmailAddress = SectionStaff.EmailAddress where SectionStaff.SectionID = '" + Convert.ToInt32(section) + "'";
+        SqlCommand cmd2 = new SqlCommand(cmdText2, connection);
+        cmd2.ExecuteNonQuery();
+        SqlDataAdapter adp2 = new SqlDataAdapter(cmd2); // read in data from query results
+        adp2.Fill(dt2);
+
+        for (int i = 0; i < dt2.Rows.Count; i++)
+        {
+            string instructor = dt2.Rows[i][0].ToString();
+            emailAddress = dt2.Rows[i][1].ToString();
+
+            ddInstructorName.Items.Insert(i + 1, new ListItem(instructor + " - " + emailAddress, emailAddress));
+         
+
+
+
+
+        }
+   
+
+        
+       
+        System.Diagnostics.Debug.WriteLine(ddInstructorName.Text);
+
+
+    }
 }

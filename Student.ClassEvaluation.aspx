@@ -8,8 +8,21 @@
         <b><u><asp:Label ID="lblHeader" runat="server" Text="WBL Class Evaluation"></asp:Label></u></b><br />
         <br />
 
+        <b><asp:Label ID="lblClassName" runat="server" Text="Class Name"></asp:Label></b>
+        <asp:DropDownList ID ="ddClassName" runat ="server" Autopostback="true" OnSelectedIndexChanged="ddClassName_SelectedIndexChanged">
+            <asp:ListItem Value ="selectClass">--Select a Class--</asp:ListItem>
+        </asp:DropDownList> 
+
+        <br />
+
+
+
         <b><asp:Label ID="lblQuestion1" runat="server" Text="1. What is your Name? " ></asp:Label></b><asp:TextBox ID="txtQuestion1" runat="server"></asp:TextBox><br />
         <br />
+
+                       
+
+        
 
         <b><asp:Label ID="lblQuestion2" runat="server" Text="2. How did you hear about this class? "></asp:Label></b><br />
         <asp:RadioButton ID="rdoFB" runat="server" Text="Facebook" GroupName="q2" />
@@ -271,8 +284,12 @@
         <div id ="divInstructorEval" runat ="server" >
         <b><u><asp:Label ID="lblTeacher" runat="server" Text="Teacher Evaluation"></asp:Label></u></b><br />
         <br />
-        <b><asp:Label ID="lblQuestion1t" runat="server" Text="1. What is the teacher's name?  "></asp:Label></b><asp:TextBox ID="txtQuestion9a" runat="server"></asp:TextBox><br />
-        <asp:Table ID="Table4" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
+        <b><asp:Label ID="lblQuestion1t" runat="server" Text="1. What is the teacher's name?  "></asp:Label></b>
+            <asp:DropDownList ID ="ddInstructorName" runat="server" Autopostback="false"><asp:ListItem Value ="selectInstructor" >--Select an Instructor--</asp:ListItem></asp:DropDownList><br />
+            <%--<asp:TextBox ID="txtQuestion9a" runat="server"></asp:TextBox><br />--%>
+        
+            
+            <asp:Table ID="Table4" runat="server" Width="504px" BorderStyle="Dotted" GridLines="Horizontal">
                 <asp:TableRow ID="TableRow21" runat="server" HorizontalAlign="Center">
                     <asp:TableCell ID="TableCell121" runat="server"></asp:TableCell>
                     <asp:TableCell ID="TableCell122" runat="server">Unsatisfactory</asp:TableCell>
