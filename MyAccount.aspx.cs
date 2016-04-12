@@ -14,9 +14,11 @@ public partial class MyAccount : System.Web.UI.Page
     {
         // TODO: insert actual pro pic links in student table
 
-
-        int userType = Int32.Parse(Session["permission"].ToString());
-
+        int userType = 0;
+        if (Session["permission"] != null)
+        {
+            userType = Int32.Parse(Session["permission"].ToString());
+        }
         switch (userType)
         {
             case 1:

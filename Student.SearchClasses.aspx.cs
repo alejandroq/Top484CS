@@ -171,9 +171,6 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
             periscopeCell.Controls.Add(ltrl2);
             row.Cells.Add(periscopeCell);
 
-
-
-
             TableCell enroll = new TableCell();
             LinkButton shoppingCart = new LinkButton();
             shoppingCart.Text = "Add to Cart";
@@ -188,11 +185,8 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
 
             table.Rows.Add(row);
             form1.Controls.Add(table);
-        
         }
-    
     }
-
     void shoppingCart_Click(object sender, EventArgs e)
     {
         string courseID;
@@ -486,7 +480,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         ViewState["enrollQuery"] = "";
         MessageBox.Show("Enrolled! Please download the required waiver forms from the 'My Account' tab, fill out the forms, and bring to the first class.");
         WebActivity.LogActivity("Student enrolled", true);
-        Response.Redirect("MyAccount.aspx");
+        //Response.Redirect("MyAccount.aspx");
     }
 
     protected void btnViewCalendar_Click(object sender, EventArgs e)

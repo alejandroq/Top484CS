@@ -79,3 +79,21 @@ public partial class Inventory : System.Web.UI.Page
         }
     }
 }
+
+
+// For scope:
+// Key Key course stuff
+// What a teacher and student sees
+// Have "something" for evaluations
+// flexible on some stuff since they dont know what they want
+// for friday: key functionality top to bottom
+// whats process for applicant to become a student electronically
+// will people want to come back
+// ignoring cipher would be deduction
+// 40 points for c#, any piece is probably only a 1-2 point deduction (these can be fixed the following week)
+// database is a huge piece
+
+
+
+
+
