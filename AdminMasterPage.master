@@ -1,5 +1,9 @@
 ﻿<%@ Master Language="C#" MasterPageFile="MasterPage.master"%> 
 
+<asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
+    <asp:ContentPlaceHolder Id="stylehead" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="foobar" Runat="Server">
 <!-- ADMIN SUB-MASTERPAGE -->
 

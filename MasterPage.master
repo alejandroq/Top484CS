@@ -195,10 +195,10 @@
 	   
 			<!-- BEGIN UPCOMING EVENTS (Icon List) -->
 			<p class="pre-menu">Upcoming Events</p>
-			<ul class="menu ui-icon-list">
-				<li><i class="fa fa-calendar"></i>EVENT 1 HEY THERE<p>Today at 10AM</p></li>
-				<li><i class="fa fa-calendar"></i>EVENT 2 Down in the DM<p>Today at 11AM</p></li>
-				<li><i class="fa fa-calendar"></i>EVENT 3 the DM<p>Today at 12PM</p></li>
+			<ul id="currentEvents" runat="server" class="menu ui-icon-list">
+                <li runat="server" id="event1" class="fa fa-calendar"><p id="e1Date" runat="server"></p></li>
+				<li runat="server" id="event2" class="fa fa-calendar"><p id="e2Date"></p></li>
+                <li id="event3" runat="server" class="fa fa-calendar"><p id="e3Date"></p></li>
 			</ul>
 			<!-- END UPCOMING EVENTS -->
 		</aside>
