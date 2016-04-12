@@ -13,6 +13,10 @@ public partial class ViewCalendar : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        lbleType.Visible = false;
+        ddlMemberType.Visible = false;
+        lblSortyBy.Visible = false;
+        ddlSortBy.Visible = false;
         int userType = 0;
         if(Session["permission"] != null)
         {
@@ -561,16 +565,24 @@ public partial class ViewCalendar : System.Web.UI.Page
     {
         //button for listview not used yet
         Calendar1.Visible = true;
+        ddlMemberType.Visible = false;
+        ddlSortBy.Visible = false;
+        lbleType.Visible = false;
+        lblSortyBy.Visible = false;
     }
     
     protected void btnCalView_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ViewCalendar.aspx");
+        //Response.Redirect("ViewCalendar.aspx");
     }
     
     protected void btnViewList_Click(object sender, EventArgs e)
     {
         Calendar1.Visible = false;
+        ddlMemberType.Visible = true;
+        ddlSortBy.Visible = true;
+        lbleType.Visible = true;
+        lblSortyBy.Visible = true;
     }
     
     protected void btnExport_Click(object sender, EventArgs e)
