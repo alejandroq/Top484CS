@@ -25,12 +25,12 @@
                 <li><a href="Admin.AddEvent.aspx">Add Event</a></li>
             </ul>
         </li>
-        <li>Manage Inventory 
+        <li><a href="Inventory.aspx">Manage Inventory<a> 
             <ul>
                 <li>Add Item</li>
             </ul>
         </li>
-        <li>Send Notification</li>
+        <li><a href="Admin.MakeNotification">Send Notification</a></li>
         <li><a href="ViewCalendar.aspx">View Calendar</a></li>
         <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
     </asp:Panel>
