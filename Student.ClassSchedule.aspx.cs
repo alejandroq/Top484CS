@@ -186,6 +186,7 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
             {
 
                 string courseTime = dt.Rows[i][4].ToString();
+                string sectionID = dt.Rows[i][2].ToString();
                 System.Diagnostics.Debug.WriteLine(courseTime);
                 int index = courseTime.IndexOf(' ');
                 System.Diagnostics.Debug.WriteLine(index);
@@ -217,7 +218,7 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                     e.Cell.Controls.Add(b);
 
                     Literal ltrl2 = new Literal();
-                    ltrl2.Text = "<BR/><a style='font-size:8' href='ViewClass.aspx'>Course Details</a>";  
+                    ltrl2.Text = "<BR/><a style='font-size:8' href='ViewClass.aspx?SectionID=" + sectionID + "'>Course Details</a>";  
                     e.Cell.Controls.Add(ltrl2);
                 }
             }

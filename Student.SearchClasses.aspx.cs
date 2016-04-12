@@ -176,7 +176,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
 
             TableCell enroll = new TableCell();
             LinkButton shoppingCart = new LinkButton();
-            shoppingCart.Text = "Add to Shopping Cart";
+            shoppingCart.Text = "Add to Cart";
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][0].ToString());
             System.Diagnostics.Debug.WriteLine(dt.Rows[i][1].ToString());
             shoppingCart.CommandArgument = dt.Rows[i][0].ToString() + "," + dt.Rows[i][1].ToString() + "," + dt.Rows[i][2].ToString();
