@@ -14,10 +14,10 @@
         #body_Panel4 {
             text-align: center;
         }
-        #body_Panel4 a {
-            text-align: center;
-            color: white !important;
-        }
+            #body_Panel4 a {
+                text-align: center;
+                color: white !important;
+            }
         #body_Panel4 h2 {
             border-bottom: 5px solid black;
             text-align: left;

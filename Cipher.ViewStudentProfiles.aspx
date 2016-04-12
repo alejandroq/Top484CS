@@ -10,11 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-            <!-- Bootstrap CSS 
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">-->
+            
+        <!-- Bootstrap CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
 
-        <!-- Cutstom CSS
-        <link href="css/custom.css" rel="stylesheet" type="text/css" media="screen"> -->
+        <!-- Cutstom CSS -->
+        <link href="css/custom.css" rel="stylesheet" type="text/css" media="screen">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +26,7 @@
 
     <style type="text/css">
         .col-sm-2 {
-        width: 250px;
+        width: 30%;
         height: 55%;
         }
         a.btn.btn-primary {
@@ -39,6 +40,14 @@
         margin-left: 10%;
         margin-right: auto;
         }
+        #body_Panel4 img {
+            height: 90%;
+            width: 90%;
+        }
+        #body_Panel4 a {
+            color: white !important;
+        }
+ 
     </style>
 
 </asp:Content>
