@@ -4,13 +4,8 @@
 body {
 	background-color: white;
 }
-nav {
-	background-color: #9a9999;
 
-}
-header {
-    padding-top: 500px;
-}
+
 #googleMap {
     width: 400px; 
     height: 300px;
