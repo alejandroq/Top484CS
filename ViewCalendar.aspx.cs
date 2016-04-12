@@ -17,6 +17,7 @@ public partial class ViewCalendar : System.Web.UI.Page
         ddlMemberType.Visible = false;
         lblSortyBy.Visible = false;
         ddlSortBy.Visible = false;
+        btnExport.Visible = false;
         int userType = 0;
         if(Session["permission"] != null)
         {
@@ -569,6 +570,7 @@ public partial class ViewCalendar : System.Web.UI.Page
         ddlSortBy.Visible = false;
         lbleType.Visible = false;
         lblSortyBy.Visible = false;
+        btnExport.Visible = false;
     }
     
     protected void btnCalView_Click(object sender, EventArgs e)
@@ -583,6 +585,7 @@ public partial class ViewCalendar : System.Web.UI.Page
         ddlSortBy.Visible = true;
         lbleType.Visible = true;
         lblSortyBy.Visible = true;
+        btnExport.Visible = true;
     }
     
     protected void btnExport_Click(object sender, EventArgs e)

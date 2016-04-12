@@ -12,9 +12,11 @@ public partial class ViewEvent : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        int userType = Int32.Parse(Session["permission"].ToString());
-
+        int userType = 0;
+        if (Session["permission"] != null)
+        {
+            userType = Int32.Parse(Session["permission"].ToString());
+        }
         switch (userType)
         {
             case 1:
