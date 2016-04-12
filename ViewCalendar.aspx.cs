@@ -165,7 +165,7 @@ public partial class ViewCalendar : System.Web.UI.Page
 
                     Literal ltrl2 = new Literal();
                     ltrl2.Text = "<BR/><a style='font-size:8' href='ViewEvent.aspx?EventDateTime=" + thisDay + "'>View Event</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
-                    // TODO: code the logic for editing the event from the page this links to
+                    
                     e.Cell.Controls.Add(ltrl2);
                 }
 

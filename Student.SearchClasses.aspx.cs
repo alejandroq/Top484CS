@@ -21,14 +21,11 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
     //TODO: add class date to command arguments for shopping cart
     // Need to be able to hover over class descriptions and read before enrolling
 
-    // Enrollment table
-    // do we need capacity and seats left for every record? me thinks they should be in course and not enrollment
-    // do we need teacher email in there? me thinks this 
-    // 
     
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        WebActivity.LogActivity("Student searched classes", true);    
         GenerateTable();
     }
 
@@ -86,6 +83,11 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         }
 
         // any non-DB column NAMES here
+        TableHeaderCell periscope = new TableHeaderCell();
+        periscope.Text = "Periscope Link";
+        row.Cells.Add(periscope);
+
+
         TableHeaderCell enrollCheck = new TableHeaderCell();
         enrollCheck.Text = "Click to Enroll";
         row.Cells.Add(enrollCheck);
@@ -163,6 +165,15 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
                 }
             }
             // Any non-DB column VALUES here
+            TableCell periscopeCell = new TableCell();
+            Literal ltrl2 = new Literal();
+            ltrl2.Text = "<script>window.twttr = function (t, e, r) { var n, i = t.getElementsByTagName(e)[0], w = window.twttr || {}; return t.getElementById(r) ? w : (n = t.createElement(e), n.id = r, n.src = 'https://platform.twitter.com/widgets.js', i.parentNode.insertBefore(n, i), w._e = [], w.ready = function (t) { w._e.push(t) }, w) }(document, 'script', 'twitter-wjs')</script><a href='https://www.periscope.tv/daniel_4' class='periscope-on-air' data-size='large'>Watch Now!</a>";
+            periscopeCell.Controls.Add(ltrl2);
+            row.Cells.Add(periscopeCell);
+
+
+
+
             TableCell enroll = new TableCell();
             LinkButton shoppingCart = new LinkButton();
             shoppingCart.Text = "Add to Shopping Cart";
@@ -474,6 +485,7 @@ public partial class Student_SearchClasses2 : System.Web.UI.Page
         cmd.CommandText = "";
         ViewState["enrollQuery"] = "";
         MessageBox.Show("Enrolled! Please download the required waiver forms from the 'My Account' tab, fill out the forms, and bring to the first class.");
+        WebActivity.LogActivity("Student enrolled", true);
         Response.Redirect("MyAccount.aspx");
     }
 

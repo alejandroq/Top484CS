@@ -35,7 +35,6 @@ public partial class ViewEvent : System.Web.UI.Page
                 txtPCName.ReadOnly = true;
                 txtPCPhone.ReadOnly = true;
                 txtPCEmail.ReadOnly = true;
-
                 break;
             case 2:
                 // display parent menu

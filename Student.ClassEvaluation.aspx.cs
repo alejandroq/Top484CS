@@ -19,14 +19,8 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
     //string[] rdoValues2 = new string[18];
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        Session["EvaluateeID"] = "testProf@WBL.org"; // professor email that student is evalu
         Session["EvalID"] = "2";
         Session["RespondentID"] = Session["UserID"].ToString();
-        //Session["RespondentID"] = Session["UserID"].ToString();
-        //txtQuestion1.Text = Session["UserID"].ToString(); 
-       
-
 
         DataTable dt = new DataTable();
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
@@ -47,7 +41,6 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
                 section = dt.Rows[i][1].ToString();
                 ddClassName.Items.Insert(i + 1, new ListItem(className, section));
                 ddClassName.DataBind();
-
             }
         }
         System.Diagnostics.Debug.WriteLine(ddClassName.Text);
@@ -68,10 +61,12 @@ public partial class Student_ClassEvaluation : System.Web.UI.Page
         SubmitEval(questions, answers);
         //get student Id from Session Variable
     }
+
     /*
      * Method gathers all answers from the evaluation form 
      * @return result, arraylist containing all user answers
      */
+
     protected ArrayList GatherAnswers()
     {
         ArrayList result = new ArrayList();

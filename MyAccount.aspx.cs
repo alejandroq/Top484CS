@@ -80,6 +80,7 @@ public partial class MyAccount : System.Web.UI.Page
                 instructorPanel1.Style["display"] = "none";
 
                 btnViewProfile.Style["display"] = "none";
+                Response.Redirect("Admin.ManageAccounts.aspx");
                 break;
             default:
                 // ?? display error?

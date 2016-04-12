@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 public partial class Admin_AddContent : System.Web.UI.Page
 {
@@ -16,12 +17,17 @@ public partial class Admin_AddContent : System.Web.UI.Page
         if (fuAdminAddContent.HasFile)
         {
             string filename = System.IO.Path.GetFileName(fuAdminAddContent.FileName);
-            fuAdminAddContent.SaveAs(@"C:\Users\lee2rm\Desktop\Portfolios\" + filename); // used this filepath to save on my desktop
+            //fuAdminAddContent.SaveAs("~/download/" + filename); // used this filepath to save on my desktop
+            int lastSlash = filename.LastIndexOf("\\");
+            string trailingPath = filename.Substring(lastSlash + 1);
+            string fullPath = Server.MapPath(" ") + "\\" + trailingPath;
+            fuAdminAddContent.PostedFile.SaveAs(fullPath);
+            
             /*Uploaded file path*/
             /*******************************************/
             /*Code to save the file path into data base??*/
             /*******************************************/
-            Response.Write("File uploaded successfully.");
+            MessageBox.Show("File upload successful!");
             // need to tie the file uploaded to the selected student's folder
             // need to add event handler for publishing file to community wall if user selects check box
         }

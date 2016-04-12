@@ -76,7 +76,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="body" Runat="Server">
 
     <form id="form1" runat="server">
-    <div>
+    <div style="float: left;">
     <h3>Event Details</h3>
     <asp:Label ID="lblEventName" runat="server" Text="Event Name: "><asp:TextBox ID="txtEventName" runat="server"></asp:TextBox></asp:Label><br />
         <asp:Label ID="lblDate" runat="server" Text="Event Date: "></asp:Label><asp:TextBox ID="txtDate" runat="server" placeholder="DD/MM/YYYY HH:MM:SS AM/PM"></asp:TextBox><br />
@@ -97,7 +97,7 @@
         <%--API KEY: AIzaSyBZi6ob0guXfcA9OV2j1fKMhKDJIP7upHE--%>
         
     </div>
-        <div>
+        <div style="float: right;">
                     <iframe id="myIframe"
           width="600"
           height="450"

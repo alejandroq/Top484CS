@@ -216,13 +216,10 @@ public partial class Student_ClassSchedule : System.Web.UI.Page
                     b.Text = dt.Rows[i][0].ToString() + " @ " + meetTime;
                     e.Cell.Controls.Add(b);
 
-
-
-                    //Literal ltrl2 = new Literal();
-                    //ltrl2.Text = "<BR/><a style='font-size:8' href='Student.ClassSchedule.aspx'>View Class Details</a>";    //?ID=" + wblEvent["ID"].ToString() + "'>View Address</a>";
-                    //e.Cell.Controls.Add(ltrl2);
+                    Literal ltrl2 = new Literal();
+                    ltrl2.Text = "<BR/><a style='font-size:8' href='ViewClass.aspx'>Course Details</a>";  
+                    e.Cell.Controls.Add(ltrl2);
                 }
-
             }
         }
     }

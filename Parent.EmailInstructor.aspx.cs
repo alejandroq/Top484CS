@@ -14,6 +14,7 @@ public partial class Parent_EmailInstructor : System.Web.UI.Page
     private ArrayList profs;
     protected void Page_Load(object sender, EventArgs e)
     {
+        WebActivity.LogActivity("Parent emailed instructor", true);
         if (!IsPostBack)
         {
 

@@ -9,6 +9,6 @@ public partial class Parent_ViewStudentContent : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        WebActivity.LogActivity("Parent Viewed Student Content", true);
     }
 }
