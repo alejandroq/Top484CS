@@ -24,6 +24,7 @@
 	    <!-- Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 	    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
 	    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 	    <!--[if lt IE 9]>
 	    <link rel="stylesheet" href="css/jquery.galereya.ie.css">
@@ -49,6 +50,8 @@
                 position: relative;
                 float: left;
                 padding: 5px 0 10px 0;
+                margin-left: -250px;
+                margin-top: -25px;
             }
             #wrapperHeader {
 				position: relative;
@@ -94,6 +97,7 @@
                     float: right;
                 padding-right: 40px;
                 margin-top: -30px;
+                    margin-right: 3%;
             }
             #paypallbtn {
                   margin: 1em 1em;
@@ -152,10 +156,10 @@
 		    <!-- BEGIN NAVIGATION BAR -->
 		    <nav>
 		    	<ul class="mobile-only"><h5>Navigation</h5></ul>
-		        <li>Hub</li>
+		        <li class="mobile-last-li"><a href="Hub.aspx">The Hub</a></li>
                 <li><a href="Wall.aspx">Wall</a></li>
 		       	<li><a href="ViewEvent.aspx">Events</a></li>
-		        <li class="mobile-last-li">Buck Shop</li>
+		        <li class="mobile-last-li"><a href="Inventory.aspx">Bucks Shop</a></li>
                 <li class="mobile-last-li"><a href="MyAccount.aspx">My Account</a></li>
                 
                 <!-- MOBILE ONLY ITEMS (UNIQUE MENU) WILL APPEAR HERE -->
