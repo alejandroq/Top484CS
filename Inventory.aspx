@@ -21,6 +21,9 @@
             border-bottom: 5px solid black;
             text-align: left;
         }
+        .col-sm-4 {
+        text-align: center;
+        }
 
 
     </style>
@@ -38,6 +41,70 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="foobar" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foo" Runat="Server">
+
+     <asp:Panel ID="adminPanel" runat="server">
+        <div id="adminPanel1" runat="server">
+        <li><a href="Admin.ManageAccounts.aspx">Manage Accounts</a>
+            <ul>
+                <li><a href="Admin.AddUser.aspx">Add New User</a></li>
+            </ul>
+        </li>
+        <li><a href="Admin.ManageContent.aspx">Manage Content</a> 
+            <ul>
+                <li><a href="Admin.AddContent.aspx">Add Content</a></li>
+                </ul>
+            </li>
+        <li><a href="Admin.ManageEvents.aspx">Manage Events</a> 
+            <ul>
+                <li><a href="Admin.AddEvent.aspx">Add Event</a></li>
+            </ul>
+        </li>
+        <li><a href="Inventory.aspx">Manage Inventory</a>  
+        </li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+        <li><a href="Admin.Dashboard.aspx">View Dashboard</a></li>
+            </div>
+    </asp:Panel>
+
+    <asp:Panel ID="studentPanel" runat="server">
+        <div id="studentPanel1" runat="server">
+      <li><a href="ViewProfile.aspx">View Profile</a> </li> <!-- either change this to view your profile or link to pathbrite TBD-->
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+      <li><a href="Student.SearchClasses.aspx">Search Classes</a></li>
+      <li><a href="Student.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+      <li><a href="Student.ClassEvaluation.aspx">Evaluate Class</a></li>
+        </div>
+    </asp:Panel>
+
+     <asp:Panel ID="instructorPanel" runat="server">
+         <div id="instructorPanel1" runat="server">
+        <li><a href="Instructor.TakeAttendance.aspx">Take Attendance</a></li>
+        <li><a href="Instructor.SubmitLessonPlan.aspx">Submit Lesson Plan</a></li>
+        <li><a href="Instructor.StudentEvaluationHomePage.aspx">Submit Student Evaluations</a></li>
+        <li><a href="Instructor.EvaluationHomePage.aspx">View Your Evaluations</a></li>
+        <li><a href="ViewCalendar.aspx">View Calendar</a> </li>
+         </div>
+    </asp:Panel>
+
+    <asp:Panel ID="parentPanel" runat="server">
+        <div id="parentPanel1" runat="server">
+      <li><a href="Parent.ViewStudentContent.aspx">View Student Content</a></li>
+      <li><a href="Parent.EvaluationHomePage.aspx">View Students' Evaluations</a></li>
+      <li><a href="Parent.EncouragementLetter.aspx">Write a Letter of Encouragement</a></li>
+      <li><a href="Parent.EmailInstructor.aspx">Email Instructor</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+            </div>
+    </asp:Panel>
+
+     <asp:Panel ID="cipherPanel" runat="server" >
+         <div id="cipherPanel1" runat="server">
+      <li><a href="Cipher.ViewStudentProfiles.aspx">View Student Profiles</a> </li>
+      <li><a href="Cipher.MakeADonation.aspx">Make a Donation</a></li>
+      <li><a href="ViewCalendar.aspx">View Calendar</a></li>
+         </div>
+    </asp:Panel>
+
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="body" Runat="Server">
 
@@ -56,7 +123,7 @@
         <img src="img/boombox.png" alt="Boom Box">
         <div class="caption">
         <h3>Boom Box</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>Price: $150</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -67,7 +134,7 @@
         <img src="img/camera.jpg" alt="Cameras">
         <div class="caption">
         <h3>Cameras</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>Price: $150</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -78,7 +145,7 @@
         <img src="img/ChessPieces.jpg" alt="Chess Pieces">
         <div class="caption">
         <h3>Chess Pieces</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>Price: $20</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -99,7 +166,6 @@
         <img src="img/dance.jpg" alt="dance program">
         <div class="caption">
         <h3>Donate to the Dance Program</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -110,7 +176,6 @@
         <img src="img/chessgame.jpg" alt="A Game of Chess">
         <div class="caption">
         <h3>Donate to the Chess Program</h3>
-        <p>...</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -121,7 +186,6 @@
         <img src="img/photo_program.jpg" alt="Photography Program">
         <div class="caption">
         <h3>Donate to the Photography Program</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -141,7 +205,7 @@
         <img src="img/citytour.jpg" alt="City Tour">
         <div class="caption">
         <h3>Purchase Tickets for the City Tour</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>Donate today to help us raise $5,000 to rent a 12-passenger van for a monthly creative economy tour of the District of Columbia, for a week long rental for an Alternative Winter Break tour and Alternative Spring Break tour.</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -152,7 +216,7 @@
         <img src="img/muralproject1.jpg" alt="Mural Project #1">
         <div class="caption">
         <h3>Donate to Mural Project #1</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>“We want our mural to represent what we stand for as a house. We are men of different faiths, different backgrounds, different races, and different socioeconomic classes, but we all share a desire to make a positive difference in the world.” -Graham McLaughlin, Clean Decisions</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
@@ -163,7 +227,7 @@
         <img src="img/muralproject2.jpg" alt="Mural Project #2">
         <div class="caption">
         <h3>Donate to Mural Project #2</h3>
-        <p>THIS IS AN ITEM DESCRIPTION</p>
+        <p>“The DC Council voted to rename the 500 block of U Street, Lawrence Guyot Way in honor of my father’s contributions to the District, as well as his Civil Rights legacy.” -Julie Guyot, Daughter of Lawrence Guyot</p>
         <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">Donate</a></p>
         </div>
         </div>
