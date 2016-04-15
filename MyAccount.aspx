@@ -88,7 +88,9 @@
         <asp:Button ID="btnEditInfo" runat="server" Text="Edit Your Information" OnClick="btnEditInfo_Click" Width="300px"/><br />
         <asp:Button ID="btnDownloadWaiver" runat="server" Text="Download Waivers" OnClick="btnDownloadWaiver_Click" Width="300px"/>
         <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Change Your Password" Width="300px"/><br />
-        <asp:Button ID="btnViewSchedule" runat="server" Text="View your Class Schedule" OnClick="btnViewSchedule_Click" Width="602px"/>
+        <asp:Button ID="btnViewSchedule" runat="server" Text="View your Class Schedule" OnClick="btnViewSchedule_Click" Width="602px"/><br />
+        
+        
     </form>
 
 
